@@ -1,6 +1,6 @@
 class movingObject{
 
-  constructor(x, y, display){
+  constructor(x, y, display,index){
 
     this.speedX = 0;
     this.x = x;
@@ -8,23 +8,34 @@ class movingObject{
     this.jumping = false;
     this.fallSpeed=0;
     this.display = display;
+    this.counter =0;
+    this.index=index;
+    if(y===0) this.flying = true;
+    else this.flying = false;
   }
 
   update(){
+
     refreshContext();
+  //  this.counter++;
     this.display();
+
   }
 
   newPos(){
     this.x += this.speedX;
 
     if(this.jumping) this.calculateJump();
-    else this.calculateFall();
+    else if(!this.flying){
+      if(this.index==="player") this.calculateFall(player);
+      else this.calculateFall(baddies[this.index]);
+    }
   }
 
-  startJump(){
+  startJump(input){
 
-    if(!this.jumping&&distToGround()<2){
+    if(!this.jumping&&distToGround(input)<2){
+      console.log("jumping")
       this.jumping = true;
       this.jumpFactor =0;
       this.jumpForce = 20;
@@ -42,10 +53,10 @@ class movingObject{
     if(this.jumpForce<=0) this.jumping = false;
   }
 
-  calculateFall(){
+  calculateFall(input){
 
     // if there is distance left to fall
-    let dist = distToGround();
+    let dist = distToGround(input);
     // during fall:
     if( dist>this.fallSpeed ){
 
@@ -60,20 +71,20 @@ class movingObject{
   }
 }
 
-function distToGround(){
+function distToGround(input){
 
   let nearest = canvasH; // set nearest point to lowest point on canvas
 
   for(let i=0; i<ground.length; i++){ // for each platform/ground tile
 
     if(
-      inSegment(player.x,ground[i].x,ground[i].w) // if player and ground tile are aligned on x axis
-      && ground[i].y>player.y // and ground is below player
+      inSegment(input.x,ground[i].x,ground[i].w) // if player and ground tile are aligned on x axis
+      && ground[i].y>input.y // and ground is below player
       && ground[i].y < nearest // and ground is above last nearest platform
     )
     nearest = ground[i].y; // update nearest platform value
   }
-  return nearest - player.y; // return distance to nearest platform
+  return nearest - input.y; // return distance to nearest platform
 }
 
 

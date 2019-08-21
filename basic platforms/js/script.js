@@ -5,7 +5,11 @@ var bgm;
 var frame=0;
 let ground = [];
 let canvasH = 270;
-let canvasW = 480;
+let canvasW = window.innerWidth;
+
+let baddies = [];
+let baddieLocations= [];
+let baddiesOnScreen =0;
 
 var canvas = {
     canvas : document.createElement("canvas"),
@@ -24,14 +28,17 @@ var canvas = {
 
 // game setup
 function startGame() {
-    player = new movingObject(100, 120, displayDude);
+    player = new movingObject(100, 120, displayDude,"player");
     setupPlatforms();
     canvas.start();
+    setupBaddies();
 }
 
 // game loop
 function updateGameArea() {
     canvas.clear();
+
+    runBaddies();
     player.newPos();
     player.update();
 
@@ -39,7 +46,7 @@ function updateGameArea() {
       ground[i].display();
     }
     stopPlayerMotion();
-   runBGM();
+//   runBGM();
 frame++;
 }
 
@@ -99,7 +106,7 @@ function keyPressed(){
     case 97: moveX(-1); break;//left A  97
     case 100: moveX(1); break;// right D 100
 
-    case 32: player.startJump(); break; // jump SPACE 32
+    case 32: player.startJump(player); break; // jump SPACE 32
     // 1,2,3,4: 49,50,51,52...
   }
 }
