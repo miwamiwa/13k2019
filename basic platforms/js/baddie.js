@@ -1,15 +1,17 @@
 function displayJumpingBaddie(){
+
+  checkPlayerCollision(this.index);
   //console.log(this.counter)
   if(this.counter%150===0) this.startJump(baddies[this.index]);
+if(!this.knockedBack) this.moveInBounds(2);
 
-  if(this.x<this.leftBoundX){ console.log("left bound"); this.speedX = 2;}
-  else if(this.x>this.rightBoundX) { console.log("right bound "+this.rightBoundX+", this.x: "+this.x);  this.speedX = -2; }
-
+console.log(this.speedX)
+//console.log(this.speedX)
 //  console.log(this.speedX)
 
   ctx = canvas.context;
   ctx.beginPath();
-  ctx.strokeStyle = "#000000";
+  ctx.fillStyle = "#FF6600";
       let xPos = canvasW/2 - (player.x-this.x)
   ctx.fillRect(xPos,this.y-40, 40, 40);
   ctx.stroke();
@@ -19,17 +21,25 @@ function displayJumpingBaddie(){
 
 function displayFlyingBaddie(){
 
+  checkPlayerCollision(this.index);
+
   if(this.flying) {
 
     if(this.y>100) this.y --;
     else this.y = constrain( this.y + -1+Math.random()*2, 40,canvasH);
 
     if(this.counter%450===0) this.flying = false;
+    if(!this.knockedBack){
+      this.moveInBounds(2);
+    }
 
-    if(this.x<this.leftBoundX){ console.log("left bound"); this.speedX = 2;}
-    else if(this.x>this.rightBoundX) { console.log("right bound "+this.rightBoundX+", this.x: "+this.x);  this.speedX = -2; }
   }
-  else {if(this.counter%150===0) this.flying = true;}
+  else {
+    if(this.counter%150===0) this.flying = true;
+    if(!this.knockedBack){
+      this.moveInBounds(2);
+    }
+  }
 
 
 
@@ -50,15 +60,15 @@ function setupBaddies(){
 
 }
 
-
+/*
 function runBaddies(){
 
   for(let i=0; i<baddies.length; i++){
     baddies[i].display();
-    baddies[i].newPos();
+  //  baddies[i].newPos();
   }
 }
-
+*/
 function newBaddieAtX(x,y,type){
   baddies.push( new movingObject(x, y, type, baddies.length) );
   let index = baddies.length-1;

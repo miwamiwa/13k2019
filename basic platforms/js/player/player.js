@@ -30,7 +30,23 @@ function reachGoal(input,goal,speed){
   return result;
 }
 
+function displayDudeBox(){
 
+  ctx = canvas.context;
+  let xPos = canvasW/2;
+  let translateDist = -40;
+    ctx.translate(0,translateDist)
+  ctx.beginPath();
+
+  ctx.fillStyle = "#0000FF";
+    //  let xPos = canvasW/2 - (player.x-this.x)
+  ctx.fillRect(xPos,this.y, 40, 40);
+  ctx.stroke();
+  ctx.closePath();
+
+      ctx.translate(0,-translateDist)
+//  this.counter++;
+}
 
 
 // displaydude()

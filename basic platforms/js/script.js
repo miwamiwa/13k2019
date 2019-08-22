@@ -7,6 +7,7 @@ let ground = [];
 let canvasH = 270;
 let canvasW = window.innerWidth;
 
+let babies = [];
 let baddies = [];
 let baddieLocations= [];
 let baddiesOnScreen =0;
@@ -28,26 +29,40 @@ var canvas = {
 
 // game setup
 function startGame() {
-    player = new movingObject(100, 120, displayDude,"player");
+    player = new movingObject(100, 120, displayDudeBox,"player");
     setupPlatforms();
     canvas.start();
     setupBaddies();
+    newBaby();
 }
 
 // game loop
 function updateGameArea() {
     canvas.clear();
 
-    runBaddies();
-    player.newPos();
+  //  runBaddies();
+    updateAll(baddies);
+  //  player.newPos();
     player.update();
 
-    for(let i=0; i<ground.length; i++){
-      ground[i].display();
-    }
-    stopPlayerMotion();
+    displayAll(ground);
+    updateAll(babies);
+
+    updatePlayerMotion();
 //   runBGM();
 frame++;
+}
+
+function displayAll(input){
+  for(let i=0; i<input.length; i++){
+    input[i].display();
+  }
+}
+
+function updateAll(input){
+  for(let i=0; i<input.length; i++){
+    input[i].update();
+  }
 }
 
 
@@ -70,18 +85,20 @@ let inputRight = false;
 
 let stopSpeed = 0.4;
 
-function stopPlayerMotion(){
+function updatePlayerMotion(){
+if(!this.knockedBack){
+  if(!inputLeft&&!inputRight) {
+  if(player.speedX+stopSpeed<0) player.speedX+=stopSpeed;
+  else if(player.speedX-stopSpeed>0) player.speedX-=stopSpeed;
+  else player.speedX = 0;
 
-if(!inputLeft&&!inputRight) {
-if(player.speedX+stopSpeed<0) player.speedX+=stopSpeed;
-else if(player.speedX-stopSpeed>0) player.speedX-=stopSpeed;
-else player.speedX = 0;
+  }
+  else if(inputRight) player.speedX += 0.5;
+  else if(inputLeft) player.speedX -= 0.1;
+  player.speedX = constrain(player.speedX,-10,10);
+
 
 }
-else if(inputRight) player.speedX += 0.5;
-else if(inputLeft) player.speedX -= 0.1;
-player.speedX = constrain(player.speedX,-3,10);
-
 
 }
 
