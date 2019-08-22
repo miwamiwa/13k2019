@@ -44,7 +44,7 @@ class movingObject{
 
   startJump(input){
 
-    if(!this.jumping&&distToGround(this.x,this.y)<2){
+    if(!this.jumping&&distToGround(this.x+20,this.y)<2){
       console.log("jumping")
       this.jumping = true;
       this.jumpFactor =0;
@@ -66,7 +66,7 @@ class movingObject{
   calculateFall(input){
 //console.log("fallin")
     // if there is distance left to fall
-    let dist = distToGround(this.x,this.y);
+    let dist = distToGround(this.x+20,this.y);
     // during fall:
     if( dist>this.fallSpeed ){
 

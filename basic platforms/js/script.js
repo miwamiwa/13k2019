@@ -1,5 +1,5 @@
 var player;
-
+var yShift =0;
 var frameRate=30;
 var bgm;
 var frame=0;

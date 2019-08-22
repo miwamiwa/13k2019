@@ -9,7 +9,7 @@ function displayJumpingBaddie(){
   ctx.beginPath();
   ctx.fillStyle = "#FF6600";
   let xPos = canvasW/2 - (player.x-this.x)
-  ctx.fillRect(xPos,this.y-40, 40, 40);
+  ctx.fillRect(xPos,this.y-yShift-40, 40, 40);
   ctx.stroke();
   ctx.closePath();
   this.counter++;
@@ -38,7 +38,7 @@ function displayFlyingBaddie(){
   ctx.beginPath();
   ctx.fillStyle = "#FF0000";
   let xPos = canvasW/2 - (player.x-this.x)
-  ctx.fillRect(xPos,this.y-40, 40, 40);
+  ctx.fillRect(xPos,this.y-yShift-40, 40, 40);
   ctx.stroke();
   ctx.closePath();
   this.counter++;

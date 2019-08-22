@@ -40,7 +40,10 @@ function displayDudeBox(){
 
   ctx.fillStyle = "#0000FF";
     //  let xPos = canvasW/2 - (player.x-this.x)
-  ctx.fillRect(xPos,this.y, 40, 40);
+    let limit = canvasH*0.75;
+  if(this.y>limit)  yShift = this.y-limit;
+  else yShift=0;
+  ctx.fillRect(xPos,this.y-yShift, 40, 40);
   ctx.stroke();
   ctx.closePath();
 
