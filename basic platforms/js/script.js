@@ -54,9 +54,21 @@ function updateGameArea() {
   displayAll(ground);
   updateAll(babies);
 
+  displayGround();
+
   updatePlayerMotion();
   //   runBGM();
   frame++;
+}
+
+function displayGround(){
+
+  ctx = canvas.context;
+  ctx.beginPath();
+  ctx.strokeStyle = "#000000";
+  addLine(0,canvasH-yShift,canvasW,canvasH-yShift);
+  ctx.stroke();
+  ctx.closePath();
 }
 
 
