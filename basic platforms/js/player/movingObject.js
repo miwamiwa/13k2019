@@ -18,14 +18,8 @@ class movingObject{
   }
 
   update(){
-
-  //  refreshContext();
-  //  this.counter++;
-//  console.log(this.speedX)
     this.newPos();
     this.display();
-
-
   }
 
   newPos(){
@@ -46,7 +40,6 @@ class movingObject{
         console.log("knock back over "+this.knockedBack)
       }
     }
-
   }
 
   startJump(input){

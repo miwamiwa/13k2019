@@ -3,9 +3,11 @@ class groundTile{
     this.x = x;
     this.y = y;
     this.w = w;
+    this.hasNest = false;
   }
 
   display(){
+
     if(
       inRange(this.x,player.x,canvasW/2)
       || inRange(this.x+this.w,player.x,canvasW/2)
@@ -16,20 +18,18 @@ class groundTile{
       addLine(xPos,this.y,xPos+this.w,this.y);
       ctx.stroke();
       ctx.closePath();
+
+      if(this.hasNest!=false){
+
+        ctx.beginPath();
+        ctx.fillStyle = "#99FF99";
+        ctx.fillRect(xPos+this.hasNest,this.y-40, 40, 40);
+        ctx.closePath();
+      }
     }
   }
 }
 
-
-function setupPlatforms(){
-  let lasty = 30;
-for(let i=0; i<100; i++){
-
-  ground.push(new groundTile(i*170, canvasH - (lasty + (Math.random()*60-30)), 150));
-}
-//  ground.push(new groundTile(10,200,200));
-//  ground.push(new groundTile(180,250,200));
-}
 
 class Obstacle{
 

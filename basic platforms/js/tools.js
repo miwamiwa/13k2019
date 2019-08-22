@@ -34,3 +34,33 @@ function collideRectRect(x, y, w, h, x2, y2, w2, h2) {
   }
   return false;
 };
+
+function displayAll(input){
+  for(let i=0; i<input.length; i++){
+    input[i].display();
+  }
+}
+
+function updateAll(input){
+  for(let i=0; i<input.length; i++){
+    input[i].update();
+  }
+}
+
+
+function constrain(input,min,max){
+   return Math.min(Math.max(input, min), max);
+}
+
+
+function updateAngle(pos,speed,maxDisplacement,min,max,phase){
+  //  if(player.flip>0)
+  return constrain( (pos + phase* Math.sin( frame / speed )*maxDisplacement), min,max);
+  //  else return constrain( (pos + phase* Math.sin( frame / speed )*maxDisplacement), -max,-min);
+}
+
+
+function addLine(x,y,x2,y2){
+  ctx.moveTo(x,y);
+  ctx.lineTo(x2,y2);
+}

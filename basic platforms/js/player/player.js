@@ -144,3 +144,19 @@ function drawLeg(x,y,aThigh,aKnee,limbLength){
   addLine(x,y,x2,y2);
   addLine(x2,y2,x3,y3);
 }
+
+
+
+function updatePlayerMotion(){
+  if(!this.knockedBack){
+    if(!inputLeft&&!inputRight) {
+      if(player.speedX+stopSpeed<0) player.speedX+=stopSpeed;
+      else if(player.speedX-stopSpeed>0) player.speedX-=stopSpeed;
+      else player.speedX = 0;
+
+    }
+    else if(inputRight) player.speedX += 0.5;
+    else if(inputLeft) player.speedX -= 0.1;
+    player.speedX = constrain(player.speedX,-10,10);
+  }
+}
