@@ -30,11 +30,18 @@ ps: horizontal lines of the same color in the images make the code especially li
 
 */
 
+let c = [
+  "#000000","#ffd738","#d1ff3a",
+  "#327fa8", // dark blue
+  "#6d92a6", // pale blue
+  "#c37dc9" // violet
+];
+
 var frameRate=30;
 var frame=0;
 
-let canvasH = 100;
-let canvasW = 100;
+let canvasH = 200;
+let canvasW = 200;
 
 var canvas = {
   canvas : document.createElement("canvas"),
@@ -66,6 +73,21 @@ let imgz = [
 ];
 let unpackedSmiley = [];
 
+let ratLoop = [
+  {
+    s:"1111*3,=1(3=(@1>3A/?3B.2<2E<,EA+@)2@2>)G=*3@3=)G+3A3>-4A3>F,2)A2?F,2)A3>F0A2>)F-2D*G+F4@3+G)H3@3,I)3+3.G(5)5*",
+    c:[false,c[4],c[3],c[5]]
+  },
+  {
+    s:"111111*3,?03=2B/>3C-?2E,2<2E=+E>2>*@)2@3=)G=*3@3>(G+3@3?F-2(@2@F,2)@2@H.@2?)G+F2D+G*F4@3,J(3@3-H)3)2(315*4*",
+    c:[false,c[4],c[3],c[5]]
+  },
+  {
+    s:"111111*2103<2=(A.>3D,EA+EA+2<2D2?*@(2@3>)?)3@3>(G=)2(@3?H*3(?3@F,2)?2AF(G,FE)F,F2D*G*G4@3+G(G)3@3,H(2(3+31(4)5*",
+    c:[false,c[4],c[3],c[5]]
+  }
+]
+
 
 
 // game setup
@@ -73,6 +95,11 @@ function startGame() {
 
   canvas.start();
   refreshContext();
+  setupImageLoop(loopImages);
+
+
+  unpackImgLoop(ratLoop);
+  ratLoop.push(ratLoop[1])
 
      packImage(); // use this to convert an image file to string.
     // set image file to convert in index.html
@@ -82,16 +109,23 @@ function startGame() {
   unpackedSmiley = unpackImage(smiley);
 }
 
+function unpackImgLoop(input){
+  for(let i=0; i<input.length; i++){
+    input[i].a = [];
+    input[i].a = unpackImage(input[i].s);
+  }
+}
+
 
 
 // game loop
 function updateGameArea() {
 
   canvas.clear();
-
+/*
     // display an unpacked image:
   displayImage(
-    unpackedSmiley, //input image data
+    unpackedSmiley, //input image data. should be unpacked first during setup
     [false,c[0],c[1],c[2]], // input up to 8 colors. transparent = false.
                             // colors are stored inside colorsarray.js so they may be repeated at low size cost.
                             // must be written in the order in which they appear in the file.. opa!
@@ -99,8 +133,10 @@ function updateGameArea() {
     15, // input image size (must be square.. could update this to support rectangles if needed)
     6 // input stretch factor. 1 = normal size
   );
+*/
+  displayStringLoop(ratLoop);
 
-
+  displayLoop(loopImages);
   frame++;
 }
 

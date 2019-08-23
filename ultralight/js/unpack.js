@@ -13,7 +13,7 @@ function unpackImage(input){
       unpacked.push( bunched[i].type );
     }
   }
-  console.log(unpacked);
+  //console.log(unpacked);
   return unpacked;
 }
 
