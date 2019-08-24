@@ -50,8 +50,8 @@ in 6kb are probably low. and mind you 6kb is also a low estimate.
     jumping/flying/falling (2-6 frames???), other??
 
 - considering all zis tings, i would say we can use anything up to 30x30 px
-  to design characters. they don't all have to be the same size:
-    small characters (baby) will require less space and frames to animate,
+  to design characters, as long as some are smaller, like 25x25 or 20x20 px.
+    small characters (baby, flying character) will require less space and frames to animate,
     main character could be larger than others for a better design, etc.
 
 
