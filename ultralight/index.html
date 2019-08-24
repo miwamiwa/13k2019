@@ -3,12 +3,12 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-
+<script src="js/exampleImages.js"></script>
 <script src="js/script.js"></script>
-<script src="js/tools.js"></script>
 <script src="js/unpack.js"></script>
-<script src="js/colorsarray.js"></script>
+<script src="js/pack.js"></script>
 <script src="js/looper.js"></script>
+<script src="js/display.js"></script>
 
 <style>
 canvas {
@@ -18,11 +18,11 @@ canvas {
 </style>
 </head>
 <body onload="startGame()" onkeypress="keyPressed()" onkeyup="keyReleased()">
-<img src="assets/images/rat03.png" alt="" id="image">
+<img src="assets/images/walk7.png" alt="" id="image">
 
 <p>image packing/unpacking test
-<br> above: animation as displayed in game (doesn't update when files are updated..yet!)
-<br> below: animation using images in the loopImages[] array at line 1 of looper.js (updates when images are updated)
+<br> above: animation as displayed in game (doesn't update when files are updated..yet?)
+<br> below: animation using images in the loopImages[] array at line 1 of looper.js (updates when images are updated which is nice while designing)
 </p>
 </body>
 </html>

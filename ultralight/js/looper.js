@@ -1,8 +1,19 @@
-let loopImages = [
-      "assets/images/rat01.png",
-      "assets/images/rat02.png",
-      "assets/images/rat03.png",
-      "assets/images/rat02.png"
+/*
+looper.js:
+Here you can setup image files to read in a loop.
+This way you can start an atom live server and see the changes in your
+animation as you modify the individual image files.
+This is a design tool, not to be included in the final game.
+*/
+
+let loopImages = [ // indicate files to loop here et voila. 
+      "assets/images/walk1.png",
+      "assets/images/walk2.png",
+      "assets/images/walk3.png",
+      "assets/images/walk4.png",
+      "assets/images/walk5.png",
+      "assets/images/walk6.png",
+      "assets/images/walk7.png",
 ];
 
 
@@ -18,17 +29,4 @@ function displayLoop(input){
 
   let index = Math.floor(frame/6 % input.length);
   document.getElementById("imageElement").src=input[index];
-}
-
-function displayStringLoop(input){
-
-  let index = Math.floor(frame/6 % input.length);
-
-  displayImage(
-    input[index].a, //input image data
-    input[index].c,
-    0,0, //input top-left corner x,y position
-    20, // input image size (must be square.. could update this to support rectangles if needed)
-    10 // input stretch factor. 1 = normal size
-  );
 }

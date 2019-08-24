@@ -17,21 +17,10 @@ function unpackImage(input){
   return unpacked;
 }
 
-// requires an unpacked image and an array of 4 color values
-function displayImage(input,c,x,y,w,stretch){
-  refreshContext();
 
+function unpackImgLoop(input){
   for(let i=0; i<input.length; i++){
-    if(c[input[i]]!=false){
-      ctx.beginPath();
-      ctx.fillStyle = c[input[i]];
-      ctx.fillRect(
-        (i%w)*stretch,
-        Math.floor(i/w)*stretch,
-        stretch,
-        stretch
-      );
-      ctx.closePath();
-    }
+    input[i].a = [];
+    input[i].a = unpackImage(input[i].s);
   }
 }

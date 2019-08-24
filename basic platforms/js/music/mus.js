@@ -33,8 +33,8 @@ var voices = [
 
 function  runBGM(){
 
-  playVoice(1,organWaveAt,0.125,20,0.19,0.5);
-  playVoice(0,organWaveAt,0.125,25,0.05,0.8);
+  playVoice(1,organWaveAt,0.125,20,0.19,0.7);
+  playVoice(0,organWaveAt,0.125,25,0.05,1);
   playDrum();
   time++;
 }
@@ -65,7 +65,7 @@ function checkTime(fact){
 function chanceToPlay(stim,chance,t1,t2,t3){
   if(stim<chance){
     let total = t1+t2+t3;
-    if(stim<t1/total) return {base:20,vari:2,vol:0.04};
+    if(stim<t1/total) return {base:25,vari:2,vol:0.04};
     else if(stim<(t1+t2)/total) return {base:6000,vari:2000,vol:0.04};
     else return {base:10000,vari:1000,vol:0.007};
   }
