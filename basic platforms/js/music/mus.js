@@ -110,11 +110,6 @@ function loadAndPlay(waveGen,comb,seconds,volume,tone){
 }
 
 
-//arr[i] = sineWaveAt(i, tone) * volume
-//arr[i] = roundedSineWaveAt(i, tone) * volume
-//arr[i] = organWaveAt(i, tone/2) * volume
-
-
 function playSound(arr) {
   var buf = new Float32Array(arr.length)
   for (var i = 0; i < arr.length; i++) buf[i] = arr[i]

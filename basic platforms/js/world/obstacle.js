@@ -8,6 +8,7 @@ class groundTile{
 
   display(){
 
+    // if ground tile is on screen (kinda)
     if(
       inRange(this.x,player.x,canvasW/2)
       || inRange(this.x+this.w,player.x,canvasW/2)
@@ -19,7 +20,7 @@ class groundTile{
       ctx.stroke();
       ctx.closePath();
 
-      if(this.hasNest!=false){
+      if(this.hasNest!=false){ // display nest if there is a nest
 
         ctx.beginPath();
         ctx.fillStyle = "#99FF99";
@@ -27,17 +28,5 @@ class groundTile{
         ctx.closePath();
       }
     }
-  }
-}
-
-
-class Obstacle{
-
-  constructor(){
-
-  }
-
-  display(){
-
   }
 }

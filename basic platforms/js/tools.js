@@ -64,3 +64,35 @@ function addLine(x,y,x2,y2){
   ctx.moveTo(x,y);
   ctx.lineTo(x2,y2);
 }
+
+
+function distToGround(x,y){
+
+  let nearest = canvasH; // set nearest point to lowest point on canvas
+
+  for(let i=0; i<ground.length; i++){ // for each platform
+
+    if(
+      inSegment(x,ground[i].x,ground[i].w) // if player and platform are aligned on x axis
+      && ground[i].y>y // and ground is below player
+      && ground[i].y < nearest // and ground is above last "nearest" platform
+    )
+    nearest = ground[i].y; // then this is platform is the closer than the last
+  }
+  return nearest - y; // return distance to nearest platform
+}
+
+
+
+function getXYOnPlat(input,platforms){
+  let x,y;
+  if(input.p ===-1) { // if input is -1, ground is the actual ground
+    x = input.x;
+    y = canvasH-10;
+  }
+  else { // if input is anything else, ground is a platform 
+    x = platforms[ input.p ].x + input.x;
+    y = platforms[ input.p ].y - 10;
+  }
+  return {x:x,y:y};
+}
