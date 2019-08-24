@@ -5,8 +5,16 @@ function displayDudeBox(){
 
   ctx = canvas.context;
   let xPos = canvasW/2;
-  let translateDist = -40;
+  let translateDist = -this.h;
   ctx.translate(0,translateDist)
+
+  let limit = canvasH*0.5;
+  if(this.y>limit)  yShift = 0;
+  else yShift=this.y-limit;
+  if(this.speedX!=0) this.dir = -this.speedX/Math.abs(this.speedX);
+  displayStringLoop(walkLoop,xPos,this.y-yShift,25,3,this.dir);
+
+  /*
   ctx.beginPath();
 
   ctx.fillStyle = "#0000FF";
@@ -16,7 +24,7 @@ function displayDudeBox(){
   ctx.fillRect(xPos,this.y-yShift, 40, 40);
   ctx.stroke();
   ctx.closePath();
-
+*/
   ctx.translate(0,-translateDist)
 }
 

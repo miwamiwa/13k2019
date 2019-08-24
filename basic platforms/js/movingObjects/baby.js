@@ -7,7 +7,7 @@ and a function to add babies to the game.
 // newbaby(): to be called during level setup
 function newBaby(x,y){
 
-  babies.push( new movingObject(x,y, displayBaby,updateBaby,babies.length) );
+  babies.push( new movingObject(x,y, 20,20,displayBaby,updateBaby,babies.length) );
   babies[babies.length-1].isExploring = true;
   babies[babies.length-1].isCarried = false;
 
@@ -32,7 +32,7 @@ function updateBaby(){
     else this.speedX =0;
 
     // if overlapping with player, mark as carried.
-    if( inBox(this.x,this.y,player.x,player.y,40,40)) this.isCarried = true;
+    if( inBox(this.x,this.y,player.x,player.y,player.w,player.h)) this.isCarried = true;
 
   }
 }
@@ -51,7 +51,7 @@ function displayBaby(){
   ctx.fillRect(xPos,this.y-yShift-40, 40, 40);
   */
   let xPos = canvasW/2 - (player.x-this.x)
-  ctx.fillRect(xPos,this.y-yShift-10, 20,20);
+  ctx.fillRect(xPos,this.y-yShift-10, this.w,this.h);
   ctx.stroke();
   ctx.closePath();
 

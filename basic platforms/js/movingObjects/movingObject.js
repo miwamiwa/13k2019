@@ -13,13 +13,13 @@ arguments:
 
 class movingObject{
 
-  constructor(x, y, display,motion,index){
+  constructor(x, y ,w,h,display,motion,index){
 
     this.speedX = 0;
     this.x = x;
     this.y = y;
-    this.w =40;
-    this.h=40;
+    this.w =w;
+    this.h=h;
     this.jumping = false;
     this.fallSpeed=0;
     this.display = display;
@@ -27,6 +27,7 @@ class movingObject{
     this.counter =0;
     this.index=index;
     this.isCarried = false;
+    this.dir = 1;
     this.init = {x:x,y:y};
     if(y===0) this.flying = true;
     else this.flying = false;
@@ -59,7 +60,7 @@ class movingObject{
 
   startJump(input){
 
-    if(!this.jumping&&distToGround(this.x+20,this.y)<2){
+    if(!this.jumping&&distToGround(this.x+this.w/2,this.y)<2){
       this.jumping = true;
       this.jumpForce = 20;
     }
@@ -83,7 +84,7 @@ class movingObject{
   calculateFall(){
 
     // check distance to ground
-    let dist = distToGround(this.x+20,this.y);
+    let dist = distToGround(this.x+this.w/2,this.y);
 
     // during fall:
     if( dist>this.fallSpeed ){

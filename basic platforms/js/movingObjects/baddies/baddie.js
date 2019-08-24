@@ -11,7 +11,7 @@ remnants of a larger file that used to be ..
 //            - kit: update and display functions
 
 function newBaddie(x,y,range,kit){
-  baddies.push( new movingObject(x, y, kit.d,kit.u, baddies.length) );
+  baddies.push( new movingObject(x, y, 40,40,kit.d,kit.u, baddies.length) );
   let index = baddies.length-1;
   baddies[index].leftBoundX = baddies[index].x - range;
   baddies[index].rightBoundX = baddies[index].x + range;
@@ -43,12 +43,12 @@ function checkPlayerCollision(index){
 if(baddies[index].x<player.x){
   baddies[index].collided(-1);
   player.collided(1);
-  babies[whichBaby].collided(-2);
+  babies[whichBaby].collided(-3);
 }
 else{
   baddies[index].collided(1);
   player.collided(-1);
-    babies[whichBaby].collided(2);
+    babies[whichBaby].collided(3);
 }
 
 

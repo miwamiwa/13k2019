@@ -37,8 +37,10 @@ var canvas = {
 
 function startGame() {
 
+  unpackImgLoop(walkLoop);
   setupLevel(level1);
   canvas.start();
+
 }
 
 // updateGameArea(): main game loop, or
