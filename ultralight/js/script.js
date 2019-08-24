@@ -118,8 +118,8 @@ function updateGameArea() {
 
   canvas.clear();
 
-  displayStringLoop(walkLoop,0,0,25);
-  displayStringLoop(ratLoop,300,0,20);
+  displayStringLoop(walkLoop,0,0,25,1);
+  displayStringLoop(ratLoop,300,0,20,-1);
 
   displayLoop(loopImages);
   frame++;
