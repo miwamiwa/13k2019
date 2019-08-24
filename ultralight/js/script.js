@@ -1,47 +1,71 @@
 /*
 
-this code is designed to convert tiny image files with up to 8 colors to even
-tinier string representations, and then display them.
+this code is designed to convert .png images to String in order to save some disk space.
+before you can display the images, the strings need to be "unpacked" into array form first,
+using unpackImage() or unpackImgLoop().
 
-see function startGame() for how to convert an image file to string.
-see function updateGameArea() for how to display a converted image.
+images can be packed into strings using the packImage() function. then you can copy-paste
+the resulting code into the script, and remove the original .png files from
+the game folder. My code for converting batches of images is still wonky, so right
+now images have to be converted individually.
 
-Tools.js and all .png files are to be removed from the final build.
+Color values also have to be re-entered (in hex format) for the images to display!
+this code allows for about 7 colors per image (but they don't have to be the same
+for every image). it doesn't matter what colors go into your original .png file
+(even the transparent color can be anything)
 
-all images used to test the zip files were 15x15 pixels.
+********* reasons for doing this:
+- .png files don't get compressed when placed in a .zip file. sometimes they even gain weight xD
+- what matters for this competition is the size of the final .zip file.
+- individual image files' sizes get reduced about 50% when converted, then another
+20%-60% when zipped. the compression ratio gets better the more images you have.
+- You can expect roughly 75% compression with this process, much better than 0% without.
 
-total file size for script.js + unpack.js + colorsarray.js with one image
-was 1.26 kb minified and 792 bytes zipped, without shortening variable names.
-this particular image file was 344 bytes.
+********* what's the maximum amount of space we can allocate to images?
+- tldr: i think roughly 6-8kb (zipped)
+- right now the basic game mechanics + music total ~3.5kb zipped. At the end I
+expect a maximum of 5kb zipped for everything except images
+but - who knows - it could be more. To me, allocating 6kb for images is a
+very safe worst case scenario.
 
-with 10 different images of the same size, the code minifies to 2.08kb and zips to 1.19kb.
-note that i was using only 4 colors all together.
+********* how many images is that?
 
-However, if i decide to zip a minified script.js without any of the file
-converting content (and without any code to display images for that matter),
-together with the actual .png files, i get a 4.38 kb zip file... or 3.36 kb unzipped!
+- depends on their size. some examples:
 
-even if all the images are stuck together in one .png file, and still no code
-to read that file is included in script.js, the .zip package comes out to 2.0 kb.
-i'm not sure if .png gets compressed at all when zipped.
+- 10 converted images of size 10x10 totals about 500kb zipped.
+so 6kb ~= 120 images sized 10x10.
+- 7 converted images of size 25x25 totals about 800kb zipped.
+so 6kb ~= 50 images sized 25x25
+- 3 converted images of size 20x20 totals about 400kb zipped. note that sub-par
+compression which i think is because of the small amount of images.
 
-so! this stuff stands out to me as being pretty useful.
-ps: horizontal lines of the same color in the images make the code especially light
+- all of the above + an array with a few colors = 1.56kb zipped. note how this is lower than
+the individual .zip files combined. so tbh my estimates for how many images we can fit
+in 6kb are probably low. and mind you 6kb is also a low estimate.
 
+- right now i have 4 characters. they all stand still, and walk and get knocked back.
+    3 of them jump and fall, while 1 of them flies.
+- i think we're looking at an average of 10 animation frames per character?
+- think: walking (maybe 3-5 frames), standing still (2-3 frames?), knock-back (1-3)
+    jumping/flying/falling (2-6 frames???), other??
+
+- considering all zis tings, i would say we can use anything up to 30x30 px
+  to design characters. they don't all have to be the same size:
+    small characters (baby) will require less space and frames to animate,
+    main character could be larger than others for a better design, etc.
+
+
+note to self: think about defining the character set to avoid
+faulty conversions
 */
 
-let c = [
-  "#000000","#ffd738","#d1ff3a",
-  "#327fa8", // dark blue
-  "#6d92a6", // pale blue
-  "#c37dc9" // violet
-];
+
 
 var frameRate=30;
 var frame=0;
 
-let canvasH = 200;
-let canvasW = 200;
+let canvasH = 400;
+let canvasW = 600;
 
 var canvas = {
   canvas : document.createElement("canvas"),
@@ -57,36 +81,7 @@ var canvas = {
   }
 }
 
-// declare image-strings first, and declare an empty array to hold the uncompressed array
-let smiley = ")7+4(3@2)3=3B4>2F<2=2=3F<2<2HA2H<2F2G@2F2G2G2G2F<3G2F3G3G5G2(2K2)2H)2H3+2G)7+4(3@2)3=3B4>2F<2=2=3F<2<2HA2H<";
-let imgz = [
-  // moar images, for file size test.
-  "(6)7<(4<4*4*<4(5)<(;3*4+5<2)2(2)<(2)4)2(2)<(2)5(2-2)5(4+8)2(2+3(4)4(3,3(21(3(6(2(2+2(3)<+6)3,5)<",
-  "1(2)2+3(3/2)2(>(2(2*D2(2*2(B2(2*2)2(=(=(2-2+=(2+2(2(<)=(2)B(2=(2)<)2+2=(2)=(2(2(?,E-3(B-211+2",
-  "(8*4<(2+7*2)4,4(2(3)5)3(2(3(;4)2+6)2(3(3)3(2)2(3)3(2)2)2)6(2)2(4)5(2)3)3-7(;3(2)7)3)3/4*;2)",
-  "(3E=(A6*2<(4>)4(=3)3=)3(<(3(5=5=2)2+<2>(=(3(3(>(<)2>)3(=(<(>(6>(<(<3>4<2>2=3(@7=4A3(2(@3)=)3.?(E<3)",
-  "(;?(AI2*2<(H2=)3F(8F=)3(<(9<G2F<3)F*3F<2<(3(G9<)3=6<;5=4<;2<3<9<F;2@3(F(8)<3(G-7@;",
-  "(6)7<(4<4*4*<4(5)<(;3*4+5<2)2(2)<(2)4)2(2)<(2)5(2-2)5(4+8)2(2+3(4)4(3,3(21(3(6(2(2+2(3)<+6)3,5)<",
-  ")2)2(<+<*<(2<2(=)=*?2(@,=*<(2=,<(<(<)2<(=(=(2(=(5(?(3<(=(2)<(<(>*=3=+=)<2(>)<(@(2)=*=)>)<)<)>(<(?3(<*>)>3=6?)2=,3(<+<)",
-  ")2)2(<+<*<(2<2(=6)?2(9)=*3>4)<(<(<3<2<5<(2(=3>5<(3<(3>5(=6>7<6>7<2<4>7(2<;3<(2A8C9=;;4",
-  "1-;5+;2*;3*8(2+;2+;2+;21)41)411+7/80211*" //this particular image has many long horizontal lines
-];
-let unpackedSmiley = [];
 
-let ratLoop = [
-  {
-    s:"1111*3,=1(3=(@1>3A/?3B.2<2E<,EA+@)2@2>)G=*3@3=)G+3A3>-4A3>F,2)A2?F,2)A3>F0A2>)F-2D*G+F4@3+G)H3@3,I)3+3.G(5)5*",
-    c:[false,c[4],c[3],c[5]]
-  },
-  {
-    s:"111111*3,?03=2B/>3C-?2E,2<2E=+E>2>*@)2@3=)G=*3@3>(G+3@3?F-2(@2@F,2)@2@H.@2?)G+F2D+G*F4@3,J(3@3-H)3)2(315*4*",
-    c:[false,c[4],c[3],c[5]]
-  },
-  {
-    s:"111111*2103<2=(A.>3D,EA+EA+2<2D2?*@(2@3>)?)3@3>(G=)2(@3?H*3(?3@F,2)?2AF(G,FE)F,F2D*G*G4@3+G(G)3@3,H(2(3+31(4)5*",
-    c:[false,c[4],c[3],c[5]]
-  }
-]
 
 
 
@@ -94,27 +89,27 @@ let ratLoop = [
 function startGame() {
 
   canvas.start();
-  refreshContext();
+  ctx = canvas.context;
+
+  // use this method to display a loop of .png files (see looper.js)
   setupImageLoop(loopImages);
 
+  packImage(); // use this to convert an image file to string.
+  // set image file to convert in index.html
+  // (not to be included in final build)
 
-  unpackImgLoop(ratLoop);
-  ratLoop.push(ratLoop[1])
-
-     packImage(); // use this to convert an image file to string.
-    // set image file to convert in index.html
-    // (not to be included in final build)
-
-// use this method to unpack image data before game starts :
+  // use this method to unpack individual image data before game starts :
   unpackedSmiley = unpackImage(smiley);
+
+  // use this method to unpack an array of images:
+  unpackImgLoop(walkLoop);
+  unpackImgLoop(ratLoop);
+
+  // complete the rat loop by copying the second frame and placing it at the end
+  ratLoop.push(ratLoop[1])
 }
 
-function unpackImgLoop(input){
-  for(let i=0; i<input.length; i++){
-    input[i].a = [];
-    input[i].a = unpackImage(input[i].s);
-  }
-}
+
 
 
 
@@ -122,24 +117,10 @@ function unpackImgLoop(input){
 function updateGameArea() {
 
   canvas.clear();
-/*
-    // display an unpacked image:
-  displayImage(
-    unpackedSmiley, //input image data. should be unpacked first during setup
-    [false,c[0],c[1],c[2]], // input up to 8 colors. transparent = false.
-                            // colors are stored inside colorsarray.js so they may be repeated at low size cost.
-                            // must be written in the order in which they appear in the file.. opa!
-    0,0, //input top-left corner x,y position
-    15, // input image size (must be square.. could update this to support rectangles if needed)
-    6 // input stretch factor. 1 = normal size
-  );
-*/
-  displayStringLoop(ratLoop);
+
+  displayStringLoop(walkLoop,0,0,25);
+  displayStringLoop(ratLoop,300,0,20);
 
   displayLoop(loopImages);
   frame++;
-}
-
-function refreshContext(){
-  ctx = canvas.context;
 }
