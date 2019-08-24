@@ -33,7 +33,7 @@ function updatePlayerMotion(){
 
     }
     else if(inputRight) player.speedX += 0.5;
-    else if(inputLeft) player.speedX -= 0.1;
+    else if(inputLeft) player.speedX -= 0.5;
     player.speedX = constrain(player.speedX,-10,10);
   }
 }

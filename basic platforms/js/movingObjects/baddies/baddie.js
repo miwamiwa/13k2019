@@ -43,12 +43,12 @@ function checkPlayerCollision(index){
 if(baddies[index].x<player.x){
   baddies[index].collided(-1);
   player.collided(1);
-  babies[whichBaby].collided(-1);
+  babies[whichBaby].collided(-2);
 }
 else{
   baddies[index].collided(1);
   player.collided(-1);
-    babies[whichBaby].collided(1);
+    babies[whichBaby].collided(2);
 }
 
 
