@@ -10,11 +10,18 @@ let  level1 = {
   size:10000, // boundaries for the level (not actually implemented yet shh)
   platforms: [ // list each platform here:
     //{ x: position, y: position, w: width }
-    {x:100,y:50,w:100},
-    {x:150,y:100,w:100},
-    {x:250,y:30,w:100},
-    {x:220,y:150,w:250},
-    {x:490,y:130,w:250}
+    {x:0,y:500,w:200}, //0
+    {x:220,y:450,w:80},
+    {x:300,y:400,w:80},
+    {x:380,y:350,w:80},
+    {x:460,y:300,w:80}, //4
+    { x: 400, y: 250, w: 100 },
+    { x: 350, y: 200, w: 100 },
+    { x: 450, y: 200, w: 100 },
+    { x: 250, y: 150, w: 50 },
+    { x: 300, y: 130, w: 50 }, //9
+    { x: 250, y: 100, w: 100 }, //10
+    { x: 200, y: 50, w: 50 }
   ],
   baddies: [ // list each baddie here:
     /*
@@ -34,7 +41,8 @@ let  level1 = {
     {p:2,x:30},
     {p:4,x:100}
   ],
-  player: {p:0,x:0}
+  player: {p:0,x:0},
+  babies:{count:2, pos:[6, 7, 8, 9, 10, 11, -1],p:0,x:0}
 };
 
 
@@ -51,7 +59,8 @@ let levelX = {
   nests: [
     //{p: 0,x: 0 }
   ],
-  player: {p:0,x:0}
+  player: {p:1,x:0},
+  babies:{count:2, pos:[6, 7, 8, 9, 10, 11, -1],p:0,x:0}
 }
 
 
@@ -79,5 +88,11 @@ function setupLevel(level){
 
   let playerPos = getXYOnPlat(level.player,level.platforms);
   player = new movingObject(playerPos.x, playerPos.y, displayDudeBox,updatePlayerMotion,"player");
+
+  for(let i=0; i<level.babies.count; i++){
+    level.babies.p  = level.babies.pos[ Math.floor(Math.random()*level.babies.pos.length) ];
+    let res = getXYOnPlat(level.babies,level.platforms)
+    newBaby( res.x,res.y )
+  }
 
 }

@@ -1,13 +1,13 @@
 /*
 so far babies don't do much but they can run around and be picked up and carried
 this script contains update() and display() functions that go in a new movingObject,
-and a function to add babies to the game. 
+and a function to add babies to the game.
 */
 
 // newbaby(): to be called during level setup
-function newBaby(){
+function newBaby(x,y){
 
-  babies.push( new movingObject(player.x+50,player.y, displayBaby,babies.length) );
+  babies.push( new movingObject(x,y, displayBaby,updateBaby,babies.length) );
   babies[babies.length-1].isExploring = true;
   babies[babies.length-1].isCarried = false;
 
@@ -46,8 +46,12 @@ function displayBaby(){
   ctx.beginPath();
 
   ctx.fillStyle = "#00FFFF";
+  /*
   let xPos = canvasW/2 - (player.x-this.x)
-  ctx.fillRect(xPos,this.y, 20,20);
+  ctx.fillRect(xPos,this.y-yShift-40, 40, 40);
+  */
+  let xPos = canvasW/2 - (player.x-this.x)
+  ctx.fillRect(xPos,this.y-yShift-10, 20,20);
   ctx.stroke();
   ctx.closePath();
 

@@ -27,6 +27,7 @@ class movingObject{
     this.counter =0;
     this.index=index;
     this.isCarried = false;
+    this.init = {x:x,y:y};
     if(y===0) this.flying = true;
     else this.flying = false;
   }

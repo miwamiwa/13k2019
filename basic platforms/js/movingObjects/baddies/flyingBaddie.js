@@ -20,9 +20,9 @@ function updateFlyingBaddie(){
   if(this.flying) {
 
     // fly up until this.y=100
-    if(this.y>100) this.y --;
+    if(this.y>this.init.y-50) this.y --;
     // if this.y>100, fly up and down at random
-    else this.y = constrain( this.y + -1+Math.random()*2, 40,canvasH);
+    else this.y = constrain( this.y + -1+Math.random()*2, this.init.y-100,canvasH);
 
     // stop flying at some point (baddies falls back to the ground)
     if(this.counter%450===0) this.flying = false;

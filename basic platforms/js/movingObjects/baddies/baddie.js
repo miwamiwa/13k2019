@@ -29,14 +29,28 @@ function checkPlayerCollision(index){
     player.x,player.y,player.w,player.h)
     && !player.knockedBack
   ){
+
+    let knock = false;
+    let whichBaby = 0;
+    for(let i=0; i<babies.length; i++){
+      if(babies[i].isCarried&&!knock) {
+        babies[i].isCarried = false;
+        knock = true;
+        whichBaby = i;
+      }
+    }
+
 if(baddies[index].x<player.x){
   baddies[index].collided(-1);
   player.collided(1);
+  babies[whichBaby].collided(-1);
 }
 else{
   baddies[index].collided(1);
   player.collided(-1);
+    babies[whichBaby].collided(1);
 }
+
 
       console.log("collision!")
   }

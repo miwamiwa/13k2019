@@ -88,11 +88,11 @@ function getXYOnPlat(input,platforms){
   let x,y;
   if(input.p ===-1) { // if input is -1, ground is the actual ground
     x = input.x;
-    y = canvasH-10;
+    y = canvasH;
   }
-  else { // if input is anything else, ground is a platform 
+  else { // if input is anything else, ground is a platform
     x = platforms[ input.p ].x + input.x;
-    y = platforms[ input.p ].y - 10;
+    y = canvasH-platforms[ input.p ].y - 10;
   }
   return {x:x,y:y};
 }

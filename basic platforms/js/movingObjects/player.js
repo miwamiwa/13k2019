@@ -10,9 +10,9 @@ function displayDudeBox(){
   ctx.beginPath();
 
   ctx.fillStyle = "#0000FF";
-  let limit = canvasH*0.75;
-  if(this.y>limit)  yShift = this.y-limit;
-  else yShift=0;
+  let limit = canvasH*0.5;
+  if(this.y>limit)  yShift = 0;
+  else yShift=this.y-limit;
   ctx.fillRect(xPos,this.y-yShift, 40, 40);
   ctx.stroke();
   ctx.closePath();
