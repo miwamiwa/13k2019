@@ -64,7 +64,7 @@ function updateGameArea() {
 
   displayGround();
 
-  //runBGM();
+  runBGM();
   frame++;
 }
 
