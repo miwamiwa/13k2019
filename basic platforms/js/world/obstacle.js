@@ -8,11 +8,12 @@ class groundTile{
 
   display(){
 
+
     // if ground tile is on screen (kinda)
     if(
       inRange(this.x,player.x,canvasW/2)
       || inRange(this.x+this.w,player.x,canvasW/2)
-    ){
+    ){  
       ctx.beginPath();
       ctx.strokeStyle = "#000000";
           let xPos = canvasW/2 - (player.x-this.x)

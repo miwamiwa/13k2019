@@ -2,13 +2,17 @@
 
 function displayJumpingBaddie(){
 
-  ctx = canvas.context;
-  ctx.beginPath();
-  ctx.fillStyle = "#FF6600";
-  let xPos = canvasW/2 - (player.x-this.x)
-  ctx.fillRect(xPos,this.y-yShift-this.h, this.w,this.h);
-  ctx.stroke();
-  ctx.closePath();
+  let translateDist = -this.h;
+  ctx.translate(0,translateDist)
+
+  let xPos = canvasW/2 - (player.x-this.x);
+  let yPos = this.y-yShift;
+  if(this.speedX!=0) this.dir = -this.speedX/Math.abs(this.speedX);
+
+//  if(this.flying) displayStringLoop(birdFlapLoop,xPos,yPos,20,2,-this.dir);
+   displayStringLoop(tigerWalkLoop,xPos,yPos,27,3,this.dir);
+
+  ctx.translate(0,-translateDist)
   this.counter++;
 }
 

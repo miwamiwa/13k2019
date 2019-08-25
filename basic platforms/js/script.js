@@ -46,6 +46,8 @@ function startGame() {
   unpackImgLoop(birdStillLoop);
   birdStillLoop.push(birdStillLoop[1]);
 
+  unpackImgLoop(tigerWalkLoop);
+
   unpackImgLoop(birdFlapLoop);
   birdFlapLoop.push(birdFlapLoop[2]);
   birdFlapLoop.push(birdFlapLoop[1]);
