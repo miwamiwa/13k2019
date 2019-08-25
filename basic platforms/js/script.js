@@ -52,7 +52,7 @@ function updateGameArea() {
 
   canvas.clear();
 
-  displayImage(bgImage.a,bgImage.c,-player.x/4,-1.5*canvasH-yShift/2,bgImage.w,2*canvasW/bgImage.w,1);
+  displayImage(bgImage.a,bgImage.c,-player.x/4,-1.7*canvasH-yShift/2,bgImage.w,2*canvasW/bgImage.w,1);
 
   displayAll(ground); // these are platforms
 

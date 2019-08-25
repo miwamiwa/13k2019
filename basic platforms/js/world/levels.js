@@ -7,21 +7,30 @@ let fBaddie = {d:displayFlyingBaddie,u:updateFlyingBaddie,w:20*2,h:20*2}; // "ki
 // EXAMPLE LEVEL OBJECT:
 
 let  level1 = {
-  size:10000, // boundaries for the level (not actually implemented yet shh)
+  size:800, // boundaries for the level (not actually implemented yet shh)
   platforms: [ // list each platform here:
     //{ x: position, y: position, w: width }
-    {x:0,y:500,w:200}, //0
+
+    {x:0,y:0,w:100}, //0: decorative platforms at ground level
+    {x:200,y:0,w:100},
+    {x:-100,y:0,w:100},
+    {x:450,y:0,w:100},
+    {x:600,y:0,w:100},
+
+    {x:0,y:500,w:200}, //5
     {x:220,y:450,w:80},
     {x:300,y:400,w:80},
     {x:380,y:350,w:80},
-    {x:460,y:300,w:80}, //4
+    {x:460,y:300,w:80}, //9
     { x: 400, y: 250, w: 100 },
     { x: 350, y: 200, w: 100 },
     { x: 450, y: 200, w: 100 },
     { x: 250, y: 150, w: 50 },
-    { x: 300, y: 130, w: 50 }, //9
-    { x: 250, y: 100, w: 100 }, //10
-    { x: 200, y: 50, w: 50 }
+    { x: 300, y: 130, w: 50 }, //14
+    { x: 250, y: 100, w: 100 }, //15
+    { x: 200, y: 50, w: 50 },
+
+
   ],
   baddies: [ // list each baddie here:
     /*
@@ -32,17 +41,22 @@ let  level1 = {
     kit: {d:display,u:update} (use jBaddie or fBaddie)
   }
     */
-    {p:0, x:50, r:45, kit:jBaddie },
-    {p:3, x:50, r:45, kit:fBaddie },
-    {p:3, x:100, r:45, kit:fBaddie },
+    {p:5, x:50, r:45, kit:jBaddie },
+    {p:8, x:50, r:45, kit:fBaddie },
+    {p:8, x:100, r:45, kit:fBaddie },
   ],
   cosmetics: [
     //{p: platform ,x: distance from left }
-    {p:2,x:30},
-    {p:4,x:-5}
+    {p:7,x:10},
+    {p:9,x:-5},
+    {p:0,x:0},
+    {p:1,x:0},
+    {p:2,x:0},
+    {p:3,x:0},
+    {p:4,x:0},
   ],
-  player: {p:0,x:0},
-  babies:{count:2, pos:[6, 7, 8, 9, 10, 11, -1],p:0,x:0}
+  player: {p:6,x:0},
+  babies:{count:2, pos:[11, 12, 13, 14, 15, 16, -1],p:0,x:0}
 };
 
 

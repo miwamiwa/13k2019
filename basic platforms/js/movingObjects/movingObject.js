@@ -46,9 +46,10 @@ class movingObject{
     if(this.knockedBack) this.calculateKnockBack();
 
     // update x pos
-  //  this.x += this.speedX
 
-    this.x = constrain(this.x+this.speedX,-canvasW,levelRange);
+
+  this.x = constrain(this.x+this.speedX,-200,levelRange);
+//  else this.x += this.speedX;
 
     // if jumping, update y position
     if(this.jumping) this.calculateJump();
