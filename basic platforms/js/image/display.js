@@ -31,8 +31,8 @@ function displayImage(input,c,x,y,w,stretch,dir){
         ctx.fillRect(
           x+ fact  +dir*(i%w)*stretch,
           y+Math.floor(i/w)*stretch,
-          dir*stretch,
-          stretch
+          dir*(stretch+0.5),
+          stretch+0.5
         );
 
       ctx.closePath();

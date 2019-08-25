@@ -22,14 +22,9 @@ class groundTile{
 
 
       if(this.hasCos!=false){ // display nest if there is a nest
-/*
-        ctx.beginPath();
-        ctx.fillStyle = "#99FF99";
-        ctx.fillRect(xPos+this.hasCos.x,this.y-yShift-40, 40, 40);
-        ctx.closePath();
-        */
         let tree = trees[this.hasCos.t];
-        displayImage( tree.a, tree.c, xPos+this.hasCos.x,this.y-yShift-tree.w*2, tree.w,2,1 )
+        let stretch = 3;
+        displayImage( tree.a, tree.c, xPos+this.hasCos.x,this.y-yShift-tree.w*stretch, tree.w,stretch,1 )
       }
     }
   }

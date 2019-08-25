@@ -24,3 +24,33 @@ function unpackImgLoop(input){
     input[i].a = unpackImage(input[i].s);
   }
 }
+
+function unpackAll(){
+  unpackImgLoop(walkLoop);
+  unpackImgLoop(jumpLoop);
+  jumpLoop.push(jumpLoop[1]);
+  unpackImgLoop(stillLoop);
+  stillLoop.push(stillLoop[1]);
+
+  unpackImgLoop(birdStillLoop);
+  birdStillLoop.push(birdStillLoop[1]);
+
+  unpackImgLoop(tigerWalkLoop);
+
+  unpackImgLoop(tigerJumpLoop);
+  tigerJumpLoop.push(tigerJumpLoop[1]);
+
+  unpackImgLoop(birdFlapLoop);
+  birdFlapLoop.push(birdFlapLoop[2]);
+  birdFlapLoop.push(birdFlapLoop[1]);
+
+  unpackImgLoop(babyWalkLoop);
+  babyWalkLoop.push(babyWalkLoop[2]);
+  babyWalkLoop.push(babyWalkLoop[1]);
+
+  groundImg.a = unpackImage(groundImg.s);
+
+  unpackImgLoop(trees);
+
+  bgImage.a = unpackImage(bgImage.s);
+}

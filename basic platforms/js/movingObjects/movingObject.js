@@ -46,7 +46,9 @@ class movingObject{
     if(this.knockedBack) this.calculateKnockBack();
 
     // update x pos
-    this.x += this.speedX;
+  //  this.x += this.speedX
+
+    this.x = constrain(this.x+this.speedX,-canvasW,levelRange);
 
     // if jumping, update y position
     if(this.jumping) this.calculateJump();
@@ -90,12 +92,15 @@ class movingObject{
     if( dist>this.fallSpeed ){
       this.y += this.fallSpeed;
       this.fallSpeed +=1;
+        //if(this.index==="player") console.log("hi")
     }
     // fall end:
     else if(dist>0){
       this.fallSpeed = 0;
       this.y += dist-1;
     }
+
+
   }
 
   // calculateKnockBack: updates speedX during knockback. also ends knockback.

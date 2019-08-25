@@ -6,6 +6,7 @@ var frame=0;
 let ground = [];
 let canvasH = 270;
 let canvasW = window.innerWidth;
+let levelRange =0;
 
 let babies = [];
 let baddies = [];
@@ -37,31 +38,7 @@ var canvas = {
 
 function startGame() {
 
-  unpackImgLoop(walkLoop);
-  unpackImgLoop(jumpLoop);
-  jumpLoop.push(jumpLoop[1]);
-  unpackImgLoop(stillLoop);
-  stillLoop.push(stillLoop[1]);
-
-  unpackImgLoop(birdStillLoop);
-  birdStillLoop.push(birdStillLoop[1]);
-
-  unpackImgLoop(tigerWalkLoop);
-
-  unpackImgLoop(tigerJumpLoop);
-  tigerJumpLoop.push(tigerJumpLoop[1]);
-
-  unpackImgLoop(birdFlapLoop);
-  birdFlapLoop.push(birdFlapLoop[2]);
-  birdFlapLoop.push(birdFlapLoop[1]);
-
-  unpackImgLoop(babyWalkLoop);
-  babyWalkLoop.push(babyWalkLoop[2]);
-  babyWalkLoop.push(babyWalkLoop[1]);
-
-  groundImg.a = unpackImage(groundImg.s);
-
-  unpackImgLoop(trees);
+  unpackAll();
 
   setupLevel(level1);
   canvas.start();
@@ -74,6 +51,8 @@ function startGame() {
 function updateGameArea() {
 
   canvas.clear();
+
+  displayImage(bgImage.a,bgImage.c,-player.x/4,-1.5*canvasH-yShift/2,bgImage.w,2*canvasW/bgImage.w,1);
 
   displayAll(ground); // these are platforms
 
