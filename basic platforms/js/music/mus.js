@@ -98,10 +98,34 @@ function loadAndPlay(waveGen,comb,seconds,volume,tone){
   let combDist;
   let arr = [];
   if(comb!=false) combDist = comb;
+  let vol = 0;
 
   for (var i = 0; i < context.sampleRate * seconds; i++) {
-
+    let pos = i/length;
+    if(pos>0.7) vol = constrain(vol-0.0007,0,1);
+    else if(pos<0.1) vol = constrain(vol+0.0005,0,volume);
     arr[i] = waveGen(i, tone) * volume
+    if(i>=combDist&&comb!=false) arr[i-combDist] += arr[i];
+
+  }
+
+  playSound(arr)
+}
+
+function loadSlidingSound(waveGen,comb,seconds,volume,tone,tone2){
+  let combDist;
+  let arr = [];
+  let length = context.sampleRate * seconds;
+  let vol = 0;
+  let returnVel = 0.01*seconds;
+  if(comb!=false) combDist = comb;
+
+  for (var i = 0; i < length; i++) {
+    let pos = i/length;
+    let freq = tone+ pos*(tone2-tone);
+    if(pos>0.7) vol = constrain(vol-returnVel,0,1);
+    else if(pos<0.1) vol = constrain(vol+returnVel,0,volume);
+    arr[i] = waveGen(i, freq) * vol
     if(i>=combDist&&comb!=false) arr[i-combDist] += arr[i];
 
   }

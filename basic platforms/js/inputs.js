@@ -21,6 +21,11 @@ function keyPressed(){
     case 100: moveX(1); break;// right D 100
 
     case 32: player.startJump(player); break; // jump SPACE 32
+
+    case 49: sfxOne(); break;
+    case 50: sfxTwo(); break;
+    case 51: sfxThree(); break;
+    case 52: sfxFour(); break;
     // 1,2,3,4: 49,50,51,52...
   }
 }
