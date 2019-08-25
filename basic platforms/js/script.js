@@ -48,9 +48,18 @@ function startGame() {
 
   unpackImgLoop(tigerWalkLoop);
 
+  unpackImgLoop(tigerJumpLoop);
+  tigerJumpLoop.push(tigerJumpLoop[1]);
+
   unpackImgLoop(birdFlapLoop);
   birdFlapLoop.push(birdFlapLoop[2]);
   birdFlapLoop.push(birdFlapLoop[1]);
+
+  unpackImgLoop(babyWalkLoop);
+  babyWalkLoop.push(babyWalkLoop[2]);
+  babyWalkLoop.push(babyWalkLoop[1]);
+
+  groundImg.a = unpackImage(groundImg.s);
 
   setupLevel(level1);
   canvas.start();
@@ -64,10 +73,12 @@ function updateGameArea() {
 
   canvas.clear();
 
+  displayAll(ground); // these are platforms
+
   player.update();
 
   updateAll(baddies);
-  displayAll(ground); // these are platforms
+
   updateAll(babies);
 
   displayGround();
@@ -79,11 +90,17 @@ function updateGameArea() {
 
 // display the ground below all platforms
 function displayGround(){
-
+/*
   ctx = canvas.context;
   ctx.beginPath();
   ctx.strokeStyle = "#000000";
   addLine(0,canvasH-yShift,canvasW,canvasH-yShift);
   ctx.stroke();
   ctx.closePath();
+  */
+
+  let xPos = canvasW/2 - (player.x-this.x)
+  for(let i=0; i<canvasW/20; i++){
+    displayImage( groundImg.a, groundImg.c, i*20-player.x%20,canvasH-yShift-4, 5,4,1 )
+  }
 }

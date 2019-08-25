@@ -19,7 +19,7 @@ function displayDudeBox(){
   ctx.stroke();
   ctx.closePath();
 
-if(distToGround(this.x+this.w/2,this.y)>2)  displayStringLoop(jumpLoop,xPos,this.y-yShift,25,3,this.dir);
+if(distToGround(this.x+this.w/2,this.y,this.w)>2)  displayStringLoop(jumpLoop,xPos,this.y-yShift,25,3,this.dir);
 else {
   if(this.speedX===0) displayStringLoop(stillLoop,xPos,this.y-yShift,25,3,this.dir);
   else displayStringLoop(walkLoop,xPos,this.y-yShift,25,3,this.dir);

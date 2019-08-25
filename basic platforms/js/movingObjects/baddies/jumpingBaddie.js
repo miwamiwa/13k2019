@@ -11,7 +11,9 @@ function displayJumpingBaddie(){
 
 
 //  if(this.flying) displayStringLoop(birdFlapLoop,xPos,yPos,20,2,-this.dir);
-   displayStringLoop(tigerWalkLoop,xPos,yPos-1.5*27,27,3,this.dir);
+if(distToGround(this.x+this.w/2,this.y,this.w)>2)  displayStringLoop(tigerJumpLoop,xPos,yPos-1.5*27,27,3,this.dir);
+else   displayStringLoop(tigerWalkLoop,xPos,yPos-1.5*27,27,3,this.dir);
+
 
   ctx.translate(0,-translateDist)
   this.counter++;

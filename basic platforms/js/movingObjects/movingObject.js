@@ -60,7 +60,7 @@ class movingObject{
 
   startJump(input){
 
-    if(!this.jumping&&distToGround(this.x+this.w/2,this.y)<2){
+    if(!this.jumping&&distToGround(this.x+this.w/2,this.y,this.w)<2){
       this.jumping = true;
       this.jumpForce = 20;
     }
@@ -84,7 +84,7 @@ class movingObject{
   calculateFall(){
 
     // check distance to ground
-    let dist = distToGround(this.x+this.w/2,this.y);
+    let dist = distToGround(this.x+this.w/2,this.y,this.w);
 
     // during fall:
     if( dist>this.fallSpeed ){

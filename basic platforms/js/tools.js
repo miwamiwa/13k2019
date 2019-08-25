@@ -6,10 +6,10 @@ return  ( p1< p2+r
 }
 
 // check if point p1 is in segment from x to x+w
-function inSegment(p1,x,w){
+function inSegment(p1,w1,x,w){
   return (
-    p1 > x
-    && p1 < x+w
+    p1+w1/2-8 > x
+    && p1-w1/2+8 < x+w
   );
 }
 
@@ -66,14 +66,14 @@ function addLine(x,y,x2,y2){
 }
 
 
-function distToGround(x,y){
+function distToGround(x,y,w){
 
   let nearest = canvasH; // set nearest point to lowest point on canvas
 
   for(let i=0; i<ground.length; i++){ // for each platform
 
     if(
-      inSegment(x,ground[i].x,ground[i].w) // if player and platform are aligned on x axis
+      inSegment(x,w,ground[i].x,ground[i].w) // if player and platform are aligned on x axis
       && ground[i].y>y // and ground is below player
       && ground[i].y < nearest // and ground is above last "nearest" platform
     )

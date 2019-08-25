@@ -7,13 +7,13 @@ This is a design tool, not to be included in the final game.
 */
 
 let loopImages = [ // indicate files to loop here et voila.
-      "assets/images/tigerwalk1.png",
-      "assets/images/tigerwalk2.png",
-      "assets/images/tigerwalk3.png",
-      "assets/images/tigerwalk4.png",
-      "assets/images/tigerwalk5.png",
-      "assets/images/tigerwalk6.png",
-      "assets/images/tigerwalk7.png",
+      "assets/images/babyWalk1.png",
+      "assets/images/babyWalk2.png",
+      "assets/images/babyWalk3.png",
+      "assets/images/babyWalk4.png",
+      "assets/images/babyWalk3.png",
+      "assets/images/babyWalk2.png",
+    //  "assets/images/babyWalk1.png",
 ];
 
 

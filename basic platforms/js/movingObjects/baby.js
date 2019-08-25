@@ -43,17 +43,11 @@ function displayBaby(){
   let translateDist = -10;
   ctx = canvas.context;
   ctx.translate(0,translateDist)
-  ctx.beginPath();
 
-  ctx.fillStyle = "#00FFFF";
-  /*
   let xPos = canvasW/2 - (player.x-this.x)
-  ctx.fillRect(xPos,this.y-yShift-40, 40, 40);
-  */
-  let xPos = canvasW/2 - (player.x-this.x)
-  ctx.fillRect(xPos,this.y-yShift-10, this.w,this.h);
-  ctx.stroke();
-  ctx.closePath();
+  let yPos = this.y-yShift-this.h;
+//  if(distToGround(this.x+this.w/2,this.y,this.w)>2)  displayStringLoop(tigerJumpLoop,xPos,yPos,15,2,this.dir);
+  displayStringLoop(babyWalkLoop,xPos,yPos,15,2,this.dir);
 
   ctx.translate(0,-translateDist)
 }
