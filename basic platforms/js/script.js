@@ -38,6 +38,8 @@ var canvas = {
 function startGame() {
 
   unpackImgLoop(walkLoop);
+  unpackImgLoop(jumpLoop);
+  jumpLoop.push(jumpLoop[1]);
   setupLevel(level1);
   canvas.start();
 

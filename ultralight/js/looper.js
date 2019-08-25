@@ -6,14 +6,11 @@ animation as you modify the individual image files.
 This is a design tool, not to be included in the final game.
 */
 
-let loopImages = [ // indicate files to loop here et voila. 
-      "assets/images/walk1.png",
-      "assets/images/walk2.png",
-      "assets/images/walk3.png",
-      "assets/images/walk4.png",
-      "assets/images/walk5.png",
-      "assets/images/walk6.png",
-      "assets/images/walk7.png",
+let loopImages = [ // indicate files to loop here et voila.
+      "assets/images/jump1.png",
+      "assets/images/jump2.png",
+      "assets/images/jump3.png",
+      "assets/images/jump2.png",
 ];
 
 

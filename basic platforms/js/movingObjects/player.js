@@ -12,19 +12,10 @@ function displayDudeBox(){
   if(this.y>limit)  yShift = 0;
   else yShift=this.y-limit;
   if(this.speedX!=0) this.dir = -this.speedX/Math.abs(this.speedX);
-  displayStringLoop(walkLoop,xPos,this.y-yShift,25,3,this.dir);
 
-  /*
-  ctx.beginPath();
+if(distToGround(this.x+this.w/2,this.y)>2)  displayStringLoop(jumpLoop,xPos,this.y-yShift,25,3,this.dir);
+else displayStringLoop(walkLoop,xPos,this.y-yShift,25,3,this.dir);
 
-  ctx.fillStyle = "#0000FF";
-  let limit = canvasH*0.5;
-  if(this.y>limit)  yShift = 0;
-  else yShift=this.y-limit;
-  ctx.fillRect(xPos,this.y-yShift, 40, 40);
-  ctx.stroke();
-  ctx.closePath();
-*/
   ctx.translate(0,-translateDist)
 }
 
