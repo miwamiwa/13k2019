@@ -36,10 +36,10 @@ let  level1 = {
     {p:3, x:50, r:45, kit:fBaddie },
     {p:3, x:100, r:45, kit:fBaddie },
   ],
-  nests: [
+  cosmetics: [
     //{p: platform ,x: distance from left }
     {p:2,x:30},
-    {p:4,x:100}
+    {p:4,x:20}
   ],
   player: {p:0,x:0},
   babies:{count:2, pos:[6, 7, 8, 9, 10, 11, -1],p:0,x:0}
@@ -56,8 +56,8 @@ let levelX = {
   baddies: [
   //  { p: 0, x: 0, r: 0, kit: jBaddie or fBaddie }
   ],
-  nests: [
-    //{p: 0,x: 0 }
+  cosmetics: [
+    //{p: 0,x: 0,t:0 }
   ],
   player: {p:1,x:0},
   babies:{count:2, pos:[6, 7, 8, 9, 10, 11, -1],p:0,x:0}
@@ -82,8 +82,14 @@ function setupLevel(level){
     newBaddie( res.x, res.y, level.baddies[i].r, level.baddies[i].kit );
   }
 
-  for(let i=0; i<level.nests.length; i++){
-    ground[level.nests[i].p].hasNest = level.nests[i].x;
+  for(let i=0; i<level.cosmetics.length; i++){
+    let rand = Math.floor(Math.random()*3);
+    ground[
+      level.cosmetics[i].p
+    ].hasCos = {
+      x:level.cosmetics[i].x,
+      t:rand
+    };
   }
 
   let playerPos = getXYOnPlat(level.player,level.platforms);

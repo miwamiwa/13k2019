@@ -61,6 +61,8 @@ function startGame() {
 
   groundImg.a = unpackImage(groundImg.s);
 
+  unpackImgLoop(trees);
+
   setupLevel(level1);
   canvas.start();
 
