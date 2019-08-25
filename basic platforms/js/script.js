@@ -40,6 +40,16 @@ function startGame() {
   unpackImgLoop(walkLoop);
   unpackImgLoop(jumpLoop);
   jumpLoop.push(jumpLoop[1]);
+  unpackImgLoop(stillLoop);
+  stillLoop.push(stillLoop[1]);
+
+  unpackImgLoop(birdStillLoop);
+  birdStillLoop.push(birdStillLoop[1]);
+
+  unpackImgLoop(birdFlapLoop);
+  birdFlapLoop.push(birdFlapLoop[2]);
+  birdFlapLoop.push(birdFlapLoop[1]);
+
   setupLevel(level1);
   canvas.start();
 

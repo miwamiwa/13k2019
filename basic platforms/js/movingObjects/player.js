@@ -14,7 +14,10 @@ function displayDudeBox(){
   if(this.speedX!=0) this.dir = -this.speedX/Math.abs(this.speedX);
 
 if(distToGround(this.x+this.w/2,this.y)>2)  displayStringLoop(jumpLoop,xPos,this.y-yShift,25,3,this.dir);
-else displayStringLoop(walkLoop,xPos,this.y-yShift,25,3,this.dir);
+else {
+  if(this.speedX===0) displayStringLoop(stillLoop,xPos,this.y-yShift,25,3,this.dir);
+  else displayStringLoop(walkLoop,xPos,this.y-yShift,25,3,this.dir);
+}
 
   ctx.translate(0,-translateDist)
 }
