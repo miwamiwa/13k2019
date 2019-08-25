@@ -11,7 +11,7 @@ remnants of a larger file that used to be ..
 //            - kit: update and display functions
 
 function newBaddie(x,y,range,kit){
-  baddies.push( new movingObject(x, y, 40,40,kit.d,kit.u, baddies.length) );
+  baddies.push( new movingObject(x, y, kit.w,kit.h,kit.d,kit.u, baddies.length) );
   let index = baddies.length-1;
   baddies[index].leftBoundX = baddies[index].x - range;
   baddies[index].rightBoundX = baddies[index].x + range;
@@ -21,12 +21,22 @@ function newBaddie(x,y,range,kit){
 
 function checkPlayerCollision(index){
 
+  ctx.beginPath();
+  ctx.strokeStyle = "#FF6600";
+  ctx.rect(canvasW/2 - (player.x-baddies[index].x),
+  baddies[index].y-yShift-baddies[index].h,
+  baddies[index].w,
+  baddies[index].h);
+  ctx.rect(canvasW/2,player.y-yShift-player.h,player.w,player.h)
+  ctx.stroke();
+  ctx.closePath();
+
   if(collideRectRect(
-    baddies[index].x,
-    baddies[index].y,
+    canvasW/2 - (player.x-baddies[index].x),
+    baddies[index].y-yShift-baddies[index].h,
     baddies[index].w,
     baddies[index].h,
-    player.x,player.y,player.w,player.h)
+    canvasW/2,player.y-yShift-player.h,player.w,player.h)
     && !player.knockedBack
   ){
 

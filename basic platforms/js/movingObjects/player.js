@@ -13,6 +13,12 @@ function displayDudeBox(){
   else yShift=this.y-limit;
   if(this.speedX!=0) this.dir = -this.speedX/Math.abs(this.speedX);
 
+  ctx.beginPath();
+  ctx.strokeStyle = "#FF6600";
+  ctx.rect(xPos,this.y-yShift, this.w,this.h);
+  ctx.stroke();
+  ctx.closePath();
+
 if(distToGround(this.x+this.w/2,this.y)>2)  displayStringLoop(jumpLoop,xPos,this.y-yShift,25,3,this.dir);
 else {
   if(this.speedX===0) displayStringLoop(stillLoop,xPos,this.y-yShift,25,3,this.dir);

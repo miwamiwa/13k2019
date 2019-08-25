@@ -1,5 +1,5 @@
-let jBaddie = {d:displayJumpingBaddie,u:updateJumpingBaddie}; // "kit" for a jumping Baddie
-let fBaddie = {d:displayFlyingBaddie,u:updateFlyingBaddie}; // "kit" for flying Baddie
+let jBaddie = {d:displayJumpingBaddie,u:updateJumpingBaddie,w:27*3,h:27*1.5}; // "kit" for a jumping Baddie
+let fBaddie = {d:displayFlyingBaddie,u:updateFlyingBaddie,w:20*2,h:20*2}; // "kit" for flying Baddie
 
 
 // ********** level design does here! ***********
