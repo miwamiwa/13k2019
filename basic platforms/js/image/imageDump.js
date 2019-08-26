@@ -15,9 +15,10 @@ let c = [
 
   // bird
   "#1F29C1", // 11: deep blue
-  "#FF6638", // beak orange
-  "#EAFF30", // wing yellow
-  "#FFFFFF", // white
+  "#FF6638", // 12 beak orange
+  "#EAFF30", // 13 wing yellow
+  "#FFFFFF", // 14 white
+      //"#f7d92a" //20
 
   // orangutan
   "#EA1F1C", //15: red
@@ -25,6 +26,9 @@ let c = [
   "#FF6232", //orange
   "#8E7F7D", // grey
   "#D36A55", // light brown
+
+  // bird orange 2:
+  "#f7d92a" //20
 
 ];
 
@@ -59,14 +63,7 @@ let walkLoop = [
     s:"11111111.4113>2F1.2BF1)3(2DG/3=2E=F-PEFBF+SFEAF*PZQGCFAF*FRGCFAG(SJBFAF(RKAFe@F*I(G@Ff@F/F@FfAF.F@GeAG-F?K@G-F?G)G@G-G>Fd*F@dF.F=Ge)F>Hd.G<F(f)F<HeF.H)Fe(I(FeG.G)H(H*I1)H1+",
     c:[false,c[15],c[17],c[16],c[18],c[0],c[19]]
   },
-  /*
-  // orangutan
-  "#EA1F1C", //15: red
-  "#8E423A", // dark brown
-  "#FF6232", //orange
-  "#8E7F7D", // grey
-  "#D36A55", // light brown
-  */
+
   {
     s:"11111111111(7<1-3L=1*2OF<.3F(2OH<,PON+S=H<OF<*PZQ>F<2OF<*<Q?d<2OG)S@2OH<(RA2L<J<*?d<2K=K<.=2I=L=.<2I=d<L<-<2H>d=L<,<2H=(f=J<*>3F=e)e<I=*=H?d+d<I,=F=*=+d<G<1+>+=F<1+>*>d=1/>)=,",
     c:[false,c[15],c[16],c[17],c[18],c[0],c[19]]
@@ -99,16 +96,25 @@ let ratLoop = [
 ]
 let jumpLoop = [
   {
-    s:"-51/3,51)4.3(6.2(2.3(3(4-2(2.4,3,2(2,3*9+2(31-2+2(51,3)2,21,2)2+31-4)4,21(3*2(2-202(2)3(2-7*2)5)21(2)3/213)3/203)3,5(2,5(5,2)5+2+2(2-2*4+:(2)31*5(2(2(2+3*5)3)3(2(4(2)4(4,2)3*4/3*3)31-5111(",
-    c:[false,c[1]]
+
+    /*
+    // orangutan
+    "#EA1F1C", //15: red
+    "#8E423A", //16 dark brown
+    "#FF6232", //17 orange
+    "#8E7F7D", //18 grey
+    "#D36A55", //19 light brown
+    */
+    s:"-4112@51*F2E5F/GTCH-F<FU=G@G,F<FPZPZQ>2M+F<GPFQ@8F+F<FTE=2F*F<dSE?2F)F<eHE@2)FeF(F@FE2)FdF)e?dFDF(H*f?dI?F)H*Fe@gF=F+G*FeDF=F1eCFeF.H(FdAGeFd-FeGe@HeF.Fj@GdF<I)GjAG?dF(HeGfF<GBFdF)H*H)GA)G1,F?F)G1-I111(",
+    c:[false,c[15],c[17],c[16],c[18],c[0],c[19]]
   },
   {
-    s:"11.:1-2(2+5(402(2.;,2(2.7*3*3(2,313)2*21.2)2+3-2/2)2,61)2(2)81,2)2*2+212(2*2(2,4.3)2(3(2/5)3+2+21)2)2.314(2/21(3)2/313(2-5/5(3,3.2)3(2(3-2.3)7,4)9)3(6)2*2/202(2+2/3,2(2)51(7(311)3(",
-    c:[false,c[1]]
+    s:"111(4112@41+F2D31)GT@F4F.F<FUDF-F<FPZPZQEF,F<GPFQE=F+F<FTE>F*FeS?FDF*FfH@FCF)GeG(FAI?F)I*FDH=F*G+FE<F>*F,FdE<F=0FeDF<G/GgBH/GgGAH.FiG@H.FgJ@F/GeG,F@F.FeF/F@F-FdF1G>G,H1)K,G1-G)",
+    c:[false,c[15],c[17],c[16],c[18],c[0],c[19]]
   },
   {
-    s:"111(4(2102)3(31-3,3(2*4-4-8*3+4.202*3(2.212)2)3-212)2*2+41*2(71,2(2(2-2(4(4,2(2)4.4(2.3*21(4-4(31)2)2,702)213/3)3.312)3,3(21(2(3,3.2-2)2,3-3,2(3-3(9+3*3+3*3*2,4(2,3)4*3(2,2-5(2,3)504-5+",
-    c:[false,c[1]]
+    s:"111)4112?2,3G/F2A*3F<3F.2FT=3F@2G+F<FUE3+2<FPZPZQE<2F)G<GPFQE>F)G<FTE>F(GfSBI>F(Ff(IAK>Gd*FCG=J<F,FBG?I=,FdE>F(H,FeE=F)G,Ff>FAF0GhGAF0FfH(F@F1FeG*F?F1FgF*F?F1FgF*F?1)FfF*F>F1*FeF+H1,H+H1-G+G1",
+    c:[false,c[15],c[17],c[16],c[18],c[0],c[19]]
   },
 ]
 
@@ -198,23 +204,31 @@ let birdStillLoop = [
 
   },
 ];
+/*
 
+  // bird
+  "#1F29C1", // 11: deep blue
+  "#FF6638", // 12 beak orange
+  "#EAFF30", // 13 wing yellow
+  "#FFFFFF", // 14 white
+  "#f7d92a" //20 wing shade
+*/
 let birdFlapLoop = [
   {
-    s:"11061+3*21*3+31)2-2-5)2*2)2(4(3)5)4(4(4,4(6+3.6-313-3)2.3(4)2(2(3-3(2(3*2(4-4)2(2(4(3-2*4)3(2.2*3*3)2,3*2/71+3)21+3*21*3,2/",
-    c:[false,c[1]]
+    s:"11051,71*91)3<4<2.G+4P4(H)J2(3R2(I(HZH4R2HZJ[G5Q2G[K[F5Q2F[L([5Q2[(H(H)Z6P2Z)H(H*6P2*H(H*8*G*G*7+G*F+7+F/5P21+Q)P1+Q*P1*Q*P1",
+    c:[false,c[11],c[14],c[13],c[12],c[20]]
   },
   {
-    s:"1111051,3*213(3+3-6(2-6(2,3*2)2+3,3)4(2+2.3(6+3.6-313)2*313(3*3(5-5)2(4)3-2)3.3+31*3*21,61+2*21,2*21+3*20",
-    c:[false,c[1]]
+    s:"1111051,71=(3F6.?)6F2(=*A(4P4?(B4Q3(E[4R(E<[5Q>ZA]5Q>ZA)[6P=([?*[6P<*Z?+8<+Z.81*2P51,P51,P)P1,P*P1+Q*P0",
+    c:[false,c[11],c[13],c[14],c[12],c[20]]
   },
   {
-    s:"11111106+6(3)2+3(3(8(2-4)3,3*2)2*4,3)4(2+3-2)5+6,2(5*4(3-5*3+3.3(4-4,3(213,31(3+41)3)41+61+3*21+2+21,2)20",
-    c:[false,c[1]]
+    s:"11111106*=)=,8(D*2F4F2E<)4P4@ZA(4P3@[?[4Q3?]?5R=[<[([>5R=[(Z*[>5Q<[.[=5Q<Z1(7P<1*71+61,P51+Q*P1+P+P1,P)Q/",
+    c:[false,c[11],c[13],c[14],c[12],c[20]]
   },
   {
-    s:"11111106+6(3)2+3(3(8(2-4)3,3*2)2*4,3)4(2+3-2)5+6,2(5*4(3-5*3+3.3(4-4,3(213,31(3+41)3)41+61+3*21+2+21,2)20",
-    c:[false,c[1]]
+    s:"11)21*2+31*3*4,>+4(6*@*;(B(6F6(=P=P<6H5(?Z=5F)F5(>[<F4G)G4F>[<F3G+G3F?[F3F-G2@ZFZG/GAZFZ1BZF1(B21*B1+[>1+[*Z1*[*[1.Z1",
+    c:[false,c[13],c[11],c[20],c[14],c[12]]
   },
 ];
 
