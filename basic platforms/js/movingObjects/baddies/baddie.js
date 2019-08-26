@@ -39,6 +39,8 @@ function checkPlayerCollision(index){
     canvasW/2,player.y-yShift-player.h,player.w,player.h)
     && !player.knockedBack
   ){
+
+    triggerParticles(player.x+player.w/2,player.y+player.h/2,[{r:255,g:125,b:125}])
     collideSFX();
     let knock = false;
     let whichBaby = 0;

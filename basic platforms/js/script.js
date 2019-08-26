@@ -18,6 +18,8 @@ let inputRight = false;
 let stopSpeed = 0.4;
 let chirping = false;
 
+let particles = []
+
 
 var canvas = {
   canvas : document.createElement("canvas"),
@@ -60,6 +62,8 @@ function updateGameArea() {
   player.update();
 
   updateAll(baddies);
+
+  updateAll(particles);
 
   updateAll(babies);
 
