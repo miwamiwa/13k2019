@@ -33,8 +33,8 @@ var voices = [
 
 function  runBGM(){
 
-  playVoice(1,organWaveAt,0.125,20,0.19,0.7);
-  playVoice(0,organWaveAt,0.125,25,0.05,1);
+  playVoice(1,organWaveAt,0.125,20,0.19,1.5)
+  playVoice(0,organWaveAt,0.125,25,0.05,2.5);
   playDrum();
   time++;
 }
@@ -52,7 +52,7 @@ function playDrum(){
   if(drum!=undefined){
     let tone =  drum.base+Math.random()*drum.vari;
     let comb =5+Math.floor(Math.random()*drum.vari/50);
-    loadAndPlay(noiseAt,comb,0.35,drum.vol,tone);
+    loadAndPlay(noiseAt,comb,0.15,drum.vol,tone,true);
   }
 }
 
@@ -65,9 +65,9 @@ function checkTime(fact){
 function chanceToPlay(stim,chance,t1,t2,t3){
   if(stim<chance){
     let total = t1+t2+t3;
-    if(stim<t1/total) return {base:25,vari:2,vol:0.04};
-    else if(stim<(t1+t2)/total) return {base:6000,vari:2000,vol:0.04};
-    else return {base:10000,vari:1000,vol:0.007};
+    if(stim<t1/total) return {base:20,vari:5,vol:0.08};
+    else if(stim<(t1+t2)/total) return {base:6000,vari:1000,vol:0.05};
+    else return {base:10000,vari:1000,vol:0.01};
   }
 }
 
@@ -83,7 +83,7 @@ function playVoice(input,waveGen,fact,comb,length,vol){
     tone = Math.pow(2, ( voice.notes.charCodeAt( index )-64)/12)*fact
 
 
-    loadAndPlay(waveGen,comb,seconds,vol,tone);
+    loadAndPlay(waveGen,comb,seconds,vol,tone,false);
 
     // set next time at which to trigger next note
     voices[input].nextTrigger = time+noteLength*lengthOf8;
@@ -94,18 +94,24 @@ function playVoice(input,waveGen,fact,comb,length,vol){
   }
 }
 
-function loadAndPlay(waveGen,comb,seconds,volume,tone){
+function loadAndPlay(waveGen,comb,seconds,volume,tone,isDrum){
   let combDist;
   let arr = [];
   if(comb!=false) combDist = comb;
   let vol = 0;
+  let length = context.sampleRate * seconds;
 
-  for (var i = 0; i < context.sampleRate * seconds; i++) {
+  for (var i = 0; i < length; i++) {
     let pos = i/length;
-    if(pos>0.7) vol = constrain(vol-0.0007,0,1);
-    else if(pos<0.1) vol = constrain(vol+0.0005,0,volume);
-    arr[i] = waveGen(i, tone) * volume
-    if(i>=combDist&&comb!=false) arr[i-combDist] += arr[i];
+    if(pos>0.7) vol = constrain(vol-0.0003,0,volume);
+    else if(pos<0.1) vol = constrain(vol+0.005,0,volume);
+    arr[i] = waveGen(i, tone) * vol
+    if(i>=combDist &&i +10<length&&comb!=false&&isDrum) {
+    for(let j=0; j<2; j++){
+      arr[i-combDist + j*2] -= arr[ Math.round(i-combDist + j*2+1)];
+    }
+    }
+    else if(i>=combDist &&i +10<length&&comb!=false)arr[i-combDist] += arr[i];
 
   }
 

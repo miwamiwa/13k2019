@@ -49,7 +49,7 @@ function startGame() {
 // the mother of most loops
 
 function updateGameArea() {
-  
+
   chirping = false;
   canvas.clear();
 
@@ -65,7 +65,8 @@ function updateGameArea() {
 
   displayGround();
 
-  //let chirping = false;runBGM();
+  //let chirping = false;
+  runBGM();
   frame++;
 }
 

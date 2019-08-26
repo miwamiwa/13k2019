@@ -37,7 +37,7 @@ function sfxSeq(num,baseF,fDif,baseT,tDif,timeBetween,tbDif,wave,comb,vol){
         comb,
         leng,
         vol,
-        freq
+        freq, false
       );
     }, i*(timeBetween+i*tbDif))
   }
