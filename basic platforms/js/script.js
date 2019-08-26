@@ -4,7 +4,7 @@ var frameRate=30;
 var bgm;
 var frame=0;
 let ground = [];
-let canvasH = 270;
+let canvasH = 570;
 let canvasW = window.innerWidth;
 let levelRange =0;
 
@@ -53,7 +53,7 @@ function updateGameArea() {
   chirping = false;
   canvas.clear();
 
-  displayImage(bgImage.a,bgImage.c,-player.x/4,-1.7*canvasH-yShift/2,bgImage.w,2*canvasW/bgImage.w,1);
+  displayImage(bgImage.a,bgImage.c,-player.x/4,-0.9*canvasH-yShift/2,bgImage.w,2*canvasW/bgImage.w,1);
 
   displayAll(ground); // these are platforms
 
@@ -66,7 +66,7 @@ function updateGameArea() {
   displayGround();
 
   //let chirping = false;
-  runBGM();
+      //runBGM();
   frame++;
 }
 
