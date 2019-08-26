@@ -30,7 +30,10 @@ function updateFlyingBaddie(){
     else this.y = constrain( this.y + -1+Math.random()*2, this.init.y-100,canvasH);
 
     // stop flying at some point (baddies falls back to the ground)
-    if(this.counter%450===0) this.flying = false;
+    if(this.counter%450===0) {
+      this.flying = false;
+    if(this.onScreen) birdChirpSFX();
+    }
 
     // if not knocked back, update speedX so as to move between boundaries
     if(!this.knockedBack) this.moveInBounds(2);
@@ -41,7 +44,10 @@ function updateFlyingBaddie(){
     // move between boundaries
     if(!this.knockedBack) this.moveInBounds(2);
     // start flying at some point
-    if(this.counter%150===0) this.flying = true;
+    if(this.counter%150===0) {
+      this.flying = true;
+      if(this.onScreen) birdChirpSFX();
+    }
 
   }
 }

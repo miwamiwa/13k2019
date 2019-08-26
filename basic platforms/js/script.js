@@ -16,7 +16,7 @@ let baddiesOnScreen =0;
 let inputLeft = false;
 let inputRight = false;
 let stopSpeed = 0.4;
-
+let chirping = false;
 
 
 var canvas = {
@@ -49,7 +49,8 @@ function startGame() {
 // the mother of most loops
 
 function updateGameArea() {
-
+  
+  chirping = false;
   canvas.clear();
 
   displayImage(bgImage.a,bgImage.c,-player.x/4,-1.7*canvasH-yShift/2,bgImage.w,2*canvasW/bgImage.w,1);
@@ -64,7 +65,7 @@ function updateGameArea() {
 
   displayGround();
 
-  runBGM();
+  //let chirping = false;runBGM();
   frame++;
 }
 

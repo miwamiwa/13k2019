@@ -35,6 +35,11 @@ class movingObject{
 
   // update(): updates position of and displays this object
   update(){
+    this.onScreen = false;
+    let xPos = canvasW/2 - (player.x-this.x);
+    let yPos = this.y-yShift;
+    if(inBox(xPos,yPos,0,0,canvasW,canvasH)) this.onScreen = true;
+
     this.newPos();
     this.updateMotion();
     this.display();
@@ -64,6 +69,9 @@ class movingObject{
   startJump(input){
 
     if(!this.jumping&&distToGround(this.x+this.w/2,this.y,this.w)<2){
+
+      if(this.index==="player") jumpSFX(0.5,1,0.35);
+      else if(this.onScreen) jumpSFX(0.8,1.2,0.1);
       this.jumping = true;
       this.jumpForce = 20;
     }
@@ -122,6 +130,7 @@ class movingObject{
     this.speedX = 10*input;
     this.jumpForce =0;
     this.flying = false;
+    this.grabbable = false;
   }
 
   // moveInBounds()

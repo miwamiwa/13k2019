@@ -39,16 +39,21 @@ function checkPlayerCollision(index){
     canvasW/2,player.y-yShift-player.h,player.w,player.h)
     && !player.knockedBack
   ){
-
+    collideSFX();
     let knock = false;
     let whichBaby = 0;
     for(let i=0; i<babies.length; i++){
+
       if(babies[i].isCarried&&!knock) {
         babies[i].isCarried = false;
         knock = true;
         whichBaby = i;
       }
     }
+
+    setTimeout( function(){
+      babies[whichBaby].grabbable = true;
+    },1000);
 
 if(baddies[index].x<player.x){
   baddies[index].collided(-1);

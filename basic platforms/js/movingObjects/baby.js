@@ -10,6 +10,7 @@ function newBaby(x,y){
   babies.push( new movingObject(x,y, 20,20,displayBaby,updateBaby,babies.length) );
   babies[babies.length-1].isExploring = true;
   babies[babies.length-1].isCarried = false;
+  babies[babies.length-1].grabbable = true;
 
 }
 
@@ -32,7 +33,17 @@ function updateBaby(){
     else this.speedX =0;
 
     // if overlapping with player, mark as carried.
-    if( inBox(this.x,this.y,player.x,player.y,player.w,player.h)) this.isCarried = true;
+    if(collideRectRect(
+      canvasW/2 - (player.x-this.x),
+      this.y-yShift-this.h,
+      this.w,
+      this.h,
+      canvasW/2,player.y-yShift-player.h,player.w,player.h)
+      && !player.knockedBack
+    ){
+      if(!this.isCarried) monkeyCrySFX();
+      this.isCarried = true;
+    }
 
   }
 }
