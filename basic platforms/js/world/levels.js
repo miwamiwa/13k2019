@@ -110,6 +110,8 @@ function setupLevel(level){
 
   let playerPos = getXYOnPlat(level.player,level.platforms);
   player = new movingObject(playerPos.x, playerPos.y, 75,75,displayDudeBox,updatePlayerMotion,"player");
+  startPos = {x:playerPos.x,y:playerPos.y,w:80,h:80};
+  babiesReturned = 0;
 
   for(let i=0; i<level.babies.count; i++){
     level.babies.p  = level.babies.pos[ Math.floor(Math.random()*level.babies.pos.length) ];

@@ -20,7 +20,8 @@ function newBaddie(x,y,range,kit){
 // check collision between all baddies and player.
 
 function checkPlayerCollision(index){
-
+/*
+// DISPLAY COLLISION RECTANGLE
   ctx.beginPath();
   ctx.strokeStyle = "#FF6600";
   ctx.rect(canvasW/2 - (player.x-baddies[index].x),
@@ -30,7 +31,7 @@ function checkPlayerCollision(index){
   ctx.rect(canvasW/2,player.y-yShift-player.h,player.w,player.h)
   ctx.stroke();
   ctx.closePath();
-
+*/
   if(collideRectRect(
     canvasW/2 - (player.x-baddies[index].x),
     baddies[index].y-yShift-baddies[index].h,
@@ -44,9 +45,16 @@ function checkPlayerCollision(index){
     collideSFX();
     let knock = false;
     let whichBaby = 0;
+    let playerOnTop = false;
+    let force = 0.8;
+
+    if(baddies[index].y-20>player.y&&distToGround(player.x+player.w/2,player.y,player.w)>5){
+      playerOnTop = true;
+      force = 1.5;
+    }
     for(let i=0; i<babies.length; i++){
 
-      if(babies[i].isCarried&&!knock) {
+      if(babies[i].isCarried&&!knock&&!playerOnTop) {
         babies[i].isCarried = false;
         knock = true;
         whichBaby = i;
@@ -58,14 +66,14 @@ function checkPlayerCollision(index){
     },1000);
 
 if(baddies[index].x<player.x){
-  baddies[index].collided(-1);
+  baddies[index].collided(-force);
   player.collided(1);
-  babies[whichBaby].collided(-3);
+  if(knock) babies[whichBaby].collided(-3);
 }
 else{
-  baddies[index].collided(1);
+  baddies[index].collided(force);
   player.collided(-1);
-    babies[whichBaby].collided(3);
+  if(knock)  babies[whichBaby].collided(3);
 }
 
 

@@ -12,6 +12,8 @@ let babies = [];
 let baddies = [];
 let baddieLocations= [];
 let baddiesOnScreen =0;
+let startPos;
+let babiesReturned = 0;
 
 let inputLeft = false;
 let inputRight = false;
@@ -54,8 +56,10 @@ function updateGameArea() {
 
   chirping = false;
   canvas.clear();
-
+  // display background image
   displayImage(bgImage.a,bgImage.c,-player.x/4,-0.9*canvasH-yShift/2,bgImage.w,2*canvasW/bgImage.w,1);
+
+    displayReturnPoint();
 
   displayAll(ground); // these are platforms
 
@@ -69,11 +73,25 @@ function updateGameArea() {
 
   displayGround();
 
+
+
   //let chirping = false;
       //runBGM();
   frame++;
 }
 
+function displayReturnPoint(){
+
+  ctx.beginPath();
+  ctx.fillStyle = "#FF6600";
+  ctx.fillRect(canvasW/2 - (player.x-startPos.x),
+  startPos.y-yShift-80,
+  80,80);
+//  ctx.rect(canvasW/2,player.y-yShift-player.h,player.w,player.h)
+  ctx.stroke();
+  ctx.closePath();
+
+}
 
 // display the ground below all platforms
 function displayGround(){

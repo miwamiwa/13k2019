@@ -21,6 +21,24 @@ function updateBaby(){
   if(this.isCarried){
     this.x = player.x;
     this.y = player.y - 15;
+
+    if(
+      collideRectRect(
+        canvasW/2 - (player.x-startPos.x),
+      startPos.y-yShift,
+      startPos.w,
+      startPos.h,
+      canvasW/2,
+      player.y-yShift,
+      player.w,player.h
+    )){
+      this.isCarried = false;
+      this.grabbable = false;
+      this.isExploring = false;
+      this.x = startPos.x+startPos.w/2;
+      this.y = startPos.y-20;
+      babiesReturned ++;
+    }
   }
 
   // if baby is not carried
@@ -40,6 +58,7 @@ function updateBaby(){
       this.h,
       canvasW/2,player.y-yShift-player.h,player.w,player.h)
       && !player.knockedBack
+      && this.grabbable
     ){
       if(!this.isCarried) monkeyCrySFX();
       this.isCarried = true;
