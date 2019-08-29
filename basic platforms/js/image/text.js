@@ -5,7 +5,9 @@ function displayText(text,x,y,w,colour,stretch){
     let thisChar = text.charCodeAt(i);
 
     if(thisChar>=97&&thisChar<=122) textToShow= thisChar-97 ;
+    else if(thisChar>=48&&thisChar<=57) textToShow= thisChar-48 + 29 ;
     else if(thisChar===46) textToShow= 27 ;
+    else if(thisChar===44) textToShow= 28 ;
     else if(thisChar===33) textToShow= 26 ;
     else if(thisChar===32) textToShow= -1 ;
     let xPos = x+i*(stretch+5);

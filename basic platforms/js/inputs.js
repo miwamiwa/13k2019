@@ -37,10 +37,12 @@ console.log(event.clientX)
     if( inBox( event.clientX, event.clientY, clickA.x,clickA.y,clickA.w,clickA.h)) startGame();
 
   }
+  else if(currentScreen==="gameover") startGame();
   else if(currentScreen==="wakeplayer") {
     console.log("yo")
     if(player.sleeping){
       trace=0;
+    if(naps===0)  frame =0;
   //    traceSpeed=1;
     }
     player.sleeping = false;

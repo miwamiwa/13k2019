@@ -52,9 +52,13 @@ let chirping = false;
 let level =0;
 let naps =0;
 
+let sunDownFrame = frameRate*60;
+let timeLeft =0;
+
 let alphabet = [];
 
-let particles = []
+let particles = [];
+let gameOver = false;
 
 
 var canvas = {
@@ -114,7 +118,7 @@ function startGame() {
   clearInterval(gameLoop)
   gameLoop = setInterval(updateGameArea, 1000/frameRate);
   console.log("game started")
-  currentScreen="nada"
+  currentScreen="wakeplayer" // or currentScreen="nada"
   frame =0;
   trace =0;
   currentLevel = level1;
@@ -143,11 +147,13 @@ function updateGameArea() {
 
     canvas.clear();
 
-  if(!player.sleeping){
+  if(!player.sleeping &&!gameOver){
 
     currentScreen = "game";
+    timeLeft = Math.floor((sunDownFrame - frame)/frameRate);
+
       chirping = false;
-      displayImage(bgImage.a,bgImage.c,-player.x/4,-0.4*canvasH-yShift/2,bgImage.w,2*canvasW/bgImage.w,1);
+    displayBackground();
 
         player.update();
       displayReturnPoint();
@@ -161,11 +167,18 @@ function updateGameArea() {
 
       displayGround();
 
+      displayText(timeLeft.toString(), canvasW-100,canvasH-100,0,"white",25)
+
       continueLevel();
+
+
 
   //    displayText("welcome!",100,300,400,"red",25)
 
-  }
+}else if(gameOver){
+
+  displayText("game over. click to start again ", canvasW/4, canvasH/2,0,"black",25)
+}
   else {
      triggerParticles(flRand(0,canvasW),flRand(0,canvasH),"yellow");
     for(let i=0; i<introSeq; i++){
@@ -196,10 +209,22 @@ function displayReturnPoint(){
 
 }
 
+function displayBackground(){
+let r = 255-timeLeft*4.25;
+let b = timeLeft*4.25;
+  bgImage.c[0] = "rgb("+r+",20,"+b+")";
+    displayImage(bgImage.a,bgImage.c,-player.x/4,-0.4*canvasH-yShift/2,bgImage.w,2*canvasW/bgImage.w,1);
+}
+
 function continueLevel(){
 
 if(babiesReturned===babies.length) nextPhase();
 
+if(timeLeft<=0){
+  gameOver = true;
+  currentScreen = "gameover";
+}
+//console.log(timeLeft)
 }
 
 
