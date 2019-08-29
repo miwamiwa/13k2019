@@ -33,5 +33,18 @@ function keyPressed(){
 
 function mousePressed(){
 console.log(event.clientX)
-  if(currentScreen==="start") if( inBox( event.clientX, event.clientY, clickA.x,clickA.y,clickA.w,clickA.h)) startGame();
+  if(currentScreen==="start") {
+    if( inBox( event.clientX, event.clientY, clickA.x,clickA.y,clickA.w,clickA.h)) startGame();
+
+  }
+  else if(currentScreen==="wakeplayer") {
+    console.log("yo")
+    if(player.sleeping){
+      trace=0;
+  //    traceSpeed=1;
+    }
+    player.sleeping = false;
+//  setTimeout(function(){ traceSpeed =0.8 },1000);
+//    setTimeout(function(){ traceSpeed =10 },2000)
+  }
 }

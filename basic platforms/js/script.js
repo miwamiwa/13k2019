@@ -11,8 +11,29 @@ let currentLevel;
 let clickA={x:0,y:0,w:200,h:50};
 let currentScreen = "start";
 
+let introSeq =0;
+let introTexts = [
+  "they call you mama ape.",
+  "your three kiddos that is.",
+  "mama ape likes her naps. ",
+  "three times a day.",
+   "nothing less. ",
+   " ",
+  "your three rascals invevitably run off",
+  "everytime.",
+  "once you wake,",
+  "you cannot sleep",
+  "until they are brought back home.",
+  "so remember:",
+  " ",
+  "everyone must be back by sundown!",
+  "game over if you dont get those three naps",
+  " ",
+  "click to wake up!"
+]
+
 let trace =0;
-let traceSpeed = 0.001;
+let traceSpeed = 0.1;
 
 let gameLoop;
 
@@ -59,14 +80,14 @@ function preload(){
   clickA.y = canvasH/2+50;
 
   gameLoop = setInterval(function(){
-    displaygameLoop();
+    displayStartScreen();
     trace+=traceSpeed;
-    frame++;
+   frame++;
   },1000/frameRate)
 
 }
 
-function displaygameLoop(){
+function displayStartScreen(){
 
   displayText("mamas naps",canvasW/2-100, canvasH/2-50, 0, "black", 25);
 
@@ -93,15 +114,26 @@ function startGame() {
   clearInterval(gameLoop)
   gameLoop = setInterval(updateGameArea, 1000/frameRate);
   console.log("game started")
+  currentScreen="nada"
   frame =0;
   trace =0;
   currentLevel = level1;
   setupLevel(currentLevel);
 
 
-  setTimeout(function(){ traceSpeed =0.8 },1000);
-  setTimeout(function(){ traceSpeed =10 },2000)
+shootTextSequence();
 
+setTimeout(function(){ currentScreen="wakeplayer"; }, (introTexts.length-1)*1000)
+
+
+}
+
+function shootTextSequence(){
+  for (let i=0; i<introTexts.length; i++){
+
+    setTimeout(function(){ introSeq ++; },i*1000);
+
+  }
 }
 
 // updateGameArea(): main game loop, or
@@ -113,6 +145,7 @@ function updateGameArea() {
 
   if(!player.sleeping){
 
+    currentScreen = "game";
       chirping = false;
       displayImage(bgImage.a,bgImage.c,-player.x/4,-0.4*canvasH-yShift/2,bgImage.w,2*canvasW/bgImage.w,1);
 
@@ -134,6 +167,11 @@ function updateGameArea() {
 
   }
   else {
+     triggerParticles(flRand(0,canvasW),flRand(0,canvasH),"yellow");
+    for(let i=0; i<introSeq; i++){
+      displayText(introTexts[i],50,50+i*20,400,"red",10);
+    }
+    updateAll(particles);
 
     player.update();
   }
@@ -170,10 +208,23 @@ function nextPhase(){
   napping = true;
   babiesReturned = true;
   player.sleeping = true;
+  trace =0;
+
+
 
   naps++;
 
   if(naps===3){
+
+    introTexts = [
+      "the day is over. level complete!",
+      "click to continue"
+    ];
+
+    setTimeout(function(){currentScreen = "wakeplayer";},1000)
+    shootTextSequence();
+
+    introSeq =0;
 
     console.log("new level!");
     level++
@@ -186,6 +237,16 @@ function nextPhase(){
     setupLevel(currentLevel);
   }
   else {
+
+    introTexts = [
+      "good job mama ape!",
+      "now time for a nap."
+    ];
+
+    currentScreen = "wakeplayer";
+    shootTextSequence();
+
+    introSeq =0;
 
     console.log("new nap!");
   let phase = currentLevel;

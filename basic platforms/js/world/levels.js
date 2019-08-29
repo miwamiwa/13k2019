@@ -220,7 +220,7 @@ function setupLevel(level){
 
   let playerPos = getXYOnPlat(level.player,level.platforms);
   player = new movingObject(playerPos.x, playerPos.y, 75,75,displayDudeBox,updatePlayerMotion,"player");
-  player.sleeping = false;
+  player.sleeping = true;
   startPos = {x:playerPos.x,y:playerPos.y,w:80,h:80};
   babiesReturned = 0;
 

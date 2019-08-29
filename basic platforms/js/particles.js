@@ -11,7 +11,7 @@ function triggerParticles(x,y,c){
 class Particle{
 
   constructor(x,y,index,c){
-    console.log("new particle")
+  //  console.log("new particle")
     this.x=x-player.w/2;
     this.y=y-player.h/2;
     this.speed = flRand(2,4);
@@ -28,7 +28,7 @@ class Particle{
   }
 
   update(){
-console.log("eyo")
+//console.log("eyo")
     this.x += this.vel.x;
     this.y += this.vel.y;
     this.opa -= this.speed/150;
@@ -43,7 +43,7 @@ ctx = canvas.context;
     ctx.globalAlpha = 1;
     ctx.closePath();
 
-    console.log(this.opa)
+  //  console.log(this.opa)
 
     if(this.opa<=0) killParticle(this.index);
   }
@@ -54,6 +54,6 @@ function flRand(min,max){
 }
 
 function killParticle(index){
-  console.log("particle dead")
+//  console.log("particle dead")
   particles.splice(index,1);
 }
