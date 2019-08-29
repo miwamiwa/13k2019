@@ -33,8 +33,8 @@ var voices = [
 
 function  runBGM(){
 
-  playVoice(1,organWaveAt,0.125,20,0.19,1.5)
-  playVoice(0,organWaveAt,0.125,25,0.05,2.5);
+  playVoice(1,organWaveAt,0.25,10,0.19,0.5)
+  playVoice(0,organWaveAt,0.25,40+frame%3000,0.45,0.3);
   playDrum();
   time++;
 }

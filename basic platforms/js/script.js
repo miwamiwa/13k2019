@@ -210,7 +210,7 @@ function updateGameArea() {
 
 
 
-      //runBGM();
+    runBGM();
   trace+=traceSpeed;
   frame++;
 }
