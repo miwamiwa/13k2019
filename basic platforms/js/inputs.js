@@ -42,6 +42,7 @@ console.log(event.clientX)
     currentText = introTxt;
     introSeq =0;
     frame=0;
+    naps =0;
     player.sleeping = false;
     gameOver = false;
     trace=0;
