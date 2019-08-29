@@ -37,15 +37,28 @@ console.log(event.clientX)
     if( inBox( event.clientX, event.clientY, clickA.x,clickA.y,clickA.w,clickA.h)) startGame();
 
   }
-  else if(currentScreen==="gameover") startGame();
+  else if(currentScreen==="gameover") {
+    currentLevel = level1;
+    currentText = introTxt;
+    introSeq =0;
+    frame=0;
+    player.sleeping = false;
+    gameOver = false;
+    trace=0;
+    startGame();
+  }
   else if(currentScreen==="wakeplayer") {
     console.log("yo")
     if(player.sleeping){
-      trace=0;
+
     if(naps===0)  frame =0;
   //    traceSpeed=1;
     }
-    player.sleeping = false;
+    if(introSeq<currentText.length) introSeq = currentText.length;
+    else {
+      player.sleeping = false;
+      trace=0;
+    }
 //  setTimeout(function(){ traceSpeed =0.8 },1000);
 //    setTimeout(function(){ traceSpeed =10 },2000)
   }

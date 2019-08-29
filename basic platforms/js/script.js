@@ -12,7 +12,7 @@ let clickA={x:0,y:0,w:200,h:50};
 let currentScreen = "start";
 
 let introSeq =0;
-let introTexts = [
+let introTxt = [
   "they call you mama ape.",
   "your three kiddos that is.",
   "mama ape likes her naps. ",
@@ -20,17 +20,23 @@ let introTexts = [
    "nothing less. ",
    " ",
   "your three rascals invevitably run off",
-  "everytime.",
+  "everytime you take a snooze.",
   "once you wake,",
-  "you cannot sleep",
-  "until they are brought back home.",
-  "so remember:",
+  "you cannot sleep again",
+  "until they are back home.",
   " ",
+  "those baby apes are helpless on their own",
+  "so you will have to haul them ",
+  "on your back.",
+  " ",
+  "so remember",
   "everyone must be back by sundown!",
   "game over if you dont get those three naps",
   " ",
   "click to wake up!"
-]
+];
+let currentText = introTxt;
+
 
 let trace =0;
 let traceSpeed = 0.1;
@@ -93,10 +99,13 @@ function preload(){
 
 function displayStartScreen(){
 
-  displayText("mamas naps",canvasW/2-100, canvasH/2-50, 0, "black", 25);
+  let c1 = 2.5*(frame%100);
+  let c2 = 165+Math.sin(frame/100)*60;
 
-  displayText("click to",clickA.x, clickA.y, 0, "black", 20);
-  displayText("start",clickA.x, clickA.y+25, 0, "black", 20);
+  displayText("ape naps",canvasW/2-150, canvasH/2-50, 0, "rgb("+c1+","+c2+","+50+")", 35,true);
+
+  displayText("click to",clickA.x, clickA.y, 0, "black", 20,false);
+  displayText("start",clickA.x+40, clickA.y+25, 0, "black", 20,false);
 
 // place rect around click area
   ctx.beginPath();
@@ -127,15 +136,15 @@ function startGame() {
 
 shootTextSequence();
 
-setTimeout(function(){ currentScreen="wakeplayer"; }, (introTexts.length-1)*1000)
+setTimeout(function(){ currentScreen="wakeplayer"; }, (currentText.length-1)*1000)
 
 
 }
 
 function shootTextSequence(){
-  for (let i=0; i<introTexts.length; i++){
+  for (let i=0; i<currentText.length; i++){
 
-    setTimeout(function(){ introSeq ++; },i*1000);
+    setTimeout(function(){ if(introSeq<currentText.length) introSeq ++; },i*1000);
 
   }
 }
@@ -167,7 +176,7 @@ function updateGameArea() {
 
       displayGround();
 
-      displayText(timeLeft.toString(), canvasW-100,canvasH-100,0,"white",25)
+      displayText(timeLeft.toString(), canvasW-100,canvasH-100,0,"white",25,false)
 
       continueLevel();
 
@@ -177,13 +186,23 @@ function updateGameArea() {
 
 }else if(gameOver){
 
-  displayText("game over. click to start again ", canvasW/4, canvasH/2,0,"black",25)
+  displayText("game over. click to start again ", canvasW/4, canvasH/2,0,"black",25,false)
 }
   else {
-     triggerParticles(flRand(0,canvasW),flRand(0,canvasH),"yellow");
+     triggerParticles(
+       flRand(-50,canvasW/2+200),
+       flRand(50,canvasH-200),
+       [
+         {r:225,g:200,b:10},
+         {r:225,g:20,b:10},
+         {r:25,g:200,b:10},
+         {r:25,g:20,b:210}
+       ]
+     );
     for(let i=0; i<introSeq; i++){
-      displayText(introTexts[i],50,50+i*20,400,"red",10);
+      displayText(currentText[i],50,50+i*20,400,"red",10,true);
     }
+    if(introSeq<currentText.length) displayText("click to skip", canvasW-160,canvasH-30,0,"black",5,false);
     updateAll(particles);
 
     player.update();
@@ -241,7 +260,7 @@ function nextPhase(){
 
   if(naps===3){
 
-    introTexts = [
+    currentText = [
       "the day is over. level complete!",
       "click to continue"
     ];
@@ -263,7 +282,7 @@ function nextPhase(){
   }
   else {
 
-    introTexts = [
+    currentText = [
       "good job mama ape!",
       "now time for a nap."
     ];

@@ -1,4 +1,4 @@
-function displayText(text,x,y,w,colour,stretch){
+function displayText(text,x,y,w,colour,stretch,wub){
   let textToShow = 0;
   for(let i=0; i<text.length; i++){
     //console.log(text.length)
@@ -10,8 +10,10 @@ function displayText(text,x,y,w,colour,stretch){
     else if(thisChar===44) textToShow= 28 ;
     else if(thisChar===33) textToShow= 26 ;
     else if(thisChar===32) textToShow= -1 ;
+
     let xPos = x+i*(stretch+5);
-    let yPos = y;//y+Math.floor((i*stretch)/w)*stretch;
+    let yPos = y;
+    if(wub) yPos = y + Math.sin(i/text.length+frame/30)*10;//y+Math.floor((i*stretch)/w)*stretch;
 
     if(textToShow!=-1){
       displayImage(
