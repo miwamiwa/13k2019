@@ -27,7 +27,7 @@ else {
 // to be included as argument in player's movingObject.
 
 function updatePlayerMotion(){
-  if(!this.knockedBack){
+  if(!this.knockedBack && !this.sleeping){
     if(!inputLeft&&!inputRight) {
       if(player.speedX+stopSpeed<0) player.speedX+=stopSpeed;
       else if(player.speedX-stopSpeed>0) player.speedX-=stopSpeed;
@@ -38,6 +38,7 @@ function updatePlayerMotion(){
     else if(inputLeft) player.speedX -= 0.5;
     player.speedX = constrain(player.speedX,-10,10);
   }
+  else if(this.sleeping) this.speedX = 0;
 }
 
 // moveX() is called in keyPressed().

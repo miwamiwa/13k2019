@@ -5,11 +5,13 @@ function packImage(){
 
   var imgData = ctx.getImageData(0,0,img.width,img.height);
 
+  console.log("height "+img.height)
   let pixels = [];
 
   // classify colors
   let colors = [];
   for(let i=0; i<img.width*img.height; i++){
+    console.log("tick")
     let index = i*4;
     let thisColor = {
       r:imgData.data[index],

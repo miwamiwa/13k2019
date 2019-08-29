@@ -53,4 +53,9 @@ function unpackAll(){
   unpackImgLoop(trees);
 
   bgImage.a = unpackImage(bgImage.s);
+
+  for(let i=0; i<letters.length; i++){
+    alphabet[i] = {s:letters[i],c:[false,c[1]],w:5};
+  }
+  unpackImgLoop(alphabet);
 }

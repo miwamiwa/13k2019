@@ -6,6 +6,9 @@
 <script src="js/image/display.js"></script>
 <script src="js/image/imageDump.js"></script>
 <script src="js/image/unpack.js"></script>
+<script src="js/image/text.js"></script>
+
+<script src="js/ui/ui.js"></script>
 
 <script src="js/script.js"></script>
 <script src="js/tools.js"></script>
@@ -14,6 +17,7 @@
 
 <script src="js/music/mus.js"></script>
 <script src="js/music/sfx.js"></script>
+
 
 </script>
 
@@ -37,9 +41,8 @@ canvas {
 }
 </style>
 </head>
-<body onload="startGame()" onkeypress="keyPressed()" onkeyup="keyReleased()">
+<body onload="preload()" onkeypress="keyPressed()" onkeyup="keyReleased()" onclick="mousePressed()">
 
 
-<p>a+d+space</p>
 </body>
 </html>

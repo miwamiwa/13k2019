@@ -29,3 +29,9 @@ function keyPressed(){
     // 1,2,3,4: 49,50,51,52...
   }
 }
+
+
+function mousePressed(){
+console.log(event.clientX)
+  if(currentScreen==="start") if( inBox( event.clientX, event.clientY, clickA.x,clickA.y,clickA.w,clickA.h)) startGame();
+}

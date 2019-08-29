@@ -22,7 +22,14 @@ function displayImage(input,c,x,y,w,stretch,dir){
   ctx = canvas.context;
 
   for(let i=0; i<input.length; i++){
+
     if(c[input[i]]!=false){
+
+      if(i>trace) {
+        trace=i;
+        return;
+      }
+
       ctx.beginPath();
       ctx.fillStyle = c[input[i]];
       let fact = 0
