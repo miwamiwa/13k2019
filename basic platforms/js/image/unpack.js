@@ -51,6 +51,9 @@ function unpackAll(){
   babyWalkLoop.push(babyWalkLoop[2]);
   babyWalkLoop.push(babyWalkLoop[1]);
 
+  unpackImgLoop(babyCarriedLoop);
+  babyCarriedLoop.push(babyCarriedLoop[1]);
+
   groundImg.a = unpackImage(groundImg.s);
 
   unpackImgLoop(trees);

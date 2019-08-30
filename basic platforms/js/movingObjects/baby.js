@@ -19,8 +19,15 @@ function updateBaby(){
 
   // if baby is carried then stick to player position
   if(this.isCarried){
-    this.x = player.x;
-    this.y = player.y - 15;
+  if(player.dir===1){
+    this.x = player.x +20+this.index*10;
+    this.y = player.y - 55+this.index*5;
+
+  }
+  else {
+    this.x = player.x +20-this.index*10;
+    this.y = player.y - 55+this.index*5;
+  }
 
     if(
       collideRectRect(
@@ -36,7 +43,7 @@ function updateBaby(){
       this.isCarried = false;
       this.grabbable = false;
       this.isExploring = false;
-      this.x = startPos.x+startPos.w/2;
+      this.x = startPos.x+startPos.w/2 - this.index*15;
       this.y = startPos.y-20;
       babiesReturned ++;
     }
@@ -80,7 +87,8 @@ function displayBaby(){
   let xPos = canvasW/2 - (player.x-this.x)
   let yPos = this.y-yShift-this.h;
 //  if(distToGround(this.x+this.w/2,this.y,this.w)>2)  displayStringLoop(tigerJumpLoop,xPos,yPos,15,2,this.dir);
-  displayStringLoop(babyWalkLoop,xPos,yPos,15,2,this.dir);
+if(this.isCarried)  displayStringLoop(babyCarriedLoop,xPos,yPos,15,2,this.dir);
+else  displayStringLoop(babyWalkLoop,xPos,yPos,15,2,this.dir);
 
   ctx.translate(0,-translateDist)
 }
