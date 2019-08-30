@@ -44,15 +44,15 @@ function playDrum(){
   let stim = Math.random();
   let drum;
 
-  if(checkTime(2)) drum=chanceToPlay( stim ,0.8, 7,2,1 );
-  else if(checkTime(1)) drum=chanceToPlay( stim ,0.8, 2,3,1 );
-  else if(checkTime(0.5)) drum=chanceToPlay( stim ,0.9,1,1,8 );
+  if(checkTime(2)) drum=chanceToPlay( stim ,1, 7,2,1 );
+  else if(checkTime(1)) drum=chanceToPlay( stim ,0.4, 3,2,1 );
+  else if(checkTime(0.5)) drum=chanceToPlay( stim ,0.4,0,2,8 );
   //  else if(checkTime(0.5)) drum=chanceToPlay( stim ,0.1, 0,0,7 );
 
   if(drum!=undefined){
     let tone =  drum.base+Math.random()*drum.vari;
-    let comb =5+Math.floor(Math.random()*drum.vari/50);
-    loadAndPlay(noiseAt,comb,0.15,drum.vol,tone,true);
+    let comb =5
+    loadAndPlay(noiseAt,comb,0.45,drum.vol,tone,true);
   }
 }
 
@@ -65,8 +65,8 @@ function checkTime(fact){
 function chanceToPlay(stim,chance,t1,t2,t3){
   if(stim<chance){
     let total = t1+t2+t3;
-    if(stim<t1/total) return {base:20,vari:5,vol:0.08};
-    else if(stim<(t1+t2)/total) return {base:6000,vari:1000,vol:0.05};
+    if(stim<t1/total) return {base:20,vari:5,vol:0.04};
+    else if(stim<(t1+t2)/total) return {base:4000,vari:1000,vol:0.04};
     else return {base:10000,vari:1000,vol:0.01};
   }
 }
@@ -81,7 +81,6 @@ function playVoice(input,waveGen,fact,comb,length,vol){
     let noteLength = voice.durations.charCodeAt( index )-40;
     let seconds = noteLength*length,
     tone = Math.pow(2, ( voice.notes.charCodeAt( index )-64)/12)*fact
-
 
     loadAndPlay(waveGen,comb,seconds,vol,tone,false);
 
@@ -107,7 +106,7 @@ function loadAndPlay(waveGen,comb,seconds,volume,tone,isDrum){
     else if(pos<0.1) vol = constrain(vol+0.005,0,volume);
     arr[i] = waveGen(i, tone) * vol
     if(i>=combDist &&i +10<length&&comb!=false&&isDrum) {
-    for(let j=0; j<2; j++){
+    for(let j=0; j<4; j++){
       arr[i-combDist + j*2] -= arr[ Math.round(i-combDist + j*2+1)];
     }
     }

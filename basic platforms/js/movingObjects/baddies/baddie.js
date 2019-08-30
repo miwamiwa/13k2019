@@ -58,6 +58,7 @@ function checkPlayerCollision(index){
         babies[i].isCarried = false;
         knock = true;
         whichBaby = i;
+        player.babiesCarried --;
       }
     }
 

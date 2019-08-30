@@ -56,7 +56,7 @@ let  level1 = {
     {p:4,x:0},
   ],
   player: {p:6,x:0},
-  babies:{count:2, pos:[11, 12, 13, 14, 15, 16, -1],p:0,x:0}
+  babies:{count:3, pos:[11, 12, 13, 14, 15, 16, -1],p:0,x:0}
 };
 
 let  level2 = {
@@ -221,6 +221,7 @@ function setupLevel(level){
   let playerPos = getXYOnPlat(level.player,level.platforms);
   player = new movingObject(playerPos.x, playerPos.y, 75,75,displayDudeBox,updatePlayerMotion,"player");
   player.sleeping = true;
+  player.babiesCarried =0;
   startPos = {x:playerPos.x,y:playerPos.y,w:80,h:80};
   babiesReturned = 0;
 

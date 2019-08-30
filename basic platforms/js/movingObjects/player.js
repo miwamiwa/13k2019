@@ -13,11 +13,15 @@ function displayDudeBox(){
   else yShift=this.y-limit;
   if(this.speedX!=0) this.dir = -this.speedX/Math.abs(this.speedX);
 
-if(distToGround(this.x+this.w/2,this.y,this.w)>2)  displayStringLoop(jumpLoop,xPos,this.y-yShift,25,3,this.dir);
+if(this.sleeping) displayStringLoop(sleepLoop,xPos,this.y-yShift,25,6,this.dir);
 else {
-  if(this.speedX===0) displayStringLoop(stillLoop,xPos,this.y-yShift,25,3,this.dir);
-  else displayStringLoop(walkLoop,xPos,this.y-yShift,25,3,this.dir);
+  if(distToGround(this.x+this.w/2,this.y,this.w)>2)  displayStringLoop(jumpLoop,xPos,this.y-yShift,25,3,this.dir);
+  else {
+    if(this.speedX===0) displayStringLoop(stillLoop,xPos,this.y-yShift,25,3,this.dir);
+    else displayStringLoop(walkLoop,xPos,this.y-yShift,25,3,this.dir);
+  }
 }
+
 
   ctx.translate(0,-translateDist)
 }
@@ -27,6 +31,7 @@ else {
 // to be included as argument in player's movingObject.
 
 function updatePlayerMotion(){
+  
   if(!this.knockedBack && !this.sleeping){
     if(!inputLeft&&!inputRight) {
       if(player.speedX+stopSpeed<0) player.speedX+=stopSpeed;

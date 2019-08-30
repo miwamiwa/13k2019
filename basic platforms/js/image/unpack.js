@@ -32,6 +32,9 @@ function unpackAll(){
   unpackImgLoop(stillLoop);
   stillLoop.push(stillLoop[1]);
 
+  unpackImgLoop(sleepLoop);
+  sleepLoop.push(sleepLoop[1]);
+
   unpackImgLoop(birdStillLoop);
   birdStillLoop.push(birdStillLoop[1]);
 

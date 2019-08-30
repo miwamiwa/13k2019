@@ -25,13 +25,14 @@ let introTxt = [
   "you cannot sleep again",
   "until they are back home.",
   " ",
-  "those baby apes are helpless on their own",
+  "those baby apes",
+  "are helpless on their own",
   "so you will have to haul them ",
   "on your back.",
   " ",
-  "so remember",
-  "everyone must be back by sundown!",
-  "game over if you dont get those three naps",
+  "in short",
+  "by sundown, everyone must be back home",
+  "and you must have thrice napped",
   " ",
   "click to wake up!"
 ];
@@ -284,18 +285,20 @@ function nextPhase(){
 
     currentText = [
       "good job mama ape!",
-      "now time for a nap."
+      "time for a nap."
     ];
 
     currentScreen = "wakeplayer";
     shootTextSequence();
 
     introSeq =0;
+    traceSpeed = 10;
 
     console.log("new nap!");
   let phase = currentLevel;
     setTimeout( function(){
       player.sleeping = false;
+      traceSpeed = 0.1;
     }, 5000 );
   // push new baddies and stuff
   //  phase.baddies.push({p:5, x:50, r:45, kit:jBaddie });

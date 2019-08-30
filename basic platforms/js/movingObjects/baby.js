@@ -31,7 +31,8 @@ function updateBaby(){
       canvasW/2,
       player.y-yShift,
       player.w,player.h
-    )){
+    )){ // if nest reached
+      player.babiesCarried --;
       this.isCarried = false;
       this.grabbable = false;
       this.isExploring = false;
@@ -59,9 +60,11 @@ function updateBaby(){
       canvasW/2,player.y-yShift-player.h,player.w,player.h)
       && !player.knockedBack
       && this.grabbable
+      && player.babiesCarried<2
     ){
       if(!this.isCarried) monkeyCrySFX();
       this.isCarried = true;
+      player.babiesCarried++;
     }
 
   }
