@@ -38,6 +38,7 @@ console.log(event.clientX)
 
   }
   else if(currentScreen==="gameover") {
+    console.log("ey")
     currentLevel = level1;
     currentText = introTxt;
     introSeq =0;

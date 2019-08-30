@@ -59,7 +59,7 @@ let chirping = false;
 let level =0;
 let naps =0;
 
-let sunDownFrame = frameRate*60;
+let sunDownFrame = frameRate*100;
 let timeLeft =0;
 
 let alphabet = [];
@@ -230,9 +230,50 @@ function displayReturnPoint(){
 }
 
 function displayBackground(){
-let r = 255-timeLeft*4.25;
-let b = timeLeft*4.25;
-  bgImage.c[0] = "rgb("+r+",20,"+b+")";
+let r,g,b;
+
+// 133, 186, 214   greyish blue (dawn)
+// 17, 148, 217    deep sky blue
+
+// 101, 155, 184 pre-dusk
+// 81, 123, 145    dusk blue
+
+// 255, 138, 183   pink
+// 255, 59, 59     deep red
+
+if( frame < 0.6*sunDownFrame ){
+  r = 133 - frame/(0.6*sunDownFrame)*128;
+  g = 186 - frame/(0.6*sunDownFrame)*38;
+  b = 214;
+}
+else if ( frame < 0.7*sunDownFrame ){
+  let fact = (frame-0.6*sunDownFrame)/(0.1*sunDownFrame);
+  r = 17 + fact*84;
+  g = 148 + fact*7;
+  b = 214 - fact*30;
+}
+else if ( frame < 0.8*sunDownFrame ){
+  let fact = (frame-0.7*sunDownFrame)/(0.1*sunDownFrame);
+  r = 101 + fact*135;
+  g = 155 + fact*81;
+  b = 184 - fact*155;
+}
+else if ( frame < 0.9*sunDownFrame ){
+  let fact = (frame-0.8*sunDownFrame)/(0.1*sunDownFrame);
+  r = 236 + fact*15;
+  g = 236 - fact*187;
+  b = 29 + fact*30;
+}
+else {
+  let fact = (frame-0.9*sunDownFrame)/(0.09*sunDownFrame);
+  r = 255 - fact*204;
+  g = 59 + fact*11;
+  b = 59 + fact*36;
+}
+
+      //r = 255-timeLeft*4.25;
+// b = timeLeft*4.25;
+  bgImage.c[0] = "rgb("+r+","+g+","+b+")";
     displayImage(bgImage.a,bgImage.c,-player.x/4,-0.4*canvasH-yShift/2,bgImage.w,2*canvasW/bgImage.w,1);
 }
 
