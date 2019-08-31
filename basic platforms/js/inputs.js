@@ -44,9 +44,11 @@ console.log(event.clientX)
     introSeq =0;
     frame=0;
     naps =0;
+    currentPhase =0;
     player.sleeping = false;
     gameOver = false;
     trace=0;
+  //  setupLevel(level1);
     startGame();
   }
   else if(currentScreen==="wakeplayer") {

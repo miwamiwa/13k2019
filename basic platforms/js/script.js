@@ -8,6 +8,7 @@ let canvasH = 570;
 let canvasW = window.innerWidth;
 let levelRange =0;
 let currentLevel;
+let currentPhase=0;
 let clickA={x:0,y:0,w:200,h:50};
 let currentScreen = "start";
 
@@ -59,7 +60,7 @@ let chirping = false;
 let level =0;
 let naps =0;
 
-let sunDownFrame = frameRate*100;
+let sunDownFrame = frameRate*40;
 let timeLeft =0;
 
 let alphabet = [];
@@ -211,7 +212,7 @@ function updateGameArea() {
 
 
 
-    runBGM();
+  //  runBGM();
   trace+=traceSpeed;
   frame++;
 }
@@ -334,16 +335,39 @@ function nextPhase(){
 
     introSeq =0;
     traceSpeed = 10;
+    currentPhase++;
 
     console.log("new nap!");
-  let phase = currentLevel;
+
     setTimeout( function(){
       player.sleeping = false;
       traceSpeed = 0.1;
     }, 5000 );
+
+    let phase = Object.create(currentLevel);
+
+    switch(level){
+
+      case 0:
+      if(currentPhase===1){
+        phase.baddies.push({p:7, x:10, r:40, kit:jBaddie });
+        phase.baddies.push({p:25, x:30, r:300, kit:fBaddie });
+      }
+      else if(currentPhase===2){
+        phase.baddies.push({p:7, x:10, r:40, kit:jBaddie });
+        phase.baddies.push({p:25, x:30, r:300, kit:fBaddie });
+        phase.baddies.push({p:11, x:10, r:40, kit:jBaddie });
+        phase.baddies.push({p:15, x:250, r:245, kit:fBaddie });
+      }
+      break;
+
+    }
+
+
+
   // push new baddies and stuff
   //  phase.baddies.push({p:5, x:50, r:45, kit:jBaddie });
-
+  console.log("nu phase")
     setupLevel(phase);
   }
 
