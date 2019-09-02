@@ -1,5 +1,5 @@
-let jBaddie = {d:displayJumpingBaddie,u:updateJumpingBaddie,w:27*3,h:27*1.5}; // "kit" for a jumping Baddie
-let fBaddie = {d:displayFlyingBaddie,u:updateFlyingBaddie,w:20*2,h:20*2}; // "kit" for flying Baddie
+let jBaddie = {t:"jump",w:27*3,h:27*1.5}; // "kit" for a jumping Baddie
+let fBaddie = {t:"fly",w:20*2,h:20*2}; // "kit" for flying Baddie
 
 
 // ********** level design does here! ***********
@@ -134,8 +134,10 @@ let  level1 = {
     {p:4,x:0},
   ],
   player: {p:5,x:30},
-  babies:{count:3, pos:[11, 12, 13, 14, 15, 16, -1],p:0,x:0}
+  babies:{count:1, pos:[11, 12, 13, 14, 15, 16, -1],p:0,x:0}
 };
+
+//Object.freeze(level1);
 
 let  level2 = {
   size:1300, // boundaries for the level (not actually implemented yet shh)
@@ -298,6 +300,8 @@ function setupLevel(level){
   babies = [];
   currentPhase =0;
 
+//  babiesReturned =0;
+
 
   for(let i=0; i<level.platforms.length; i++){
     ground.push(new groundTile(
@@ -309,6 +313,17 @@ function setupLevel(level){
 
   for(let i=0; i<level.baddies.length; i++){
     let res = getXYOnPlat(level.baddies[i],level.platforms);
+    let kit = level.baddies[i].kit;
+    switch(kit.t){
+      case "jump":
+      kit.d=displayJumpingBaddie;
+      kit.u=updateJumpingBaddie;
+      break;
+      case "fly":
+      kit.d=displayFlyingBaddie;
+      kit.u=updateFlyingBaddie;
+      break;
+    }
     newBaddie( res.x, res.y, level.baddies[i].r, level.baddies[i].kit );
   }
 

@@ -7,7 +7,8 @@ let ground = [];
 let canvasH = 570;
 let canvasW = window.innerWidth;
 let levelRange =0;
-let currentLevel;
+let phase;
+let currentLevel = {};
 let currentPhase=0;
 let clickA={x:0,y:0,w:200,h:50};
 let currentScreen = "start";
@@ -132,7 +133,8 @@ function startGame() {
   currentScreen="wakeplayer" // or currentScreen="nada"
   frame =0;
   trace =0;
-  currentLevel = level1;
+
+  Object.assign(currentLevel, level1);
   setupLevel(currentLevel);
 
 
@@ -344,7 +346,14 @@ function nextPhase(){
       traceSpeed = 0.1;
     }, 5000 );
 
-    let phase = Object.create(currentLevel);
+    //let phase = {};
+
+    console.log("hey there!")
+  //  let phase = Object.assign({},currentLevel);
+    phase  = JSON.parse(JSON.stringify(currentLevel));
+    console.log(phase);
+    console.log(level1);
+
 
     switch(level){
 
@@ -352,22 +361,33 @@ function nextPhase(){
       if(currentPhase===1){
         phase.baddies.push({p:7, x:10, r:40, kit:jBaddie });
         phase.baddies.push({p:25, x:30, r:300, kit:fBaddie });
+        console.log(phase);
+        console.log(level1);
       }
       else if(currentPhase===2){
         phase.baddies.push({p:7, x:10, r:40, kit:jBaddie });
         phase.baddies.push({p:25, x:30, r:300, kit:fBaddie });
         phase.baddies.push({p:11, x:10, r:40, kit:jBaddie });
         phase.baddies.push({p:15, x:250, r:245, kit:fBaddie });
+        console.log(phase);
+        console.log(level1);
       }
       break;
 
+
+
     }
+
+
 
 
 
   // push new baddies and stuff
   //  phase.baddies.push({p:5, x:50, r:45, kit:jBaddie });
   console.log("nu phase")
+
+  //console.log(phase);
+  //console.log(currentPhase);
     setupLevel(phase);
   }
 

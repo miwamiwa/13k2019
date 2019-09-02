@@ -17,7 +17,7 @@ function keyPressed(){
 
     //    case 119: moveY(-1); break;//up W 119
     //    case 115: moveY(1); break;//down S 115
-    case 97: moveX(-1); break;//left A  97
+    case 97: moveX(-1); console.log("left"); break;//left A  97
     case 100: moveX(1); break;// right D 100
 
     case 32: if(!player.sleeping)player.startJump(player); break; // jump SPACE 32
@@ -39,17 +39,22 @@ console.log(event.clientX)
   }
   else if(currentScreen==="gameover") {
     console.log("ey")
-    currentLevel = level1;
+    console.log(currentLevel)
+    Object.assign(currentLevel, level1);
+      console.log(currentLevel)
     currentText = introTxt;
+    level = 0;
+    currentScreen="wakeplayer"
     introSeq =0;
-    frame=0;
+  //  frame=0;
     naps =0;
     currentPhase =0;
     player.sleeping = false;
     gameOver = false;
     trace=0;
-  //  setupLevel(level1);
-    startGame();
+    setupLevel(currentLevel);
+
+      //startGame();
   }
   else if(currentScreen==="wakeplayer") {
     console.log("yo")
