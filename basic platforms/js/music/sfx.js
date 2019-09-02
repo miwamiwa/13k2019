@@ -12,6 +12,10 @@ function collideSFX(){
   sfxSeq(3, 100,-30, 0.05, 0.09, 5, 10, roundedSineWaveAt,6,0.1);
 }
 
+function thumpSFX(){
+  sfxSeq(2, 200,-100, 0.05, 0.09, 5, 10, roundedSineWaveAt,6,0.1);
+}
+
 function jumpSFX(t1,t2,l){ //input tone 1 and tone 2
   loadSlidingSound(organWaveAt,7,l,1,t1,t2);
 }

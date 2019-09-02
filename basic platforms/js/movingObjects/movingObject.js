@@ -101,10 +101,18 @@ class movingObject{
     if( dist>this.fallSpeed ){
       this.y += this.fallSpeed;
       this.fallSpeed +=1;
+      this.falling = true;
         //if(this.index==="player") console.log("hi")
     }
     // fall end:
     else if(dist>0){
+      if(
+        this.falling===true
+        &&this.fallSpeed>1
+        &&inBox(this.x,this.y,player.x-canvasW/2,player.y-canvasH/2,canvasW,canvasH)
+      ) thumpSFX();
+     this.falling = false;
+
       this.fallSpeed = 0;
       this.y += dist-1;
     }

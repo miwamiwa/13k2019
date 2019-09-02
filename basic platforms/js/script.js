@@ -214,7 +214,7 @@ function updateGameArea() {
 
 
 
-  //  runBGM();
+//  runBGM();
   trace+=traceSpeed;
   frame++;
 }
@@ -318,8 +318,8 @@ function nextPhase(){
     console.log("new level!");
     level++
     switch(level){
-      case 1: currentLevel = level2; break;
-      case 2: currentLevel = level3; break;
+      case 1:   currentLevel  = JSON.parse(JSON.stringify(level2)); break;
+      case 2:   currentLevel  = JSON.parse(JSON.stringify(level3)); break;
     }
 
     naps =0;
@@ -339,7 +339,7 @@ function nextPhase(){
     traceSpeed = 10;
     currentPhase++;
 
-    console.log("new nap!");
+//    console.log("new nap!");
 
     setTimeout( function(){
       player.sleeping = false;
@@ -348,29 +348,29 @@ function nextPhase(){
 
     //let phase = {};
 
-    console.log("hey there!")
+  //  console.log("hey there!")
   //  let phase = Object.assign({},currentLevel);
     phase  = JSON.parse(JSON.stringify(currentLevel));
-    console.log(phase);
-    console.log(level1);
+//    console.log(phase);
+//    console.log(level1);
 
 
     switch(level){
 
       case 0:
       if(currentPhase===1){
-        phase.baddies.push({p:7, x:10, r:40, kit:jBaddie });
+
         phase.baddies.push({p:25, x:30, r:300, kit:fBaddie });
-        console.log(phase);
-        console.log(level1);
+      //  console.log(phase);
+    //    console.log(level1);
       }
       else if(currentPhase===2){
-        phase.baddies.push({p:7, x:10, r:40, kit:jBaddie });
+
         phase.baddies.push({p:25, x:30, r:300, kit:fBaddie });
-        phase.baddies.push({p:11, x:10, r:40, kit:jBaddie });
+
         phase.baddies.push({p:15, x:250, r:245, kit:fBaddie });
-        console.log(phase);
-        console.log(level1);
+      //  console.log(phase);
+      //  console.log(level1);
       }
       break;
 
@@ -384,7 +384,7 @@ function nextPhase(){
 
   // push new baddies and stuff
   //  phase.baddies.push({p:5, x:50, r:45, kit:jBaddie });
-  console.log("nu phase")
+//  console.log("nu phase")
 
   //console.log(phase);
   //console.log(currentPhase);
