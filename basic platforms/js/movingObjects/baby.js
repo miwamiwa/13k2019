@@ -19,15 +19,9 @@ function updateBaby(){
 
   // if baby is carried then stick to player position
   if(this.isCarried){
-  if(player.dir===1){
-    this.x = player.x +20+this.index*10;
-    this.y = player.y - 55+this.index*5;
 
-  }
-  else {
-    this.x = player.x +20-this.index*10;
+    this.x = player.x +20+player.dir*this.index*10;
     this.y = player.y - 55+this.index*5;
-  }
 
     if(
       collideRectRect(
@@ -38,10 +32,13 @@ function updateBaby(){
       canvasW/2,
       player.y-yShift,
       player.w,player.h
-    )){ // if nest reached
+    )
+    &&player.babiesCarried>0
+  ){ // if nest reached
       player.babiesCarried --;
       this.isCarried = false;
       this.grabbable = false;
+      this.returned = true;
       this.isExploring = false;
       this.x = startPos.x+startPos.w/2 - this.index*15;
       this.y = startPos.y-20;

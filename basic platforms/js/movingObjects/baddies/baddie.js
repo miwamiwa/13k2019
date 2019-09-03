@@ -1,7 +1,4 @@
-/*
-baddie.js:
-remnants of a larger file that used to be ..
-*/
+
 
 
 // newBaddie()
@@ -20,18 +17,7 @@ function newBaddie(x,y,range,kit){
 // check collision between all baddies and player.
 
 function checkPlayerCollision(index){
-/*
-// DISPLAY COLLISION RECTANGLE
-  ctx.beginPath();
-  ctx.strokeStyle = "#FF6600";
-  ctx.rect(canvasW/2 - (player.x-baddies[index].x),
-  baddies[index].y-yShift-baddies[index].h,
-  baddies[index].w,
-  baddies[index].h);
-  ctx.rect(canvasW/2,player.y-yShift-player.h,player.w,player.h)
-  ctx.stroke();
-  ctx.closePath();
-*/
+
   if(collideRectRect(
     canvasW/2 - (player.x-baddies[index].x),
     baddies[index].y-yShift-baddies[index].h,
@@ -52,6 +38,7 @@ function checkPlayerCollision(index){
       playerOnTop = true;
       force = 1.5;
     }
+
     for(let i=0; i<babies.length; i++){
 
       if(babies[i].isCarried&&!knock&&!playerOnTop) {
@@ -59,25 +46,26 @@ function checkPlayerCollision(index){
         knock = true;
         whichBaby = i;
         player.babiesCarried --;
+        babies[whichBaby].grabbable = false;
       }
     }
 
-    setTimeout( function(){
+    if(knock) setTimeout( function(){
       babies[whichBaby].grabbable = true;
-    },1000);
+    },500);
 
-if(baddies[index].x<player.x){
-  baddies[index].collided(-force);
-  player.collided(1);
-  if(knock) babies[whichBaby].collided(-3);
-}
-else{
-  baddies[index].collided(force);
-  player.collided(-1);
-  if(knock)  babies[whichBaby].collided(3);
-}
-
-
-      console.log("collision!")
+    let jforce = 15;
+    if(baddies[index].x<player.x){
+      baddies[index].collided(-force);
+      if(playerOnTop) player.forceJump(jforce);
+      else  player.collided(-1);
+      if(knock) babies[whichBaby].collided(-3);
+    }
+    else{
+      baddies[index].collided(force);
+      if(playerOnTop) player.forceJump(jforce);
+      else  player.collided(-1);
+      if(knock)  babies[whichBaby].collided(3);
+    }
   }
 }

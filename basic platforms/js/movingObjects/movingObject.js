@@ -77,6 +77,12 @@ class movingObject{
     }
   }
 
+  forceJump(force){
+    jumpSFX(0.8,1.2,0.1);
+    this.jumping = true;
+    this.jumpForce = force;
+  }
+
   // calculateJump: update this.y during jump. also ends jump.
   calculateJump(){
 
@@ -98,7 +104,7 @@ class movingObject{
     let dist = distToGround(this.x+this.w/2,this.y,this.w);
 
     // during fall:
-    if( dist>this.fallSpeed ){
+    if( dist>this.fallSpeed ||(this.grabbable===false&&this.y<canvasH&&Math.random()>0.5)&&this.returned!=true ){
       this.y += this.fallSpeed;
       this.fallSpeed +=1;
       this.falling = true;
@@ -109,7 +115,7 @@ class movingObject{
       if(
         this.falling===true
         &&this.fallSpeed>1
-        &&inBox(this.x,this.y,player.x-canvasW/2,player.y-canvasH/2,canvasW,canvasH)
+        &&this.onScreen
       ) thumpSFX();
      this.falling = false;
 
@@ -138,7 +144,6 @@ class movingObject{
     this.speedX = 10*input;
     this.jumpForce =0;
     this.flying = false;
-    this.grabbable = false;
   }
 
   // moveInBounds()
