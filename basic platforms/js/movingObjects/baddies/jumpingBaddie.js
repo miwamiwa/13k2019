@@ -26,5 +26,5 @@ function updateJumpingBaddie(){
   // jump at some point
   if(this.counter%150===0) this.startJump(baddies[this.index]);
   // if not knocked back, move between boundaries
-  if(!this.knockedBack) this.moveInBounds(2);
+  if(!this.knockedBack&&this.stunned!=true) this.moveInBounds(2);
 }

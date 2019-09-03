@@ -138,7 +138,7 @@ function startGame() {
   frame =0;
   trace =0;
 
-  Object.assign(currentLevel, level1);
+  currentLevel = level1;
   setupLevel(currentLevel);
 
   shootTextSequence();
@@ -186,7 +186,7 @@ function updateGameArea() {
   }
   else if(gameOver){
 
-    displayText("game over. click to start again ", canvasW/4, canvasH/2,0,"black",25,false)
+    displayText("game over. click to start again ", canvasW/4, canvasH/2,0,"black",25,true)
   }
   else {
     triggerParticles(
@@ -210,7 +210,7 @@ function updateGameArea() {
 
 
 
-  //  runBGM();
+  runBGM();
   trace+=traceSpeed;
   frame++;
 }
