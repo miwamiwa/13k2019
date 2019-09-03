@@ -179,12 +179,3 @@ function organWaveAt(sampleNumber,transpose){
   }
   return result;
 }
-
-
-function arraySum(input){
-  let result=0;
-  for(let i=0; i<input.length;i++){
-    result+=input[i];
-  }
-  return result;
-}

@@ -2,20 +2,18 @@
 
 function displayJumpingBaddie(){
 
-  let translateDist = -this.h;
-  ctx.translate(0,translateDist)
+  let tDist = -this.h;
+  ctx.translate(0,tDist)
 
-  let xPos = canvasW/2 - (player.x-this.x);
-  let yPos = this.y-yShift;
+  let pos = posOnScreen(this);
   if(this.speedX!=0) this.dir = -this.speedX/Math.abs(this.speedX);
 
+  if(
+    distToGround(this.x+this.w/2,this.y,this.w)>2
+  )  displayStringLoop(tigerJumpLoop,pos.x,pos.y-1.5*27,27,3,this.dir);
+  else   displayStringLoop(tigerWalkLoop,pos.x,pos.y-1.5*27,27,3,this.dir);
 
-//  if(this.flying) displayStringLoop(birdFlapLoop,xPos,yPos,20,2,-this.dir);
-if(distToGround(this.x+this.w/2,this.y,this.w)>2)  displayStringLoop(tigerJumpLoop,xPos,yPos-1.5*27,27,3,this.dir);
-else   displayStringLoop(tigerWalkLoop,xPos,yPos-1.5*27,27,3,this.dir);
-
-
-  ctx.translate(0,-translateDist)
+  ctx.translate(0,-tDist)
   this.counter++;
 }
 

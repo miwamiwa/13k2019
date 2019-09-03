@@ -1,4 +1,8 @@
-
+function posOnScreen(input){
+  let x = canvasW/2 - (player.x-input.x);
+  let y = input.y-yShift;
+  return {x:x,y:y}
+}
 // check if point p1 is inside radius r around point p2
 function inRange(p1,p2,r){
 return  ( p1< p2+r
@@ -42,7 +46,7 @@ function displayAll(input){
 }
 
 function updateAll(input){
-  
+
   for(let i=0; i<input.length; i++){
     input[i].update();
   }

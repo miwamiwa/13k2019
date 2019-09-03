@@ -1,3 +1,71 @@
+
+/*
+images converted to strings go here, as well as the game's color palette.
+
+the first step in the conversion is to group pixels of the same color value together.
+thus the image is converted to an array of paired values: the color of a pixel, and
+the number of same-color pixels that follow.
+
+this array is then converted into a string using char codes. Char codes 33 to 126
+return readable characters, which means we can actually convert these base 10 numbers
+to base 93 if we want. In this code I start at char code 40 which means I can work
+with base 86 numbers ( I went ahead converting images before looking into what the
+maximum base i could use really was, so I arbitrarily decided to start at char code 40 ).
+
+********* example:
+
+let's consider that my image has 3 red pixels, then 4 blue pixels.
+that .png file would require 163 bytes of space, zipped or not.
+
+>>>> first declare colours
+
+  colors = [red,blue]
+
+  >>>> then group together pixels of same color:
+
+ pixels = [
+  {c:0,n:2}, // this is a pixel of color 0 followed by 2 more of the same color
+  {c:1,n:3}, // this is a pixel of color 1 followed by 3 more of the same color
+];
+
+>>>> group the pairs of numbers together:
+
+pixels = [ 02,13 ]
+
+
+>>>> convert to charcodes that are readable (as discussed, i simply add 40. see above.):
+
+pixels = [42, 53]
+
+>>>>> convert each value to a character, then add up in a string:
+
+pixels = "*5"
+
+******** done!
+the string above and the two color values it uses
+are all that i need to include in the code.
+
+So in a nutshell, the compression ratio i can achieve here is due to bunching
+similar colors together, then halfing the number of characters and in the process
+removing all the commas from the array.
+
+The drawback of this system is obviously the limited choice of colors.
+the graphic style has to follow suit. but other than that,
+i compressed my .png files and also converted them into a format that
+will lose even more disk space when zipped. woo!
+
+
+other challenges faced:
+- There is one character which breaks everything: it's char no. 92, the backslash \.
+I've been editing my images so that it doesn't appear :D
+- i wrote a separate code to pack images into strings, but the code hardly worked
+to pack batches of images. after some attempts to fix it, i dropped the idea
+in the interest of time and converted images one after the other instead. Not a
+very big deal since this didn't add much to the time spent creating individual images,
+but this could have allowed me to easily reconvert images using
+the maximum number of colors that this process allows for example.
+
+*/
 let c = [
   "#000000",//0
   "#ffd738",
@@ -85,6 +153,21 @@ let jumpLoop = [
     "#D36A55", //19 light brown
     */
     s:"-4112@51*F2E5F/GTCH-F<FU=G@G,F<FPZPZQ>2M+F<GPFQ@8F+F<FTE=2F*F<dSE?2F)F<eHE@2)FeF(F@FE2)FdF)e?dFDF(H*f?dI?F)H*Fe@gF=F+G*FeDF=F1eCFeF.H(FdAGeFd-FeGe@HeF.Fj@GdF<I)GjAG?dF(HeGfF<GBFdF)H*H)GA)G1,F?F)G1-I111(",
+    c:[false,c[15],c[17],c[16],c[18],c[0],c[19]]
+  },
+  {
+    s:"111(4112@41+F2D31)GT@F4F.F<FUDF-F<FPZPZQEF,F<GPFQE=F+F<FTE>F*FeS?FDF*FfH@FCF)GeG(FAI?F)I*FDH=F*G+FE<F>*F,FdE<F=0FeDF<G/GgBH/GgGAH.FiG@H.FgJ@F/GeG,F@F.FeF/F@F-FdF1G>G,H1)K,G1-G)",
+    c:[false,c[15],c[17],c[16],c[18],c[0],c[19]]
+  },
+  {
+    s:"111)4112?2,3G/F2A*3F<3F.2FT=3F@2G+F<FUE3+2<FPZPZQE<2F)G<GPFQE>F)G<FTE>F(GfSBI>F(Ff(IAK>Gd*FCG=J<F,FBG?I=,FdE>F(H,FeE=F)G,Ff>FAF0GhGAF0FfH(F@F1FeG*F?F1FgF*F?F1FgF*F?1)FfF*F>F1*FeF+H1,H+H1-G+G1",
+    c:[false,c[15],c[17],c[16],c[18],c[0],c[19]]
+  },
+];
+
+let homeLoop = [
+  {
+    s:"4112@51*F2E5F/GTCH-F<FU=G@G,F<FPZPZQ>2M+F<GPFQ@8F+F<FTE=2F*F<dSE?2F)F<eHE@2)FeF(F@FE2)FdF)e?dFDF(H*f?dI?F)H*Fe@gF=F+G*FeDF=F1eCFeF.H(FdAGeFd-FeGe@HeF.Fj@GdF<I)GjAG?dF(HeGfF<GBFdF)H*H)GA)G1,F?F)G1-I111(",
     c:[false,c[15],c[17],c[16],c[18],c[0],c[19]]
   },
   {

@@ -8,7 +8,7 @@ and a function to add babies to the game.
 function newBaby(x,y){
 
   babies.push( new movingObject(x,y, 20,20,displayBaby,updateBaby,babies.length) );
-  babies[babies.length-1].isExploring = true;
+  babies[babies.length-1].isExploring = false;
   babies[babies.length-1].isCarried = false;
   babies[babies.length-1].grabbable = true;
 

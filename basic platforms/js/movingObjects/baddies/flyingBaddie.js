@@ -2,17 +2,16 @@
 
 function displayFlyingBaddie(){
 
-  let translateDist = -this.h;
-  ctx.translate(0,translateDist)
+  let tDist = -this.h;
+  ctx.translate(0,tDist)
 
-  let xPos = canvasW/2 - (player.x-this.x);
-  let yPos = this.y-yShift;
+  let pos = posOnScreen(this);
   if(this.speedX!=0) this.dir = -this.speedX/Math.abs(this.speedX);
 
-  if(this.flying) displayStringLoop(birdFlapLoop,xPos,yPos,20,2,-this.dir);
-  else displayStringLoop(birdStillLoop,xPos,yPos,20,2,this.dir);
+  if(this.flying) displayStringLoop(birdFlapLoop,pos.x,pos.y,20,2,-this.dir);
+  else displayStringLoop(birdStillLoop,pos.x,pos.y,20,2,this.dir);
 
-  ctx.translate(0,-translateDist)
+  ctx.translate(0,-tDist)
   this.counter++;
 
 }

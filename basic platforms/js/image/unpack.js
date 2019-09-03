@@ -25,23 +25,22 @@ function unpackImgLoop(input){
   }
 }
 
+function unpack3(input){
+  for(let i=0; i<input.length; i++){
+    unpackImgLoop(input[i]);
+    input[i].push(input[i][1]);
+  }
+}
+
 function unpackAll(){
-  unpackImgLoop(walkLoop);
-  unpackImgLoop(jumpLoop);
-  jumpLoop.push(jumpLoop[1]);
-  unpackImgLoop(stillLoop);
-  stillLoop.push(stillLoop[1]);
 
-  unpackImgLoop(sleepLoop);
-  sleepLoop.push(sleepLoop[1]);
-
-  unpackImgLoop(birdStillLoop);
-  birdStillLoop.push(birdStillLoop[1]);
 
   unpackImgLoop(tigerWalkLoop);
+  unpackImgLoop(walkLoop);
+  unpackImgLoop(trees);
 
-  unpackImgLoop(tigerJumpLoop);
-  tigerJumpLoop.push(tigerJumpLoop[1]);
+
+  unpack3([babyCarriedLoop,jumpLoop,stillLoop,sleepLoop,birdStillLoop,tigerJumpLoop])
 
   unpackImgLoop(birdFlapLoop);
   birdFlapLoop.push(birdFlapLoop[2]);
@@ -51,13 +50,7 @@ function unpackAll(){
   babyWalkLoop.push(babyWalkLoop[2]);
   babyWalkLoop.push(babyWalkLoop[1]);
 
-  unpackImgLoop(babyCarriedLoop);
-  babyCarriedLoop.push(babyCarriedLoop[1]);
-
   groundImg.a = unpackImage(groundImg.s);
-
-  unpackImgLoop(trees);
-
   bgImage.a = unpackImage(bgImage.s);
 
   for(let i=0; i<letters.length; i++){

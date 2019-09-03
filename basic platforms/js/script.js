@@ -93,6 +93,7 @@ function preload(){
   unpackAll();
   canvas.start();
 
+
   clickA.x = canvasW/2-clickA.w/2;
   clickA.y = canvasH/2+50;
 
