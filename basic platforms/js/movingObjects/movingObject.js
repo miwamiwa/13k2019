@@ -159,11 +159,15 @@ class movingObject{
   // creating a new movingObject (as done in function newBaddie() in baddies.js)
 
   moveInBounds(vel){
-    if(this.x<=this.leftBoundX) this.speedX = vel;
-    else if(this.x>=this.rightBoundX)  this.speedX = -vel;
-    else if(this.speedX ===0){
-      if(Math.random()>0.5) this.speedX = 1;
-      else this.speedX =-1;
+    
+    if(!this.knockedBack&&this.stunned!=true){
+      if(this.x<=this.leftBoundX) this.speedX = vel;
+      else if(this.x>=this.rightBoundX)  this.speedX = -vel;
+      else if(this.speedX ===0){
+        if(Math.random()>0.5) this.speedX = 1;
+        else this.speedX =-1;
+      }
     }
+
   }
 }

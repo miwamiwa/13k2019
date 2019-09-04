@@ -7,9 +7,11 @@ function displayFlyingBaddie(){
 
   let pos = posOnScreen(this);
   this.getDir();
+  let loop = birdStillLoop;
+  
+  if(this.flying) loop=birdFlapLoop;
 
-  if(this.flying) displayStringLoop(birdFlapLoop,pos.x,pos.y,20,2,-this.dir);
-  else displayStringLoop(birdStillLoop,pos.x,pos.y,20,2,this.dir);
+  displayStringLoop(loop,pos.x,pos.y,20,2,this.dir);
 
   ctx.translate(0,-tDist)
   this.counter++;
@@ -31,26 +33,23 @@ function updateFlyingBaddie(){
 
       // stop flying at some point (baddies falls back to the ground)
       if(this.counter%450===0) {
-        this.flying = false;
-      if(this.onScreen) birdChirpSFX();
+      this.flying = false;
+      birdChirpSFX(this);
       }
     }
-
-
-
-    // if not knocked back, update speedX so as to move between boundaries
-    if(!this.knockedBack) this.moveInBounds(2);
   }
   else {
 
     // if no longer flying
     // move between boundaries
-    if(!this.knockedBack) this.moveInBounds(2);
+    //this.moveInBounds(2);
     // start flying at some point
     if(this.counter%150===0) {
       this.flying = true;
-      if(this.onScreen) birdChirpSFX();
+      birdChirpSFX(this);
     }
 
   }
+  // if not knocked back, update speedX so as to move between boundaries
+  this.moveInBounds(2);
 }

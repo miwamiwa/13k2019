@@ -7,11 +7,13 @@ function displayJumpingBaddie(){
 
   let pos = posOnScreen(this);
   this.getDir();
-
+  let loop= tigerWalkLoop;
   if(
     distToGround(this.x+this.w/2,this.y,this.w)>2
-  )  displayStringLoop(tigerJumpLoop,pos.x,pos.y-1.5*27,27,3,this.dir);
-  else   displayStringLoop(tigerWalkLoop,pos.x,pos.y-1.5*27,27,3,this.dir);
+  )  loop = tigerJumpLoop;
+
+
+  displayStringLoop(loop,pos.x,pos.y-1.5*27,27,3,this.dir);
 
   ctx.translate(0,-tDist)
   this.counter++;
@@ -24,5 +26,5 @@ function updateJumpingBaddie(){
   // jump at some point
   if(this.counter%150===0) this.startJump(baddies[this.index]);
   // if not knocked back, move between boundaries
-  if(!this.knockedBack&&this.stunned!=true) this.moveInBounds(2);
+  this.moveInBounds(2);
 }

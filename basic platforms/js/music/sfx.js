@@ -20,8 +20,8 @@ function jumpSFX(t1,t2,l){ //input tone 1 and tone 2
   loadSlidingSound(organWaveAt,7,l,1,t1,t2);
 }
 
-function birdChirpSFX(){
-
+function birdChirpSFX(bird){
+if(bird.onScreen){
   loadSlidingSound(sineWaveAt,100,0.10,0.1,1400+Math.random()*400,2650);
   if(!chirping) setTimeout(
     function(){
@@ -29,6 +29,7 @@ function birdChirpSFX(){
     }, 150
   )
   chirping = true;
+}
 }
 
 function sfxSeq(num,baseF,fDif,baseT,tDif,timeBetween,tbDif,wave,comb,vol){

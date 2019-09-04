@@ -14,16 +14,17 @@ function displayDudeBox(){
   else yShift=this.y-limit;
 
   this.getDir();
+  let stretch = 3;
+  let loop = walkLoop;
 
-if(this.sleeping) displayStringLoop(sleepLoop,xPos,this.y-yShift,25,4,this.dir);
-else {
-  if(distToGround(this.x+this.w/2,this.y,this.w)>2)  displayStringLoop(jumpLoop,xPos,this.y-yShift,25,3,this.dir);
-  else {
-    if(this.speedX===0) displayStringLoop(stillLoop,xPos,this.y-yShift,25,3,this.dir);
-    else displayStringLoop(walkLoop,xPos,this.y-yShift,25,3,this.dir);
+  if(this.sleeping){
+    loop=sleepLoop;
+    stretch=4;
   }
-}
+  else if(distToGround(this.x+this.w/2,this.y,this.w)>2)  loop=jumpLoop;
+  else if(this.speedX===0) loop=stillLoop;
 
+  displayStringLoop(loop,xPos,this.y-yShift,25,stretch,this.dir);
 
   ctx.translate(0,-tDist)
 }
