@@ -54,7 +54,7 @@ function setupLevel(l){
   for(let i=0; i<l.babies.count; i++){
     l.babies.p  = l.babies.pos[ Math.floor(Math.random()*l.babies.pos.length) ];
     let res = getXYOnPlat(l.babies,l.platforms)
-    newBaby( res.x,res.y )
+    newBaby( res.x+i*10,res.y )
   }
 
 }

@@ -6,6 +6,7 @@ function displayDudeBox(){
   ctx = canvas.context;
   let xPos = canvasW/2;
   let translateDist = -this.h;
+  if(currentScreen==='wakeplayer') translateDist -= 150;
   ctx.translate(0,translateDist)
 
   let limit = canvasH*0.5;
@@ -13,7 +14,7 @@ function displayDudeBox(){
   else yShift=this.y-limit;
   if(this.speedX!=0) this.dir = -this.speedX/Math.abs(this.speedX);
 
-if(this.sleeping) displayStringLoop(sleepLoop,xPos,this.y-yShift,25,6,this.dir);
+if(this.sleeping) displayStringLoop(sleepLoop,xPos,this.y-yShift,25,4,this.dir);
 else {
   if(distToGround(this.x+this.w/2,this.y,this.w)>2)  displayStringLoop(jumpLoop,xPos,this.y-yShift,25,3,this.dir);
   else {
@@ -31,7 +32,7 @@ else {
 // to be included as argument in player's movingObject.
 
 function updatePlayerMotion(){
-  
+
   if(!this.knockedBack && !this.sleeping){
     if(!inputLeft&&!inputRight) {
       if(player.speedX+stopSpeed<0) player.speedX+=stopSpeed;

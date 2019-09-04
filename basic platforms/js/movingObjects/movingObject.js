@@ -53,7 +53,9 @@ class movingObject{
     // update x pos
 
 
-  this.x = constrain(this.x+this.speedX,0,levelRange);
+    this.x = constrain(this.x+this.speedX,0,levelRange);
+
+    this.y = constrain(this.y,-5000,canvasH);
 //  else this.x += this.speedX;
 
     // if jumping, update y position

@@ -30,7 +30,21 @@ function displayBackground(){
   let shade = fadeSunLight();
 
   bgImage.c[0] = "rgb("+shade.r+","+shade.g+","+shade.b+")";
-  displayImage(bgImage.a,bgImage.c,-player.x/4,-0.4*canvasH-yShift/2,bgImage.w,2*canvasW/bgImage.w,1);
+  //displayImage(bgImage.a,bgImage.c,-player.x/4,-0.4*canvasH-yShift/2,bgImage.w,2*canvasW/bgImage.w,1);
+  drawBG();
+}
+
+function drawBG(){
+
+  displayImage(
+    bgImage.a,bgImage.c,
+    -player.x/4,
+    -0.4*canvasH-yShift/2,
+    bgImage.w,
+    1.5*canvasW/bgImage.w,
+    1
+  );
+
 }
 
 

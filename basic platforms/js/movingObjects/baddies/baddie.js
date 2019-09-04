@@ -33,17 +33,20 @@ function checkPlayerCollision(index){
     b.h,
     canvasW/2,p.y-yShift-p.h,p.w,p.h)
     && !p.knockedBack
+//&& !b.knockedBack
   ){
 
-    triggerParticles(p.x+p.w/2,p.y+p.h/2,[{r:255,g:125,b:125}])
-    collideSFX();
+
     let knock = false;
     let whichBaby = 0;
     let pOnTop = false;
+    let pOnBot = false;
     let force = 0.8;
 
-    if(b.y-20>p.y&&distToGround(p.x+p.w/2,p.y,p.w)>5){
-      pOnTop = true;
+    if(distToGround(p.x+p.w/2,p.y,p.w)>5){
+      if(b.y-20>p.y) pOnTop = true;
+      else if (b.y-b.h<p.y) pOnBot = true;
+      else return;
       force = 1.5;
       b.stunned = true;
       let i = index;
@@ -69,15 +72,36 @@ function checkPlayerCollision(index){
 
     let jforce = 15;
 
-    if(b.x<p.x)sendEmFlying(index,force,jforce,pOnTop,knock,whichBaby,-1)
-    else sendEmFlying(index,force,jforce,pOnTop,knock,whichBaby,1)
+    if(b.x<p.x)sendEmFlying(index,force,jforce,pOnTop,pOnBot,knock,whichBaby,-1)
+    else sendEmFlying(index,force,jforce,pOnTop,pOnBot,knock,whichBaby,1)
 
   }
 }
 
-function sendEmFlying(i,f,jf,pOT,k,wB,dir){
-  baddies[i].collided(dir*f);
-  if(pOT) player.forceJump(jf);
-  else  player.collided(-1);
+function sendEmFlying(i,f,jf,pOT,pOB,k,wB,dir){
+  let p = player;
+  if(pOT) {
+    p.forceJump(jf);
+    baddies[i].collided(dir*f);
+    console.log("over!")
+  }
+  else if(pOB) {
+    console.log("under!")
+    player.collided(-dir);
+    baddies[i].forceJump(1.5*jf);
+  //  baddies[i].knockedBack = true;
+  //  setTimeout(function(){
+//baddies[i].knockedBack = false;
+  //  }, 50);
+  }
+  else  {
+    console.log("neither!")
+    p.collided(dir);
+    baddies[i].collided(-dir*f)
+
+  }
   if(k)  babies[wB].collided(dir*3);
+
+  triggerParticles(p.x+p.w/2,p.y+p.h/2,[{r:255,g:125,b:125}])
+  collideSFX();
 }

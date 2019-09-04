@@ -52,6 +52,7 @@ function unpackAll(){
 
   groundImg.a = unpackImage(groundImg.s);
   bgImage.a = unpackImage(bgImage.s);
+  homeImg.a = unpackImage(homeImg.s);
 
   for(let i=0; i<letters.length; i++){
     alphabet[i] = {s:letters[i],c:[false,c[1]],w:5};

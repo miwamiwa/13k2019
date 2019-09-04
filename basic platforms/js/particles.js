@@ -32,13 +32,12 @@ class Particle{
     this.x += this.vel.x;
     this.y += this.vel.y;
     this.opa -= this.speed/150;
-ctx = canvas.context;
+    ctx = canvas.context;
     ctx.beginPath();
     ctx.globalAlpha = this.opa;
     ctx.fillStyle = "rgb("+this.r+","+this.g+","+this.b+")";
-    let xPos = canvasW/2 - (player.x-this.x);
-    let yPos = this.y-yShift;
-    ctx.fillRect(xPos,yPos,5,5);
+    let pos = posOnScreen(this);
+    ctx.fillRect(pos.x,pos.y,5,5);
     ctx.stroke();
     ctx.globalAlpha = 1;
     ctx.closePath();

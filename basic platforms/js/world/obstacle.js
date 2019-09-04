@@ -22,10 +22,16 @@ class groundTile{
 
 
       if(this.hasCos!=false){ // display nest if there is a nest
-        let tree = trees[this.hasCos.t];
+      let tree = trees[this.hasCos.t];
         let stretch = 3;
-        displayImage( tree.a, tree.c, xPos+this.hasCos.x,this.y-yShift-tree.w*stretch, tree.w,stretch,1 )
+        displayTree(tree, xPos+this.hasCos.x, this.y-yShift-tree.w*stretch,stretch)
       }
     }
   }
+}
+
+function displayTree(tree,x,y,stretch){
+//let stretch = 3;
+  displayImage( tree.a, tree.c, x,y, tree.w,stretch,1 )
+
 }

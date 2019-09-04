@@ -25,7 +25,7 @@ let introTxt = [
   "three times a day.",
   "nothing less. ",
   " ",
-  "your three rascals invevitably run off",
+  "the three rascals invevitably run off",
   "everytime you take a snooze.",
   "once you wake,",
   "you cannot sleep again",
@@ -34,7 +34,9 @@ let introTxt = [
   "those baby apes",
   "are helpless on their own",
   "so you will have to haul them ",
-  "on your back.",
+  "on your back,",
+  "knocking back the junglefolk",
+  "that block your way.",
   " ",
   "in short",
   "by sundown, everyone must be back home",
@@ -191,8 +193,8 @@ function updateGameArea() {
   }
   else {
     triggerParticles(
-      flRand(-50,canvasW/2+200),
-      flRand(50,canvasH-200),
+      flRand(player.x,player.x+160),
+      flRand(player.y-200,player.y-0),
       [
         {r:225,g:200,b:10},
         {r:225,g:20,b:10},
@@ -200,13 +202,24 @@ function updateGameArea() {
         {r:25,g:20,b:210}
       ]
     );
-    for(let i=0; i<introSeq; i++){
-      displayText(currentText[i],50,50+i*20,400,"red",10,true);
-    }
+
     if(introSeq<currentText.length) displayText("click to skip", canvasW-160,canvasH-30,0,"black",5,false);
+
+    bgImage.c[0] = "rgb("+sunShades[6].r+","+sunShades[6].g+","+sunShades[6].b+")";
+  //  displayImage(bgImage.a,bgImage.c,-player.x/4,-0.4*canvasH-yShift/2,bgImage.w,2*canvasW/bgImage.w,1);
+  drawBG();
     updateAll(particles);
 
+    displayTree(trees[0],canvasW/2+100,150,8);
+    displayTree(trees[1],canvasW/2-120,150,8);
+    displayTree(trees[2],canvasW/2-280,100,8);
     player.update();
+
+    for(let i=0; i<introSeq; i++){
+      displayText(currentText[i],48,48+i*20,400,"black",10,true);
+      displayText(currentText[i],50,50+i*20,400,"gold",10,true);
+    }
+
   }
 
 
@@ -218,12 +231,12 @@ function updateGameArea() {
 
 function displayReturnPoint(){
 
-  ctx.beginPath();
-  ctx.fillStyle = "#FF6600";
-  ctx.fillRect(canvasW/2 - (player.x-startPos.x),
-  startPos.y-yShift-80,
-  80,80);
-  ctx.stroke();
-  ctx.closePath();
+
+  let posX = canvasW/2 - (player.x-startPos.x);
+  let posY = startPos.y-yShift-80;
+  let score = babiesReturned + "/3 babies returned"
+  displayImage(homeImg.a,homeImg.c, posX,posY,25,4,1);
+  displayText("home", posX+25,posY-20,0,c[23],8,true);
+  displayText(score, posX+25,posY,0,c[23],8,true);
 
 }

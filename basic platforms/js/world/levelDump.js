@@ -3,58 +3,48 @@ let fBaddie = {t:"fly",w:20*2,h:20*2}; // "kit" for flying Baddie
 
 
 
-let  level2 = {
+let  level1 = {
   size:1300, // boundaries for the level (not actually implemented yet shh)
   platforms: [ // list each platform here:
     //{ x: position, y: position, w: width }
 
     // top two
-    {x:300,y:750,w:300},  //5
+    {x:300,y:750,w:300},  //0
     {x:650,y:670,w:50},
 
     // left steps
-    {x:450,y:600,w:100}, //7
+    {x:450,y:600,w:100}, //2
     {x:380,y:580,w:50},
     {x:300,y:520,w:100},
     {x:380,y:460,w:80},
 
     // right steps
-    {x:800,y:600,w:100}, //11
+    {x:800,y:600,w:100}, //6
     {x:920,y:580,w:50},
     {x:1000,y:520,w:100},
     {x:920,y:460,w:80},
 
     // middle platform
-    {x:320,y:400,w:730}, //15
+    {x:320,y:400,w:730}, //10
 
     // steps leading up
-    {x:550,y:350,w:50}, //16
+    {x:550,y:350,w:50}, //11
     {x:750,y:350,w:50},
     {x:650,y:280,w:50}, // small step
 
-    {x:400,y:250,w:80}, //19 // left steps
+    {x:400,y:250,w:80}, //13 // left steps
     {x:320,y:180,w:50},
     {x:380,y:120,w:50},
     {x:320,y:60,w:50},
 
-
-    {x:880,y:250,w:80}, //23 // right steps
+    {x:880,y:250,w:80}, //18 // right steps
     {x:950,y:180,w:50},
     {x:890,y:120,w:50},
     {x:950,y:60,w:50},
 
 
   ],
-  baddies: [ // list each baddie here:
-    /*
-    {
-    p: platform to place baddie on (-1 = ground)
-    x: distance from platform's left point ,
-    r: boundary ("radius" around x,y),
-    kit: {d:display,u:update} (use jBaddie or fBaddie)
-  }
-    */
-
+  baddies: [
 
     {p:10, x:365, r:325, kit:jBaddie },
     {p:10, x:480, r:245, kit:fBaddie },
@@ -66,13 +56,13 @@ let  level2 = {
   cosmetics: [
 
   ],
-  player: {p:5,x:30},
-  babies:{count:1, pos:[11, 12, 13, 14, 15, 16, -1],p:0,x:0}
+  player: {p:0,x:30},
+  babies:{count:3, pos:[15, -1],p:0,x:0}
 };
 
 //Object.freeze(level1);
 
-let  level1 = {
+let  level2 = {
   size:2500, // boundaries for the level (not actually implemented yet shh)
   platforms: [ // list each platform here:
     //{ x: position, y: position, w: width }
