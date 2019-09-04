@@ -77,15 +77,16 @@ function updateBaby(){
 
 function displayBaby(){
 
-  let translateDist = -10;
+  let tDist = -10;
   ctx = canvas.context;
-  ctx.translate(0,translateDist)
+  ctx.translate(0,tDist)
 
-  let xPos = canvasW/2 - (player.x-this.x)
-  let yPos = this.y-yShift-this.h;
-//  if(distToGround(this.x+this.w/2,this.y,this.w)>2)  displayStringLoop(tigerJumpLoop,xPos,yPos,15,2,this.dir);
-if(this.isCarried)  displayStringLoop(babyCarriedLoop,xPos,yPos,15,2,this.dir);
-else  displayStringLoop(babyWalkLoop,xPos,yPos,15,2,this.dir);
+  let pos = posOnScreen(this);
+  let loop = babyWalkLoop;
+//  if(distToGround(this.x+this.w/2,this.y,this.w)>2)  displayStringLoop(tigerJumpLoop,pos.x,pos.y,15,2,this.dir);
+if(this.isCarried) loop=babyCarriedLoop;
 
-  ctx.translate(0,-translateDist)
+displayStringLoop(loop,pos.x,pos.y-this.h,15,2,this.dir);
+
+  ctx.translate(0,-tDist)
 }

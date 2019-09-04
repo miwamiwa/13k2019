@@ -6,7 +6,7 @@ function displayJumpingBaddie(){
   ctx.translate(0,tDist)
 
   let pos = posOnScreen(this);
-  if(this.speedX!=0) this.dir = -this.speedX/Math.abs(this.speedX);
+  this.getDir();
 
   if(
     distToGround(this.x+this.w/2,this.y,this.w)>2

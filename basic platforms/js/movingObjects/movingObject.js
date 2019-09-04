@@ -45,6 +45,10 @@ class movingObject{
     this.display();
   }
 
+ getDir(){
+    if(this.speedX!=0) this.dir = -this.speedX/Math.abs(this.speedX);
+  }
+
   newPos(){
 
     // if knocked back, update this.speedX

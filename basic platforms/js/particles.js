@@ -37,7 +37,7 @@ class Particle{
     ctx.globalAlpha = this.opa;
     ctx.fillStyle = "rgb("+this.r+","+this.g+","+this.b+")";
     let pos = posOnScreen(this);
-    ctx.fillRect(pos.x,pos.y,5,5);
+    ctx.fillRect(pos.x,pos.y,8,8);
     ctx.stroke();
     ctx.globalAlpha = 1;
     ctx.closePath();

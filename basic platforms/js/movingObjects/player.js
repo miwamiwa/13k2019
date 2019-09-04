@@ -5,14 +5,15 @@ function displayDudeBox(){
 
   ctx = canvas.context;
   let xPos = canvasW/2;
-  let translateDist = -this.h;
-  if(currentScreen==='wakeplayer') translateDist -= 150;
-  ctx.translate(0,translateDist)
+  let tDist = -this.h;
+  if(currentScreen==='wakeplayer') tDist -= 150;
+  ctx.translate(0,tDist)
 
   let limit = canvasH*0.5;
   if(this.y>limit)  yShift = 0;
   else yShift=this.y-limit;
-  if(this.speedX!=0) this.dir = -this.speedX/Math.abs(this.speedX);
+
+  this.getDir();
 
 if(this.sleeping) displayStringLoop(sleepLoop,xPos,this.y-yShift,25,4,this.dir);
 else {
@@ -24,7 +25,7 @@ else {
 }
 
 
-  ctx.translate(0,-translateDist)
+  ctx.translate(0,-tDist)
 }
 
 
