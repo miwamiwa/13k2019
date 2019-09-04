@@ -35,13 +35,13 @@ function mousePressed(){
 console.log(event.clientX)
   if(currentScreen==="start") {
     if( inBox( event.clientX, event.clientY, clickA.x,clickA.y,clickA.w,clickA.h)) startGame();
-
+    startSound();
   }
   else if(currentScreen==="gameover") {
-    console.log("ey")
-    console.log(currentLevel)
+  //  console.log("ey")
+  //  console.log(currentLevel)
     Object.assign(currentLevel, level1);
-      console.log(currentLevel)
+  //    console.log(currentLevel)
     currentText = introTxt;
     level = 0;
     currentScreen="wakeplayer"

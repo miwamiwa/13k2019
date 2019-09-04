@@ -10,11 +10,16 @@ let organ= [
 ];
 
 
-let lengthOf8 = 8;
+let lengthOf8 = 7;
 let time =0;
-window.AudioContext = window.AudioContext || window.webkitAudioContext;
-var context = new AudioContext();
+var context;
+
 let buffers = [];
+
+function startSound(){
+  window.AudioContext = window.AudioContext || window.webkitAudioContext;
+  context = new AudioContext();
+}
 
 var voices = [
   {
