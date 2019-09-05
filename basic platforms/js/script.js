@@ -183,9 +183,8 @@ function updateGameArea() {
     updateAll(babies);
 
     displayText(timeLeft.toString(), canvasW-100,canvasH-100,0,"white",25,false)
-
     continueLevel();
-
+    
   }
   else if(gameOver){
 
@@ -206,8 +205,8 @@ function updateGameArea() {
     if(introSeq<currentText.length) displayText("click to skip", canvasW-160,canvasH-30,0,"black",5,false);
 
     bgImage.c[0] = "rgb("+sunShades[6].r+","+sunShades[6].g+","+sunShades[6].b+")";
-  //  displayImage(bgImage.a,bgImage.c,-player.x/4,-0.4*canvasH-yShift/2,bgImage.w,2*canvasW/bgImage.w,1);
-  drawBG();
+    //  displayImage(bgImage.a,bgImage.c,-player.x/4,-0.4*canvasH-yShift/2,bgImage.w,2*canvasW/bgImage.w,1);
+    drawBG();
     updateAll(particles);
 
     displayTree(trees[0],canvasW/2+100,150,8);
@@ -219,10 +218,7 @@ function updateGameArea() {
       displayText(currentText[i],48,48+i*20,400,"black",10,true);
       displayText(currentText[i],50,50+i*20,400,"gold",10,true);
     }
-
   }
-
-
 
   runBGM();
   trace+=traceSpeed;
@@ -230,7 +226,6 @@ function updateGameArea() {
 }
 
 function displayReturnPoint(){
-
 
   let posX = canvasW/2 - (player.x-startPos.x);
   let posY = startPos.y-yShift-80;

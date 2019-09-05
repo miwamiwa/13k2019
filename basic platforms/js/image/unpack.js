@@ -34,6 +34,11 @@ function unpack3(input){
 
 function unpackAll(){
 
+  pushCol(jumpCol,jumpLoop);
+  pushCol(sleepCol,sleepLoop);
+  pushCol(stillCol,stillLoop);
+  pushCol(babyCol,babyWalkLoop);
+  pushCol(babyCol,babyCarriedLoop);
 
   unpackImgLoop(tigerWalkLoop);
   unpackImgLoop(walkLoop);

@@ -8,10 +8,7 @@ function displayJumpingBaddie(){
   let pos = posOnScreen(this);
   this.getDir();
   let loop= tigerWalkLoop;
-  if(
-    distToGround(this.x+this.w/2,this.y,this.w)>2
-  )  loop = tigerJumpLoop;
-
+  if( distToGround(this.x+this.w/2,this.y,this.w)>2 ) loop = tigerJumpLoop;
 
   displayStringLoop(loop,pos.x,pos.y-1.5*27,27,3,this.dir);
 

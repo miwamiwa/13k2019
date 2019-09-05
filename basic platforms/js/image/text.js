@@ -14,7 +14,7 @@ function displayText(text,x,y,w,colour,stretch,wub){
 
     let xPos = x+i*(stretch+5);
     let yPos = y;
-    if(wub) yPos = y + Math.sin(i/text.length+frame/30)*10;//y+Math.floor((i*stretch)/w)*stretch;
+    if(wub) yPos = y + Math.sin(i/text.length+frame/30)*10;
 
     if(txt!=-1) displayImage( alphabet[txt].a, [false,colour], xPos, yPos, 5, stretch/5, 1 );
 

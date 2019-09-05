@@ -52,9 +52,22 @@ function updateAll(input){
   }
 }
 
+function randI(max){
+  return Math.floor(Math.random()*max);
+}
+
+function flRand(min,max){
+  return Math.floor( min+Math.random()*(max-min) );
+}
 
 function constrain(input,min,max){
    return Math.min(Math.max(input, min), max);
+}
+
+function pushCol(colors,obj){
+  for(let i=0; i<obj.length; i++){
+    obj[i].c = colors;
+  }
 }
 
 
@@ -96,8 +109,8 @@ function getXYOnPlat(input,platforms){
     y = canvasH;
   }
   else { // if input is anything else, ground is a platform
-    x = platforms[ input.p ].x + input.x;
-    y = canvasH-platforms[ input.p ].y - 10;
+    x = platforms[ input.p ].x*10 + input.x;
+    y = canvasH-platforms[ input.p ].y*10 - 10;
   }
   return {x:x,y:y};
 }

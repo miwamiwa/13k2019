@@ -26,15 +26,15 @@ function updateBaby(){
     if(
       collideRectRect(
         canvasW/2 - (player.x-startPos.x),
-      startPos.y-yShift,
-      startPos.w,
-      startPos.h,
-      canvasW/2,
-      player.y-yShift,
-      player.w,player.h
-    )
-    &&player.babiesCarried>0
-  ){ // if nest reached
+        startPos.y-yShift,
+        startPos.w,
+        startPos.h,
+        canvasW/2,
+        player.y-yShift,
+        player.w,player.h
+      )
+      &&player.babiesCarried>0
+    ){ // if nest reached
       player.babiesCarried --;
       this.isCarried = false;
       this.grabbable = false;
@@ -70,7 +70,6 @@ function updateBaby(){
       this.isCarried = true;
       player.babiesCarried++;
     }
-
   }
 }
 
@@ -83,10 +82,8 @@ function displayBaby(){
 
   let pos = posOnScreen(this);
   let loop = babyWalkLoop;
-//  if(distToGround(this.x+this.w/2,this.y,this.w)>2)  displayStringLoop(tigerJumpLoop,pos.x,pos.y,15,2,this.dir);
-if(this.isCarried) loop=babyCarriedLoop;
+  if(this.isCarried) loop=babyCarriedLoop;
 
-displayStringLoop(loop,pos.x,pos.y-this.h,15,2,this.dir);
-
+  displayStringLoop(loop,pos.x,pos.y-this.h,15,2,this.dir);
   ctx.translate(0,-tDist)
 }

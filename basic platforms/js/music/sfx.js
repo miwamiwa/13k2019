@@ -1,9 +1,4 @@
 
-function sfxOne(){
-monkeyCrySFX();
-
-}
-
 function monkeyCrySFX(){
   sfxSeq(5, 2.2+ Math.random()*0.2 ,-0.02, 0.08 ,-0.01, 50,0, organWaveAt,false,0.5)
 }
@@ -46,19 +41,4 @@ function sfxSeq(num,baseF,fDif,baseT,tDif,timeBetween,tbDif,wave,comb,vol){
       );
     }, i*(timeBetween+i*tbDif))
   }
-}
-
-
-
-
-
-
-
-
-
-function sfxTwo(){}
-function sfxThree(){
-}
-function sfxFour(){
-
 }

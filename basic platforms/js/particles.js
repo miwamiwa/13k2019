@@ -1,6 +1,6 @@
 function triggerParticles(x,y,co){
 
-  let amount = 4+ Math.floor( Math.random()* 5);
+  let amount = 4+ randI(5);
 
   for(let i=0; i<amount; i++){
     let col = flRand(0,co.length);
@@ -35,24 +35,19 @@ class Particle{
     ctx = canvas.context;
     ctx.beginPath();
     ctx.globalAlpha = this.opa;
-    ctx.fillStyle = "rgb("+this.r+","+this.g+","+this.b+")";
+    ctx.fillStyle = "rgba("+this.r+","+this.g+","+this.b+")";
     let pos = posOnScreen(this);
     ctx.fillRect(pos.x,pos.y,8,8);
     ctx.stroke();
     ctx.globalAlpha = 1;
     ctx.closePath();
 
-  //  console.log(this.opa)
-
     if(this.opa<=0) killParticle(this.index);
   }
 }
 
-function flRand(min,max){
-  return Math.floor( min+Math.random()*(max-min) );
-}
+
 
 function killParticle(index){
-//  console.log("particle dead")
   particles.splice(index,1);
 }
