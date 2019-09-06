@@ -52,7 +52,7 @@ console.log(event.clientX)
 
       //startGame();
   }
-  else if(currentScreen==="wakeplayer") {
+  else if(currentScreen==="wakeplayer"||currentScreen==="introscreen") {
     console.log("yo")
     if(player.sleeping){
 

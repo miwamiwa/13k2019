@@ -8,6 +8,7 @@ function setupLevel(l){
   baddies = [];
   babies = [];
   currentPhase =0;
+  sunPos = {x:canvasW/4,y:sunStart};
 
   for(let i=0; i<l.plat.length; i++){
     ground.push( new groundTile(
@@ -15,6 +16,10 @@ function setupLevel(l){
       canvasH-l.plat[i].y*10,
       l.plat[i].w*10
     ));
+
+    if(l.cosmetics.includes(i)) {
+      let rand = randI(3)
+      ground[ ground.length-1 ].hasCos = { x:l.plat[i].w*2, t:rand };}
   };
 
   for(let i=0; i<l.baddies.length; i++){

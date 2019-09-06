@@ -1,5 +1,5 @@
 var frameRate=30;
-let sunDownFrame = frameRate*100;
+let sunDownFrame = frameRate*200;
 
 
 var player;
@@ -10,6 +10,8 @@ var frame=0;
 let ground = [];
 let canvasH = 570;
 let canvasW = window.innerWidth;
+let sunStart=canvasH*0.5;
+let sunPos = {x:canvasW/4,y:sunStart};
 let levelRange =0;
 let phase;
 let currentLevel = {};
@@ -66,6 +68,7 @@ let chirping = false;
 
 let level =0;
 let naps =0;
+let thankYouText = "";
 
 
 let timeLeft =0;
@@ -137,7 +140,7 @@ function startGame() {
   clearInterval(gameLoop)
   gameLoop = setInterval(updateGameArea, 1000/frameRate);
   console.log("game started")
-  currentScreen="wakeplayer" // or currentScreen="nada"
+  currentScreen="introscreen" // or currentScreen="nada"
   frame =0;
   trace =0;
 
@@ -169,6 +172,7 @@ function updateGameArea() {
   if(!player.sleeping &&!gameOver){
 
     currentScreen = "game";
+    thankYouText = "";
     timeLeft = Math.floor((sunDownFrame - frame)/frameRate);
 
     chirping = false;
@@ -184,11 +188,11 @@ function updateGameArea() {
 
     displayText(timeLeft.toString(), canvasW-100,canvasH-100,0,"white",25,false)
     continueLevel();
-    
+
   }
   else if(gameOver){
-
-    displayText("game over. click to start again ", canvasW/4, canvasH/2,0,"black",25,true)
+    displayText(thankYouText, canvasW/4, canvasH/2,0,"black",canvasW/150,true)
+    displayText("game over. click to start again ", canvasW/4, canvasH/2+50,0,"black",canvasW/150,true)
   }
   else {
     triggerParticles(
@@ -204,7 +208,7 @@ function updateGameArea() {
 
     if(introSeq<currentText.length) displayText("click to skip", canvasW-160,canvasH-30,0,"black",5,false);
 
-    bgImage.c[0] = "rgb("+sunShades[6].r+","+sunShades[6].g+","+sunShades[6].b+")";
+    if(currentScreen==="introscreen") bgImage.c[0] = "rgb("+skyShades[6].r+","+skyShades[6].g+","+skyShades[6].b+")";
     //  displayImage(bgImage.a,bgImage.c,-player.x/4,-0.4*canvasH-yShift/2,bgImage.w,2*canvasW/bgImage.w,1);
     drawBG();
     updateAll(particles);

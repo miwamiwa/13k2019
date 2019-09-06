@@ -3,12 +3,14 @@ function continueLevel(){
 
   if(babiesReturned>=babies.length) nextPhase();
 
-  if(timeLeft<=0){
-    gameOver = true;
-    currentScreen = "gameover";
-  }
+  if(timeLeft<=0) gameIsOver();
+
 }
 
+function gameIsOver(){
+  gameOver = true;
+  currentScreen = "gameover";
+}
 
 function nextPhase(){
 
@@ -35,7 +37,11 @@ function nextPhase(){
     level++
     switch(level){
       case 1:   currentLevel  = level2; break;
-      case 2:   currentLevel  = level3; break;
+      case 2:
+      thankYouText = "congrats! you've reached the end. thank you for playing.\n";
+      gameIsOver();
+      // game is over. return to menu screen; thank you for playing.
+       break;
     }
 
     naps =0;
@@ -65,12 +71,23 @@ function nextPhase(){
     switch(level){
 
       case 0:
-      if(currentPhase===1) phase.baddies.push({p:25, x:30, r:300, kit:fBaddie });
+      if(currentPhase===1) phase.baddies.push({p:20, x:30, r:300, kit:fB });
       else if(currentPhase===2){
 
-        phase.baddies.push({p:25, x:30, r:300, kit:fBaddie });
-        phase.baddies.push({p:15, x:250, r:245, kit:fBaddie });
+        phase.baddies.push({p:20, x:30, r:300, kit:fB });
+        phase.baddies.push({p:10, x:250, r:245, kit:fB });
       }; break;
+
+      case 1:
+      if(currentPhase===1){
+
+
+      }
+      else if(currentPhase===2){
+
+
+      }
+      break;
     }
 
     setupLevel(phase);

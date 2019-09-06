@@ -39,13 +39,14 @@ function unpackAll(){
   pushCol(stillCol,stillLoop);
   pushCol(babyCol,babyWalkLoop);
   pushCol(babyCol,babyCarriedLoop);
+  pushCol(sunCol,sunLoop);
 
   unpackImgLoop(tigerWalkLoop);
   unpackImgLoop(walkLoop);
   unpackImgLoop(trees);
 
 
-  unpack3([babyCarriedLoop,jumpLoop,stillLoop,sleepLoop,birdStillLoop,tigerJumpLoop])
+  unpack3([babyCarriedLoop,jumpLoop,stillLoop,sleepLoop,birdStillLoop,tigerJumpLoop,sunLoop])
 
   unpackImgLoop(birdFlapLoop);
   birdFlapLoop.push(birdFlapLoop[2]);

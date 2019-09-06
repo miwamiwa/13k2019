@@ -3,8 +3,13 @@ let fB = {t:"fly",w:20*2,h:20*2}; // "kit" for flying Baddie
 
 
 
-let  level1 = {
-  size:1300, // boundaries for the level (not actually implemented yet shh)
+let  level2 = {
+  size:1300,
+
+  cosmetics: [
+    0,2,4,6,8,14,18
+  ],
+
   plat: [ // list each platform here:
     //{ x: position, y: position, w: width }
 
@@ -32,7 +37,7 @@ let  level1 = {
     {x:75,y:35,w:5},
     {x:65,y:28,w:5}, // small step
 
-    {x:40,y:25,w:8}, //13 // left steps
+    {x:40,y:25,w:8}, //14 // left steps
     {x:32,y:18,w:5},
     {x:38,y:12,w:5},
     {x:32,y:6,w:5},
@@ -52,18 +57,22 @@ let  level1 = {
     {p:-1, x:500, r:450, kit:jB },
     {p:2, x:10, r:40, kit:jB },
     {p:6, x:10, r:40, kit:jB },
-  ],
-  cosmetics: [
 
+    {p:14, x:-5, r:245, kit:fB },
   ],
+
   player: {p:0,x:30},
-  babies:{count:3, pos:[15, -1],p:0,x:0}
+  babies:{count:1, pos:[15, -1],p:0,x:0}
 };
 
 //Object.freeze(level1);
 
-let  level2 = {
+let  level1 = {
   size:2500, // boundaries for the level (not actually implemented yet shh)
+  cosmetics: [
+    2, 5, 10, 8, 12, 13, 14, 17, 18, 20, 21
+
+  ],
   plat: [ // list each platform here:
     //{ x: position, y: position, w: width }
 
@@ -121,15 +130,11 @@ let  level2 = {
     {p:-1, x:1000, r:800, kit:fB },
   ],
 
-  cosmetics: [
-    //{p: platform ,x: distance from left }
 
-
-  ],
   player: {p:2,x:10},
-  babies:{count:3, pos:[5, 10, 13, 14, 18, 22],p:0,x:0}
+  babies:{count:1, pos:[5, 10, 13, 14, 18, 22],p:0,x:0}
 };
-
+/*
 let  level3 = {
   size:800, // boundaries for the level (not actually implemented yet shh)
   plat: [ // list each platform here:
@@ -157,14 +162,7 @@ let  level3 = {
 
   ],
   baddies: [ // list each baddie here:
-    /*
-    {
-    p: platform to place baddie on (-1 = ground)
-    x: distance from platform's left point ,
-    r: boundary ("radius" around x,y),
-    kit: {d:display,u:update} (use jB or fB)
-  }
-    */
+
     {p:5, x:30, r:40, kit:jB },
     {p:8, x:20, r:40, kit:fB },
     {p:8, x:100, r:45, kit:fB },
@@ -183,7 +181,7 @@ let  level3 = {
   babies:{count:2, pos:[11, 12, 13, 14, 15, 16, -1],p:0,x:0}
 };
 
-
+*/
 // EMPTY LEVEL OBJECT:
 /*
 let levelX = {
