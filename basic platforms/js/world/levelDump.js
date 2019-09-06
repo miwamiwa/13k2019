@@ -3,7 +3,7 @@ let fB = {t:"fly",w:20*2,h:20*2}; // "kit" for flying Baddie
 
 
 
-let  level2 = {
+let  level1 = {
   size:1300,
 
   cosmetics: [
@@ -21,13 +21,13 @@ let  level2 = {
     {x:45,y:60,w:10}, //2
     {x:38,y:58,w:5},
     {x:30,y:52,w:10},
-    {x:38,y:46,w:8},
+    {x:31,y:46,w:3},
 
     // right steps
     {x:80,y:60,w:10}, //6
     {x:92,y:58,w:5},
     {x:100,y:52,w:10},
-    {x:92,y:46,w:8},
+    {x:102,y:46,w:3},
 
     // middle platform
     {x:32,y:40,w:73}, //10
@@ -47,6 +47,8 @@ let  level2 = {
     {x:89,y:12,w:5},
     {x:95,y:6,w:5},
 
+    {x:66,y:46,w:3},
+
 
   ],
   baddies: [
@@ -56,18 +58,18 @@ let  level2 = {
     {p:16, x:30, r:300, kit:fB },
     {p:-1, x:500, r:450, kit:jB },
     {p:2, x:10, r:40, kit:jB },
-    {p:6, x:10, r:40, kit:jB },
+
 
     {p:14, x:-5, r:245, kit:fB },
   ],
 
   player: {p:0,x:30},
-  babies:{count:1, pos:[15, -1],p:0,x:0}
+  babies:{count:3, pos:[15, -1,21,5],p:0,x:0}
 };
 
 //Object.freeze(level1);
 
-let  level1 = {
+let  level2 = {
   size:2500, // boundaries for the level (not actually implemented yet shh)
   cosmetics: [
     2, 5, 10, 8, 12, 13, 14, 17, 18, 20, 21
@@ -112,9 +114,10 @@ let  level1 = {
   ],
   baddies: [ // list each baddie here:
         // step patrols
-    {p:3, x:30, r:100, kit:fB },
+
     {p:7, x:30, r:100, kit:fB },
-    {p:11, x:30, r:100, kit:fB },
+  { p: 21, x:-100, r:250, kit:fB},
+    {p:4, x:-50, r:100, kit:fB },
 
     // larger plat baddies
     {p:5, x:80, r:70, kit:jB },
@@ -125,14 +128,14 @@ let  level1 = {
       // ground patrols
     {p:-1, x:500, r:200, kit:jB },
     {p:-1, x:1000, r:200, kit:jB },
-    {p:-1, x:1500, r:200, kit:jB },
+
     {p:-1, x:2000, r:200, kit:jB },
-    {p:-1, x:1000, r:800, kit:fB },
+    {p:-1, x:1700, r:800, kit:fB },
   ],
 
 
   player: {p:2,x:10},
-  babies:{count:1, pos:[5, 10, 13, 14, 18, 22],p:0,x:0}
+  babies:{count:3, pos:[5, 10, 13, 14, 18, 22],p:0,x:0}
 };
 /*
 let  level3 = {

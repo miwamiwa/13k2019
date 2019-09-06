@@ -186,7 +186,9 @@ function updateGameArea() {
     updateAll(baddies);
     updateAll(babies);
 
-    displayText(timeLeft.toString(), canvasW-100,canvasH-100,0,"white",25,false)
+    displayText("sundown in "+timeLeft.toString(), 20,25,0,"white",25,false);
+    displayText("naps "+naps, canvasW-160,19,0,"white",19,false);
+    displayText("babies returned "+babiesReturned, canvasW-425,45,0,"white",19,false);
     continueLevel();
 
   }
@@ -233,9 +235,8 @@ function displayReturnPoint(){
 
   let posX = canvasW/2 - (player.x-startPos.x);
   let posY = startPos.y-yShift-80;
-  let score = babiesReturned + "/3 babies returned"
+
   displayImage(homeImg.a,homeImg.c, posX,posY,25,4,1);
   displayText("home", posX+25,posY-20,0,c[23],8,true);
-  displayText(score, posX+25,posY,0,c[23],8,true);
 
 }
