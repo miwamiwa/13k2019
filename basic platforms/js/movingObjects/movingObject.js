@@ -2,7 +2,7 @@
 class movingObject
 this is the class for the player, babies, jumping baddies and flying baddies.
 listens for (and runs) falls, jumps and knockbacks.
-updates X position using speedX value. the rest has to be added as arguments.
+updates X position using speedX value.
 
 arguments:
 - x,y: coordinates at start
@@ -14,35 +14,49 @@ arguments:
 class movingObject{
 
   constructor(x, y ,w,h,display,motion,index){
-
-    this.speedX = 0;
+    // position
     this.x = x;
     this.y = y;
+    // velocity
+    this.speedX = 0;
+    // size
     this.w =w;
     this.h=h;
-    this.jumping = false;
-    this.fallSpeed=0;
+    // display and update
     this.display = display;
     this.updateMotion = motion;
-    this.counter =0;
+    // position within parent array, or "player" if player
     this.index=index;
-    this.isCarried = false;
+    // count frames to trigger jumping or flying
+    this.counter =randI(100); // start at random value
+
+    // direction image is facing
     this.dir = 1;
+    // initial position
     this.init = {x:x,y:y};
+
+    this.jumping = false;
+    this.isCarried = false;
+    this.fallSpeed=0;
     if(y===0) this.flying = true;
     else this.flying = false;
   }
 
   // update(): updates position of and displays this object
   update(){
-    this.onScreen = false;
-    let xPos = canvasW/2 - (player.x-this.x);
-    let yPos = this.y-yShift;
-    if(inBox(xPos,yPos,0,0,canvasW,canvasH)) this.onScreen = true;
 
-    this.newPos();
+    // check if on screen
+    this.onScreen = false;
+    let pos = posOnScreen(this);
+    if(inBox(pos.x,pos.y,0,0,canvasW,canvasH)) this.onScreen = true;
+
+    // run motion function
     this.updateMotion();
-    this.display();
+    // update x,y
+    this.newPos();
+
+    // display only if on screen
+    if(this.onScreen||this.index==="player") this.display();
   }
 
  getDir(){
@@ -54,13 +68,10 @@ class movingObject{
     // if knocked back, update this.speedX
     if(this.knockedBack) this.calculateKnockBack();
 
-    // update x pos
-
-
+    // add speedX to x pos and constrain
     this.x = constrain(this.x+this.speedX,0,levelRange);
-
+    // constrain y so as not to drop below ground zero
     this.y = constrain(this.y,-5000,canvasH);
-//  else this.x += this.speedX;
 
     // if jumping, update y position
     if(this.jumping) this.calculateJump();
@@ -82,6 +93,9 @@ class movingObject{
       this.jumpForce = 20;
     }
   }
+
+  // forcejump()
+  // jump regardless of the conditions
 
   forceJump(force){
     jumpSFX(0.8,1.2,0.1);
@@ -114,7 +128,6 @@ class movingObject{
       this.y += this.fallSpeed;
       this.fallSpeed +=1;
       this.falling = true;
-        //if(this.index==="player") console.log("hi")
     }
     // fall end:
     else if(dist>0){
@@ -128,8 +141,6 @@ class movingObject{
       this.fallSpeed = 0;
       this.y += dist-1;
     }
-
-
   }
 
   // calculateKnockBack: updates speedX during knockback. also ends knockback.
@@ -154,12 +165,10 @@ class movingObject{
 
   // moveInBounds()
   // when called, updates speedX so that this object moves
-  // between boundaries. this.leftBoundX and this.rightBoundX variables
-  // aren't part of this.constructor(); they are added in manually after
-  // creating a new movingObject (as done in function newBaddie() in baddies.js)
+  // between boundaries or back towards them if off course
 
   moveInBounds(vel){
-    
+
     if(!this.knockedBack&&this.stunned!=true){
       if(this.x<=this.leftBoundX) this.speedX = vel;
       else if(this.x>=this.rightBoundX)  this.speedX = -vel;

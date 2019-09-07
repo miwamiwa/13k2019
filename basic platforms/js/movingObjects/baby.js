@@ -1,8 +1,3 @@
-/*
-so far babies don't do much but they can run around and be picked up and carried
-this script contains update() and display() functions that go in a new movingObject,
-and a function to add babies to the game.
-*/
 
 // newbaby(): to be called during level setup
 function newBaby(x,y){
@@ -23,6 +18,8 @@ function updateBaby(){
     this.x = player.x +20+player.dir*this.index*10;
     this.y = player.y - 55+this.index*5;
 
+    // if baby is carried and start position (home) is reached,
+    // drop off baby and increment babies returned.
     if(
       collideRectRect(
         canvasW/2 - (player.x-startPos.x),
@@ -39,6 +36,7 @@ function updateBaby(){
       this.isCarried = false;
       this.grabbable = false;
       this.returned = true;
+      // stop moving
       this.isExploring = false;
       this.x = startPos.x+startPos.w/2 - this.index*15;
       this.y = startPos.y-20;
@@ -46,9 +44,10 @@ function updateBaby(){
     }
   }
 
-  // if baby is not carried
+  //  if baby is not being carried
   else {
-    // if exploring, move around randomly
+
+    // if "exploring", move around randomly
     if(this.isExploring) this.speedX = constrain(
       this.speedX+-1+Math.random()*2, -2,2
     );
@@ -79,11 +78,14 @@ function displayBaby(){
   let tDist = -10;
   ctx = canvas.context;
   ctx.translate(0,tDist)
-
+  // get position relative to player
   let pos = posOnScreen(this);
+
+  // pick the right animation
   let loop = babyWalkLoop;
   if(this.isCarried) loop=babyCarriedLoop;
 
+  // display baby
   displayStringLoop(loop,pos.x,pos.y-this.h,15,2,this.dir);
   ctx.translate(0,-tDist)
 }

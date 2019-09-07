@@ -1,5 +1,5 @@
 // displayDudeBox()
-// to be included as argument in player's movingObject.
+// displays the player, mama ape
 
 function displayDudeBox(){
 
@@ -30,8 +30,8 @@ function displayDudeBox(){
 }
 
 
-// updatePlayerMotion(): see moveX().
-// to be included as argument in player's movingObject.
+// updatePlayerMotion():
+// update player speed according to keypresses
 
 function updatePlayerMotion(){
 
@@ -50,10 +50,6 @@ function updatePlayerMotion(){
 }
 
 // moveX() is called in keyPressed().
-// for some reason when i hold down a key, there's a lapse of time between the first
-// keypress event and the moment where the event starts to loop. so instead
-// of updating speedX on keypress, these booleans are triggered and speedX
-// gets updated in updatePlayerMotion().
 
 function moveX(dir) {
 

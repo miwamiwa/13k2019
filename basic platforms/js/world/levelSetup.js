@@ -9,6 +9,7 @@ function setupLevel(l){
   babies = [];
   currentPhase =0;
   sunPos = {x:canvasW/4,y:sunStart};
+  levelRange = l.size;
 
   // create new ground platforms
   for(let i=0; i<l.plat.length; i++){
@@ -21,7 +22,7 @@ function setupLevel(l){
     // add trees to the platforms marked in the cosmetics array
     if(l.cosmetics.includes(i)) {
       let rand = randI(3);
-      // .hasCos = 'has cosmetic item'. initially i wanted to add rocks too, 
+      // .hasCos = 'has cosmetic item'. initially i wanted to add rocks too,
       // hence why it's not called .hasTree
       ground[ ground.length-1 ].hasCos = { x:l.plat[i].w*2, t:rand };}
   };

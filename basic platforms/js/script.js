@@ -1,6 +1,6 @@
 var frameRate=30;
 // level length
-let sunDownFrame = frameRate*10;
+let sunDownFrame = frameRate*200;
 
 // canvas size
 let canvasH = 570;
@@ -10,6 +10,7 @@ let canvasW = window.innerWidth;
 let sunStart=canvasH*0.5;
 let sunPos = {x:canvasW/4,y:sunStart};
 
+var context;
 var player;
 var bgm;
 let ground = [];
@@ -39,6 +40,7 @@ let level =0;
 let naps =0;
 let thankYouText = "";
 let timeLeft =0;
+let levelRange=0;
 
 // click box
 let clickA={x:0,y:0,w:200,h:50};

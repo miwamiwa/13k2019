@@ -5,12 +5,17 @@ function displayFlyingBaddie(){
   let tDist = -this.h;
   ctx.translate(0,tDist)
 
+  // get x,y pos and direction
   let pos = posOnScreen(this);
   this.getDir();
+
+  // pick animation
   let loop = birdStillLoop;
-
-  if(this.flying) loop=birdFlapLoop;
-
+  if(this.flying) {
+    loop=birdFlapLoop;
+    this.dir = -this.dir;
+  }
+  // display the bird
   displayStringLoop(loop,pos.x,pos.y,20,2,this.dir);
 
   ctx.translate(0,-tDist)
