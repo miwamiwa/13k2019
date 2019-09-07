@@ -1,6 +1,6 @@
 var frameRate=30;
 // level length
-let sunDownFrame = frameRate*200;
+let sunDownFrame = frameRate*10;
 
 // canvas size
 let canvasH = 570;

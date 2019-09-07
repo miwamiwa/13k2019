@@ -33,16 +33,22 @@ function mousePressed(){
   else if(currentScreen==="gameover") {
   //  if game over screen, reset game on click
     Object.assign(currentLevel, level1);
-    currentText = introTxt;
     level = 0;
-    currentScreen="wakeplayer"
-    introSeq =0;
     naps =0;
     currentPhase =0;
-    player.sleeping = false;
     gameOver = false;
+
+    // reset text
+    currentText = introTxt;
+    introSeq =0;
+
+    currentScreen="wakeplayer" // enable start round on click
+    player.sleeping = false;
     trace=0;
-    setupLevel(currentLevel);
+
+    // start intro text
+    shootTextSequence();
+    setupLevel(currentLevel); // setup level 1
   }
 
   else if(currentScreen==="wakeplayer"||currentScreen==="introscreen") {

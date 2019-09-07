@@ -1,4 +1,8 @@
+/*
+image dump:
+images yo 
 
+*/
 let c = [
   "#000000",//0
   "#ffd738",
@@ -185,7 +189,6 @@ let tigerWalkLoop = [
 ];
 
 
-
 let birdStillLoop = [
   {
     s:"+61,71*4<41*F71)H61(H90G*8.G+6Q2-F+P6R21P6S20P6T2.Q6U.Q7U,S8T+S9S*T(9Q*S+;*P.F90F(F)F61F*G,",
@@ -199,18 +202,9 @@ let birdStillLoop = [
   {
     s:"1111+61,71*4<41*F71)H8P/H9Q-H*7R,F,6T16U/P7U-Q8U,R8T+S9S+S:R*S*9P3*Q,;1F(2F2(31)F(G-",
     c:[false,c[11],c[14],c[12],c[13]]
-
   },
 ];
-/*
 
-  // bird
-  "#1F29C1", // 11: deep blue
-  "#FF6638", // 12 beak orange
-  "#EAFF30", // 13 wing yellow
-  "#FFFFFF", // 14 white
-  "#f7d92a" //20 wing shade
-*/
 let birdFlapLoop = [
   {
     s:"11051,71*91)3<4<2.G+4P4(H)J2(3R2(I(HZH4R2HZJ[G5Q2G[K[F5Q2F[L([5Q2[(H(H)Z6P2Z)H(H*6P2*H(H*8*G*G*7+G*F+7+F/5P21+Q)P1+Q*P1*Q*P1",
