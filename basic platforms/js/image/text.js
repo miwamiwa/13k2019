@@ -20,3 +20,30 @@ function displayText(text,x,y,w,colour,stretch,wub){
 
   }
 }
+
+let introTxt = [
+  "they call you mama ape.",
+  "your three kiddos that is.",
+  "mama ape likes her naps. ",
+  "three times a day.",
+  "nothing less. ",
+  " ",
+
+  "everytime you wake,",
+  "you find your three rascals are gone",
+  "you cannot sleep again",
+  "until they are back home.",
+  " ",
+  "those baby apes",
+  "are helpless on their own",
+  "so you will have to haul them ",
+  "on your back,",
+  "knocking back the junglefolk",
+  "that block your way.",
+  " ",
+  "in short",
+  "by sundown, everyone must be back home",
+  "and you must have thrice napped",
+  " ",
+  "click to wake up!"
+];

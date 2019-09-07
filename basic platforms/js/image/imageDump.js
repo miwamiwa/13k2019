@@ -61,11 +61,11 @@ let walkLoop = [
     c:[false,c[15],c[17],c[16],c[18],c[0],c[19]]
   },
   {
-    s:"11111111.311(3=2G1.2BF1)5DG.P4E?F,ZRGE?F+PdQGnDF?F*FRGnFAH?F)SHnG@G@F)RHpF2?FBF*JoF2?GAF-FoG2@FAF-pG2@FB,FoF(G2?Fo?F,FoF)F2>Go?F,Fo*F2>FoF>F,Fo+F2=FoG>F,Fo,F2<oF(F=F,Gn-F2<oF(F=F,H-HnF)=F-H,InF)G1,HnF)H,",
+    s:"11111111.311(3=2G1.2BF1)5DG.P4E?F,SGE?F+PZQGdDF?F*FRGdFAH?F)SHdG@G@F)RHfF2?FBF*JeF2?GAF-FeG2@FAF-fG2@FB,FeF(G2?Fe?F,FeF)F2>Ge?F,Fe*F2>FeF>F,Fe+F2=FeG>F,Fe,F2<eF(F=F,Gd-F2<eF(F=F,H-HdF)=F-H,IdF)G1,HdF)H,",
     c:[false,c[15],c[17],c[16],c[18],c[0],c[19]]
   },
   {
-    s:"11111111111(61/3@F1+4CG0P3E>G-RGE?,PZQGE?F+FRGdE>F*SHdE?F)RHe2BF@F+HeF2AG@F-FeF2@GBF,FeF2?GeAF,f2?GfF@F+FeF2>GfG?F,FeF2>GfF?F-fF2=)f(F>F-FeG=*FeF?-HdF2=*FeF>.G)F=F*GdG<0G(I+J1)H,Id.",
+    s:"11111111111(61/3@F1+4CG0P3E>G,SGE?,PZQGE?F+FRGdE>F*SHdE?F)RHe2BF@F+HeF2AG@F-FeF2@GBF,FeF2?GeAF,f2?GfF@F+FeF2>GfG?F,FeF2>GfF?F-fF2=)f(F>F-FeG=*FeF?-HdF2=*FeF>.G)F=F*GdG<0G(I+J1)H,Id.",
     c:[false,c[15],c[17],c[16],c[18],c[0],c[19]]
   },
   {
@@ -188,16 +188,16 @@ let tigerWalkLoop = [
 
 let birdStillLoop = [
   {
-    s:"+61,71*4<41*F71)H61(H90G*8.G+2Q3Q2-F+P6R21P2R2S20P6T2.Q3Q2U.Q7U,S2R4T+S9S*T(9Q*S+;*P.F90F(F)F61F*G,",
+    s:"+61,71*4<41*F71)H61(H90G*8.G+6Q2-F+P6R21P6S20P6T2.Q6U.Q7U,S8T+S9S*T(9Q*S+;*P.F90F(F)F61F*G,",
     c:[false,c[11],c[14],c[12],c[13]]
   },
   {
-    s:"11+61,71*<3F41*<71)>80?9/=*7Q-=+2Q3S,<+P6T0P2R2U/P7U2,Q3R3U,R8T+S3R3T*T(9Q2)T*;2)Q-;1<)<61=)<*2)",
-    c:[false,c[11],c[12],c[14],c[13]]
+    s:"11+61,71*4<41*F71)H80I9/G*7Q-G+6S,F+P6T0P6U/P7U2,Q8U,R8T+S8T*T(9Q2)T*;2)Q-;1F)F61G)F*2)",
+    c:[false,c[11],c[14],c[12],c[13]]
 
   },
   {
-    s:"1111+61,71*4<41*F71)H8P/H9Q-H*7R,F,2Q3T16U/P2R3U-Q8U,R3Q4T+S9S+S4R4R*S*9P3*Q,;1F(2F2(31)F(G-",
+    s:"1111+61,71*4<41*F71)H8P/H9Q-H*7R,F,6T16U/P7U-Q8U,R8T+S9S+S:R*S*9P3*Q,;1F(2F2(31)F(G-",
     c:[false,c[11],c[14],c[12],c[13]]
 
   },
@@ -266,8 +266,8 @@ let groundImg =  {
     w:40
   },
   {
-    s:"11)2=/A*?+4?+E?+5?+>2=FA+3F2A*@2F?,3F2B+AH7G3*@+>3<2I3G3->*=2?)H2G31*B*H4*?.@,2G3+>0?,2F4,=1>)>2G3,21->2G3+2112G5)2112G9<31>*2H2,=/E2H2+>02H=2=F2G2+>1)2K2G31*A8F2F21+>3=)4F2F21,<3=,2F2F21/>+611,2F411,2G411*2F2F2F211*2F2F411*2F2F411)5F2F211(3F2I31",
-      c:[false,c[16],c[24],c[19]],
+    s:"11*3/7*5-<5+;5-=5+7F7-G7*6G5.G8+7H>*G=*6+4=K=G=-4*8)K=1*8*I=*5.6,<G=+405,G>,314)4<G=,<1-4<G=+<11<G?)<11<GC2=14*<H<,3/;<H<+40I3<3I<+41)L<G<1+7BH<1+4=3)>H<1,2=3,G<G1/4+H=11,H=11,H>11*I>11*G<F>11*I>11)?I11(=K=1",
+      c:[false,c[24],c[16],c[19]],
     w:30
   },
   {
