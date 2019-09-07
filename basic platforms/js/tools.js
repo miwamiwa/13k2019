@@ -39,50 +39,52 @@ function collideRectRect(x, y, w, h, x2, y2, w2, h2) {
   return false;
 };
 
+// displayall()
+// fire the display() function of everything in an array
 function displayAll(input){
   for(let i=0; i<input.length; i++){
     input[i].display();
   }
 }
 
+// updateall()
+// fire the update() function of everything in an array
 function updateAll(input){
-
   for(let i=0; i<input.length; i++){
     input[i].update();
   }
 }
 
+// randI()
+// return a random integer below a maximum value
 function randI(max){
   return Math.floor(Math.random()*max);
 }
 
+// flrand()
+// return a random integer between 2 values
 function flRand(min,max){
   return Math.floor( min+Math.random()*(max-min) );
 }
 
+// constrain()
+// constrain input between min and max values
 function constrain(input,min,max){
    return Math.min(Math.max(input, min), max);
 }
 
+// pushcol()
+// set color values of all the elements in an image loop array to
+// one same thing. doesn't work for all my loops but it saves some
+// characters nonetheless
 function pushCol(colors,obj){
   for(let i=0; i<obj.length; i++){
     obj[i].c = colors;
   }
 }
 
-
-function updateAngle(pos,speed,maxDisplacement,min,max,phase){
-  //  if(player.flip>0)
-  return constrain( (pos + phase* Math.sin( frame / speed )*maxDisplacement), min,max);
-  //  else return constrain( (pos + phase* Math.sin( frame / speed )*maxDisplacement), -max,-min);
-}
-
-
-function addLine(x,y,x2,y2){
-  ctx.moveTo(x,y);
-  ctx.lineTo(x2,y2);
-}
-
+// disttoground()
+// return distance to ground for an object of with w at point x,y
 
 function distToGround(x,y,w){
 
@@ -101,6 +103,10 @@ function distToGround(x,y,w){
 }
 
 
+// getxyonplat()
+//
+// called during level setup.
+// input a platform and distance from left side, return x,y coordinate.
 
 function getXYOnPlat(input,platforms){
   let x,y;
