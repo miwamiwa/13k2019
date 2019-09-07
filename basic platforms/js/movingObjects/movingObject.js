@@ -48,7 +48,7 @@ class movingObject{
     // check if on screen
     this.onScreen = false;
     let pos = posOnScreen(this);
-    if(inBox(pos.x,pos.y,0,0,canvasW,canvasH)) this.onScreen = true;
+    if(inBox(pos.x,pos.y,-40,0,canvasW+40,canvasH+40)) this.onScreen = true;
 
     // run motion function
     this.updateMotion();
