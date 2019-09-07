@@ -42,7 +42,7 @@ function mousePressed(){
     currentText = introTxt;
     introSeq =0;
 
-    currentScreen="wakeplayer" // enable start round on click
+    currentScreen="introscreen" // enable start round on click
     player.sleeping = false;
     trace=0;
 

@@ -78,6 +78,11 @@ class movingObject{
     // if not flying or carried, check if falling and update y position
     else if(!this.flying&&!this.isCarried) this.calculateFall();
 
+    if(this.index==="player"){
+      let limit = canvasH*0.5;
+      if(this.y>limit)  yShift = 0;
+      else yShift=this.y-limit;
+    }
   }
 
   // startjump()

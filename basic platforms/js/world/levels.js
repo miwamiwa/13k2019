@@ -51,7 +51,7 @@ function nextPhase(){
       case 1:   currentLevel  = level2; break;
       case 2:
       // if level2 is complete, game over, no more levels
-      thankYouText = "congrats! you've reached the end. thank you for playing.\n";
+      thankYouText = "congrats! you have reached the end. thank you for playing.";
       gameIsOver();
       break;
     }

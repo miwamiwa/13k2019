@@ -49,7 +49,7 @@ function setupLevel(l){
   // add extra tiles throughout ground 0 with trees on em
   for(let i=0; i<l.size/150; i++){
     let rand = randI(3)
-    ground.push(new groundTile( i*150+flRand(0,50), canvasH, 10 ));
+    ground.push(new groundTile( i*200+flRand(0,50), canvasH, 10 ));
     ground[ ground.length-1 ].hasCos = { x:0, t:rand };
   }
 

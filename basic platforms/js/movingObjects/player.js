@@ -9,10 +9,6 @@ function displayDudeBox(){
   if(currentScreen==='wakeplayer') tDist -= 150;
   ctx.translate(0,tDist)
 
-  let limit = canvasH*0.5;
-  if(this.y>limit)  yShift = 0;
-  else yShift=this.y-limit;
-
   this.getDir();
   let stretch = 3;
   let loop = walkLoop;

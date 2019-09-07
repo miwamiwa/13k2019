@@ -182,13 +182,15 @@ function updateGameArea() {
     // same time and break your years
     chirping = false;
 
+    player.updateMotion();
+    player.newPos();
     displayBackground(); // update and display background
     updateAll(particles); // display any particles
     displayGround(); // display ground 0
     displayAll(ground); // display platforms
     displayReturnPoint(); // display "home" point
 
-    player.update(); // display player
+    player.display(); // display player
     updateAll(baddies); // update and display tigers and birds
     updateAll(babies); // update and display babies
 

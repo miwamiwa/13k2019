@@ -8,17 +8,20 @@ class groundTile{
 
   display(){
 
+    let pos = posOnScreen(this);
+
       // display ground tile
-      let xPos = canvasW/2 - (player.x-this.x)
       for(let i=0; i<this.w/20; i++){
-        displayImage( groundImg.a, groundImg.c, xPos+i*20,this.y-yShift-4, 5,4,1 )
+        displayImage( groundImg.a, groundImg.c, pos.x+i*20,this.y-yShift-4, 5,4,1 )
       }
 
-      if(this.hasCos!=false){ // display nest if there is a nest
+      if(this.hasCos!=false && inBox(pos.x,pos.y,-80,0,canvasW+80,canvasH+80) ){ 
       let tree = trees[this.hasCos.t];
         let stretch = 3;
-        displayTree(tree, xPos+this.hasCos.x, this.y-yShift-tree.w*stretch,stretch)
+        displayTree(tree, pos.x+this.hasCos.x, this.y-yShift-tree.w*stretch,stretch)
       }
+
+
 
   }
 }
