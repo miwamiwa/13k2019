@@ -17,12 +17,14 @@ canvas {
 }
 </style>
 </head>
-<body onload="startGame()" onkeypress="keyPressed()" onkeyup="keyReleased()">
+<body onload="startGame()" >
 <img src="assets/images/walk2.png" alt="" id="image">
 
-<p>image packing/unpacking test
-<br> above: animation as displayed in game (doesn't update when files are updated..yet?)
-<br> below: animation using images in the loopImages[] array at line 1 of looper.js (updates when images are updated which is nice while designing)
+<p> image packing happens here! this page contains two tools used in development:
+<br> - set an image to pack in index.html (change of src of id="image"). check console for packing result.
+<br> - visualize .png loops below. set files to loop in js/looper.js.
+<br>
+<br> above are some initial animation experiments.
 </p>
 </body>
 </html>
