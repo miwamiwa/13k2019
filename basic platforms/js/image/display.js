@@ -1,41 +1,54 @@
 /*
-This is where unpacked strings get displayed.
+This is where unpacked image-strings get displayed.
 */
+
+
+// displaystringloop()
+// display image from an image loop according to current frame.
 
 function displayStringLoop(input,x,y,w,stretch,dir){
 
+  // pick which image to display
   let index = Math.floor(frame/6 % input.length);
 
+  // inputs:
+
   displayImage(
-    input[index].a, //input image data
-    input[index].c,
-    x,y, //input top-left corner x,y position
-    w, // input image size (must be square.. could update this to support rectangles if needed)
-    stretch, // input stretch factor. 1 = normal size
-    dir
+    input[index].a, // a = unpacked pixels array
+    input[index].c, // c = color values array
+    x,y, //  top-left corner x,y position
+    w, // original image width
+    stretch, // pixel stretch (width&height of each pixel)
+    dir // direction. 1 is normal, -1 is reversed on the x axis.
   );
 }
 
 
+// displayimage()
+// see inputs description above.
+// displays an image by drawing out a fillRect for each pixel.
 
 function displayImage(input,c,x,y,w,stretch,dir){
+
   ctx = canvas.context;
 
+  // for each pixel
   for(let i=0; i<input.length; i++){
 
     if(c[input[i]]!=false){
 
-      if(i>trace) {
-        trace=i;
-        return;
-      }
+      if(i>trace) { // "tracing" effect:
+        trace=i;    // stop drawing before this next pixel if its index value matches
+        return;     // the current "trace" value. "trace" gets incremented
+      }             // in the main game loop and is reset on screen changes.
+                    // that way images are drawn from top to bottom when they first appear.
 
       ctx.beginPath();
       ctx.fillStyle = c[input[i]];
       let fact = 0
-      if(dir===-1) fact=w*stretch;
+      if(dir===-1) fact=w*stretch; // var fact is used to reverse the image as needed
 
-        ctx.fillRect(
+        ctx.fillRect( // draw this pixel
           x+ fact  +dir*(i%w)*stretch,
           y+Math.floor(i/w)*stretch,
           dir*(stretch+0.5),

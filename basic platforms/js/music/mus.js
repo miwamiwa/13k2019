@@ -26,7 +26,12 @@ function startSound(){
   context = new AudioContext();
 }
 
-// a bourree by bach. thank you Max Scebba for the suggestion!
+// Bourée I (molto allegro) from JS Bach's English Suite II. thank you Max Scebba for the suggestion!
+// note on these strings:
+// here, each character represents 1 number (1 or 2 digits), not two 1-digit numbers like in the image unpacking process.
+// also, characters are converted to note values as they are played - in function playVoice() - not during preload.
+// since it's maximum 2 notes being played at a time, i saw no need to add separate text to unpack these.
+
 var voices = [
   {
     notes: "UPNPQPNPIIUPNPQPNPNLNLNPNLNLKLKLNLNPNLPNLKLNLKLILKNLKIPLKIPLKINLKINKIGNKIGNKIGLKIGLIGFLIGFLIGFKIGFKGFGIGFGFDFGIKFGIFGIGFIGDGKGKPKPSPSUSRPRPOWRPOWSRPWSRPWOMKWNLKNPRKOP",
@@ -48,7 +53,7 @@ function  runBGM(){
 
   // play lower voice
   playVoice(1,organWaveAt,0.25,10,0.19,0.5)
-  // play top voice. has a modulating comb filter 
+  // play top voice. has a modulating comb filter
   playVoice(0,organWaveAt,0.25,40+frame%3000,0.45,0.3);
   // play random drums
   playDrum();
@@ -57,6 +62,7 @@ function  runBGM(){
 }
 
 // playdrum()
+// this triggers random drums:
 // play random drum hits on 16th, 8th or quarter notes using a weighted chance system
 
 function playDrum(){
@@ -85,8 +91,11 @@ function checkTime(fact){
 }
 
 // chanceToplay()
-// play a low, mid or high drum note.
-// different drum hit sounds are setup here.
+// trigger a low, mid or high drum note.
+// odds are given by values t1, t2 and t3.
+// var chance determines whether to play a note or not at all.
+// var stim is a random value i like to call stimulus.
+// returns the characteristics of the drum sound for buffering.
 
 function chanceToPlay(stim,chance,t1,t2,t3){
   if(stim<chance){
@@ -122,7 +131,7 @@ function playVoice(input,waveGen,fact,comb,length,vol){
 }
 
 // loadAndPlay()
-// create an array representation of the sound to play then play it.
+// create an array representation of a sound to play then trigger playing it.
 
 function loadAndPlay(waveGen,comb,seconds,volume,tone,isDrum){
 
@@ -180,8 +189,11 @@ function loadSlidingSound(waveGen,comb,seconds,volume,tone,tone2){
   playSound(arr)
 }
 
+// playsound()
+// taken from https://developer.mozilla.org/en-US/docs/Web/API/BaseAudioContext/createBufferSource ,
+// as well as the stackoverflow question below.
+// buffers a sound array and plays it.
 
-// taken from https://developer.mozilla.org/en-US/docs/Web/API/BaseAudioContext/createBufferSource
 function playSound(arr) {
   var buf = new Float32Array(arr.length)
   for (var i = 0; i < arr.length; i++) buf[i] = arr[i]
@@ -193,14 +205,19 @@ function playSound(arr) {
   source.start(0);
 }
 
+// sinewaveat()
 // grabbed from exebook's answer in stackoverflow:
 // https://stackoverflow.com/questions/34708980/generate-sine-wave-and-play-it-in-the-browser
 // used this as a model for to create the wave generating functions below.
+// this generates a sine wave.
+
 function sineWaveAt(sampleNumber, tone) {
   let sampleFreq = context.sampleRate / tone
   return Math.sin(sampleNumber / (sampleFreq / (Math.PI*2)));
 }
 
+// noiseat()
+// this combines a random value with a sawtooth-like wave to create pitched drums.
 
 function noiseAt(sampleNumber, tone) {
   let sampleFreq = context.sampleRate / tone;
@@ -211,10 +228,21 @@ function noiseAt(sampleNumber, tone) {
   else return (-noiseAmp/2 + Math.random()*noiseAmp + wavAmp*roundedSineWaveAt(sampleNumber,tone))*(1-amp);
 }
 
+// roundedsinwaveat()
+// simple variation on a sine wave that returns a sawtooth-like thing
+
 function roundedSineWaveAt(sampleNumber, tone) {
   let sampleFreq = context.sampleRate / tone
   return Math.round(Math.sin(sampleNumber / (sampleFreq / (Math.PI*2))));
 }
+
+// organwaveat()
+// combines harmonics at a given frequency to generate an "organ sound".
+// it's actually a tiny sample of a violin waveform. the table of harmonics I grabbed from here:
+// https://www.chegg.com/homework-help/questions-and-answers/waveform-extracted-sound-file-violinwav-shown-fig-1-lot-features-make-problem-simpler-with-q32940112
+// a violin sound isn't periodic, but an organ is, and the harmonics of its registers
+// are traditionally designed to match orchestral timbres.
+// thus why this "violin" sounds like an organ. 
 
 function organWaveAt(sampleNumber,transpose){
 
