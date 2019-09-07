@@ -271,6 +271,7 @@ function displayReturnPoint(){
   let posY = startPos.y-yShift-80;
 
   displayImage(homeImg.a,homeImg.c, posX,posY,25,4,1);
-  displayText("home", posX+25,posY-20,0,c[23],8,true);
+  displayText(" vv return point vv ", posX-55,posY-20,0,c[23],8,true);
+  displayText("press a, d and space to move.", posX-105,posY-40,0,c[23],8,true);
 
 }
