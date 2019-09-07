@@ -27,9 +27,9 @@ let introTxt = [
   "three times a day.",
   "nothing less. ",
   " ",
-  "the three rascals invevitably run off",
-  "everytime you take a snooze.",
-  "once you wake,",
+
+  "everytime you wake,",
+  "you find your three rascals are gone",
   "you cannot sleep again",
   "until they are back home.",
   " ",
