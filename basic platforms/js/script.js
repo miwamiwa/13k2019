@@ -1,6 +1,6 @@
 var frameRate=30;
 // level length
-let sunDownFrame = frameRate*200;
+let sunDownFrame = frameRate*300;
 
 // canvas size
 let canvasH = 570;
@@ -12,7 +12,6 @@ let sunPos = {x:canvasW/4,y:sunStart};
 
 var context;
 var player;
-var bgm;
 let ground = [];
 let babies = [];
 let baddies = [];
@@ -256,7 +255,7 @@ function updateGameArea() {
   }
 
   // run background music
-  runBGM();
+ runBGM();
 
   // increment image tracing and game frame values
   trace+=traceSpeed;
@@ -273,7 +272,8 @@ function displayReturnPoint(){
   let posY = startPos.y-yShift-80;
 
   displayImage(homeImg.a,homeImg.c, posX,posY,25,4,1);
-  displayText(" vv return point vv ", posX-55,posY-20,0,c[23],8,true);
-  displayText("press a, d and space to move.", posX-105,posY-40,0,c[23],8,true);
+  displayText(" vv return point vv ", posX-55,posY-30,0,c[23],8,true);
+  displayText("press a and d to move, space to jump,", posX-150,posY-60,0,c[23],8,true);
+  displayText("and w to wiggle off some load.", posX-105,posY-45,0,c[23],8,true);
 
 }

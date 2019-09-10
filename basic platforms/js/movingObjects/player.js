@@ -1,3 +1,22 @@
+function wiggle(){
+  if(player.babiesCarried>0){
+    let baby = 0;
+    while(!babies[baby].isCarried) baby = randI(3);
+      monkeyCrySFX();
+      babies[baby].isCarried = false;
+      babies[baby].isExploring = true;
+      babies[baby].grabbable = false;
+      player.babiesCarried --;
+      player.wiggling = true;
+      setTimeout( function(){
+        babies[baby].grabbable = true;
+        player.wiggling = false;
+      },900);
+
+  }
+
+}
+
 // displayDudeBox()
 // displays the player, mama ape
 
@@ -13,7 +32,8 @@ function displayDudeBox(){
   let stretch = 3;
   let loop = walkLoop;
 
-  if(this.sleeping){
+  if(this.wiggling) loop = jumpLoop
+  else if(this.sleeping){
     loop=sleepLoop;
     stretch=4;
   }
@@ -31,6 +51,8 @@ function displayDudeBox(){
 
 function updatePlayerMotion(){
 
+  let weight = this.babiesCarried/10;
+
   if(!this.knockedBack && !this.sleeping){
     if(!inputLeft&&!inputRight) {
       if(player.speedX+stopSpeed<0) player.speedX+=stopSpeed;
@@ -38,9 +60,9 @@ function updatePlayerMotion(){
       else player.speedX = 0;
 
     }
-    else if(inputRight) player.speedX += 0.5;
-    else if(inputLeft) player.speedX -= 0.5;
-    player.speedX = constrain(player.speedX,-10,10);
+    else if(inputRight) player.speedX += 0.5 - weight;
+    else if(inputLeft) player.speedX -= 0.5 - weight;
+    player.speedX = constrain(player.speedX,-(10-2*this.babiesCarried),10-2*this.babiesCarried);
   }
   else if(this.sleeping) this.speedX = 0;
 }

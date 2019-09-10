@@ -16,6 +16,7 @@ function keyPressed(){
     case 97: moveX(-1); break;//left A  97
     case 100: moveX(1); break;// right D 100
     case 32: if(!player.sleeping) player.startJump(player); break; // jump SPACE 32
+    case 119: wiggle(); break;
   }
 }
 

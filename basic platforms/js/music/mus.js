@@ -15,7 +15,7 @@ let organ= [
 ];
 
 // length of an 8th note in frames
-let lengthOf8 = 7;
+let lengthOf8 = 8;
 // time counter
 let time =0;
 
@@ -73,9 +73,9 @@ function playDrum(){
   // if time = quarter note
   if(checkTime(2)) drum=chanceToPlay( stim ,1, 7,2,1 );
   // if time = eight note
-  else if(checkTime(1)) drum=chanceToPlay( stim ,0.4, 3,2,1 );
+  else if(checkTime(1)) drum=chanceToPlay( stim ,0.5, 3,2,1 );
   // if time = 16th note
-  else if(checkTime(0.5)) drum=chanceToPlay( stim ,0.4,0,2,8 );
+  else if(checkTime(0.5)) drum=chanceToPlay( stim ,0.9,0,2,8 );
 
   // if a drum note is returned, play it
   if(drum!=undefined){
@@ -119,6 +119,12 @@ function playVoice(input,waveGen,fact,comb,length,vol){
     let seconds = noteLength*length,
     tone = Math.pow(2, ( voice.notes.charCodeAt( index )-64)/12)*fact
     // play the note
+    if(input===0&&player.babiesCarried>0) {
+      waveGen = sineWaveAt;
+      vol =0.05;
+      tone = tone*499.98*Math.pow(2,player.babiesCarried);
+      comb =player.babiesCarried*50;
+    }
     loadAndPlay(waveGen,comb,seconds,vol,tone,false);
 
     // set next time at which to trigger next note
@@ -242,7 +248,7 @@ function roundedSineWaveAt(sampleNumber, tone) {
 // https://www.chegg.com/homework-help/questions-and-answers/waveform-extracted-sound-file-violinwav-shown-fig-1-lot-features-make-problem-simpler-with-q32940112
 // a violin sound isn't periodic, but an organ is, and the harmonics of its registers
 // are traditionally designed to match orchestral timbres.
-// thus why this "violin" sounds like an organ. 
+// thus why this "violin" sounds like an organ.
 
 function organWaveAt(sampleNumber,transpose){
 

@@ -96,6 +96,7 @@ class movingObject{
       else if(this.onScreen) jumpSFX(0.8,1.2,0.1);
       this.jumping = true;
       this.jumpForce = 20;
+      if(this.babiesCarried>=0) this.jumpForce = 22-2*this.babiesCarried;
     }
   }
 

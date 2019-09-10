@@ -34,7 +34,7 @@ let  level1 = {
     // steps leading up
     {x:55,y:35,w:5}, //11
     {x:75,y:35,w:5},
-    {x:65,y:28,w:5}, // small step
+    {x:62.5,y:28,w:10}, // small step
 
     {x:40,y:25,w:8}, //14 // left steps
     {x:32,y:18,w:5},
@@ -47,6 +47,7 @@ let  level1 = {
     {x:95,y:6,w:5},
 
     {x:66,y:46,w:3}, // extra step at center of middle platform
+    {x:65,y:72,w:5}, // extra top step 
   ],
 
   baddies: [
