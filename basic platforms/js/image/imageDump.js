@@ -61,6 +61,10 @@ let c = [
   "#FFD907" // sun color 26
 
 ];
+let cloudImg = {
+  s:"-4(6(3."
+//  c:[false,c[8]]
+}
 
 let sunLoop = [
   {s:"+2,5)8(8(8(8(8)6)"},

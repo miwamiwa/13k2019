@@ -78,6 +78,30 @@ function drawSun(){
     1);
 }
 
+class cloud{
+  constructor(index){
+    console.log("cloud")
+    this.x=player.x+flRand(-200,200);
+    this.y=player.y+flRand(-100,100);
+    this.col = [false,"rgb(255,255,255)"];
+    this.timer=0;
+  }
+  update(){
+    this.x--;
+    this.y+= flRand(-4,4);
+    this.timer++;
+    let co = 255-this.timer;
+    this.col[1] = "rgb("+co+","+co+",255)"
+    let pos = posOnScreen(this);
+    displayImage(cloudImg.a,this.col,pos.x,pos.y,5,10,1);
+    if(this.timer>200) killCloud(this.index);
+  }
+}
+
+function killCloud(index){
+  clouds.splice(index,1);
+}
+
 
 // drawbg()
 //

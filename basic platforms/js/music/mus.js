@@ -125,6 +125,8 @@ function playVoice(input,waveGen,fact,comb,length,vol){
       tone = tone*499.98*Math.pow(2,player.babiesCarried);
       comb =player.babiesCarried*50;
     }
+
+    if(input===0) clouds.push(new cloud(clouds.length))
     loadAndPlay(waveGen,comb,seconds,vol,tone,false);
 
     // set next time at which to trigger next note
