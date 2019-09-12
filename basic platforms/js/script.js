@@ -44,6 +44,7 @@ let levelRange=0;
 
 // click box
 let clickA={x:0,y:0,w:200,h:50};
+let clickB={x:0,y:0,w:200,h:50};
 // screen to display
 let currentScreen = "start";
 let currentText = introTxt;
@@ -85,9 +86,11 @@ function preload(){
   // start canvas
   canvas.start();
 
-  // place click box
-  clickA.x = canvasW/2-clickA.w/2;
-  clickA.y = canvasH/2+50;
+  // place click boxes
+  clickA.x = canvasW/2-clickA.w;
+  clickA.y = canvasH/2+100;
+  clickB.x = canvasW/2+40;
+  clickB.y = clickA.y;
 
   // run start screen animation
   gameLoop = setInterval(function(){
@@ -111,15 +114,17 @@ function displayStartScreen(){
   let c2 = 165+Math.sin(frame/100)*60;
   // display title
   displayText("ape naps",canvasW/2-150, canvasH/2-50, 0, "rgb("+c1+","+c2+","+50+")", 35,true);
-
+  let posY = clickA.y+15;
   // display click box text
-  displayText("click to",clickA.x, clickA.y, 0, "black", 20,false);
-  displayText("start",clickA.x+40, clickA.y+25, 0, "black", 20,false);
+  displayText("click to start",clickA.x+50, clickA.y-50, 0, "black", 20,false);
+  displayText("timed",clickA.x+40, posY, 0, "black", 20,false);
+  displayText("practice",clickB.x+3, posY, 0, "black", 20,false);
 
   // display click box
   ctx.beginPath();
   ctx.strokeStyle ="black";
   ctx.rect( clickA.x,clickA.y,clickA.w,clickA.h );
+  ctx.rect( clickB.x,clickB.y,clickB.w,clickB.h );
   ctx.stroke();
   ctx.closePath();
 
@@ -196,7 +201,7 @@ function updateGameArea() {
     updateAll(babies); // update and display babies
 
     // display time, naps taken and babies returned
-    displayText("sundown in "+timeLeft.toString(), 20,25,0,"white",25,false);
+    if(timedRun) displayText("sundown in "+timeLeft.toString(), 20,25,0,"white",25,false);
     displayText("naps "+naps, canvasW-160,19,0,"white",19,false);
     displayText("babies returned "+babiesReturned, canvasW-425,45,0,"white",19,false);
 

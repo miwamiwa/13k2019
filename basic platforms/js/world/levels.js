@@ -5,7 +5,7 @@
 function continueLevel(){
 
   if(babiesReturned>=babies.length) nextPhase();
-  if(timeLeft<=0) gameIsOver();
+  if(timeLeft<=0&&timedRun) gameIsOver();
 }
 
 

@@ -13,8 +13,12 @@ function wiggle(){
         player.wiggling = false;
       },900);
 
+  } else {
+    player.wiggling = true;
+    setTimeout( function(){
+      player.wiggling = false;
+    },400);
   }
-
 }
 
 // displayDudeBox()

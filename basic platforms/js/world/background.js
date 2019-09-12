@@ -42,8 +42,12 @@ function fadeLight(s){
 function displayBackground(){
 
   // update sky color
-  let sky = fadeLight(skyShades);
-  bgImage.c[0] = "rgb("+sky.r+","+sky.g+","+sky.b+")";
+  if(timedRun){
+    let sky = fadeLight(skyShades);
+    bgImage.c[0] = "rgb("+sky.r+","+sky.g+","+sky.b+")";
+  }
+  else bgImage.c[0] = "rgb(125,200,255)";
+
 
   drawBG();
   drawSun();

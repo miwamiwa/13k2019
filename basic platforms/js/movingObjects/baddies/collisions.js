@@ -66,6 +66,7 @@ function checkPlayerCollision(index){
 
 function sendEmFlying(i,f,jf,pOT,pOB,k,wB,dir){
   let p = player;
+  f = f+player.babiesCarried*0.2;
   if(pOT) {
     // if player was jumping overtop, baddie gets knocked back and player jumps again
     p.forceJump(jf);
@@ -81,7 +82,7 @@ function sendEmFlying(i,f,jf,pOT,pOB,k,wB,dir){
     p.collided(dir);
     baddies[i].collided(-dir*f)
   }
-  // knockback baby 
+  // knockback baby
   if(k)  babies[wB].collided(dir*3);
 
   // vfx, sfx

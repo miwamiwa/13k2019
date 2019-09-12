@@ -19,17 +19,29 @@ function keyPressed(){
     case 119: wiggle(); break;
   }
 }
+function boxClicked(box){
+  return inBox( event.clientX, event.clientY, box.x,box.y,box.w,box.h);
+}
 
+function go(){
+  startGame();
+  startSound();
+}
 // mouse press events are dependant on the currentScreen value
 function mousePressed(){
 
   if(currentScreen==="start") {
     // if currently on start screen and clicked in box, start game and sound
-    if( inBox( event.clientX, event.clientY, clickA.x,clickA.y,clickA.w,clickA.h)){
-    startGame();
-    startSound();
+    if( boxClicked(clickA) ){
+      timedRun = true;
+    go();
+  }
+  else if(boxClicked(clickB)){
+    timedRun = false;
+    go();
   }
   }
+
 
   else if(currentScreen==="gameover") {
   //  if game over screen, reset game on click
