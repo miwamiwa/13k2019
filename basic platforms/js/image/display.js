@@ -33,6 +33,7 @@ function displayImage(input,c,x,y,w,stretch,dir){
   ctx = canvas.context;
 
   // for each pixel
+    ctx.beginPath();
   for(let i=0; i<input.length; i++){
 
     if(c[input[i]]!=false){
@@ -43,7 +44,7 @@ function displayImage(input,c,x,y,w,stretch,dir){
       }             // in the main game loop and is reset on screen changes.
                     // that way images are drawn from top to bottom when they first appear.
 
-      ctx.beginPath();
+
       ctx.fillStyle = c[input[i]];
       let fact = 0
       if(dir===-1) fact=w*stretch; // var fact is used to reverse the image as needed
@@ -55,7 +56,8 @@ function displayImage(input,c,x,y,w,stretch,dir){
           stretch+0.5
         );
 
-      ctx.closePath();
+
     }
   }
+  ctx.closePath();
 }

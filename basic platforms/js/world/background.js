@@ -95,7 +95,7 @@ class cloud{
     this.y+= flRand(-4,4);
     this.timer++;
     let co = 255-this.timer;
-    this.col[1] = "rgb("+co+","+co+",255)"
+    this.col[1] = "rgba("+co+","+co+",255,0.5)"
     let pos = posOnScreen(this);
     displayImage(cloudImg.a,this.col,pos.x,pos.y,5,10,1);
     if(this.timer>200) killCloud(this.index);
