@@ -61,16 +61,23 @@ function drawSun(){
 
   // update sun color
   let sun = fadeLight(sunShades);
-  for(let i=0; i<sunLoop.length; i++){
-    sunLoop[i].c[1] = "rgb("+sun.r+","+sun.g+","+sun.b+")";
+  let index = imgIndex(3);
+  if(timedRun){
+    sunLoop[ index ].c[1] = "rgb("+sun.r+","+sun.g+","+sun.b+")";
+    // update sun direction
+    let sunDir = 1;
+   if(frame/sunDownFrame<0.5) sunDir = -1;
+  // update sun position
+   sunPos.y += sunDir*((canvasH)/(sunDownFrame));
+   sunPos.x += (canvasW/2)/(sunDownFrame);
+  }
+  else {
+    sunLoop[ index ].c[1] = "rgb(255,255,200";
+    sunPos = {x:canvasW/4,y:sunStart};
   }
 
-  // update sun direction
-  let sunDir = 1;
- if(frame/sunDownFrame<0.5) sunDir = -1;
-// update sun position
- sunPos.y += sunDir*((canvasH)/(sunDownFrame));
- sunPos.x += (canvasW/2)/(sunDownFrame);
+
+
 
 // display sun
   displayStringLoop(

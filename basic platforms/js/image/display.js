@@ -1,7 +1,9 @@
 /*
 This is where unpacked image-strings get displayed.
 */
-
+function imgIndex(input){
+  return Math.floor(frame/6 % input);
+}
 
 // displaystringloop()
 // display image from an image loop according to current frame.
@@ -9,7 +11,7 @@ This is where unpacked image-strings get displayed.
 function displayStringLoop(input,x,y,w,stretch,dir){
 
   // pick which image to display
-  let index = Math.floor(frame/6 % input.length);
+  let index = imgIndex(input.length);
 
   // inputs:
 

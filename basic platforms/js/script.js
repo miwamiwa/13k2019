@@ -92,6 +92,10 @@ function preload(){
   clickB.x = canvasW/2+40;
   clickB.y = clickA.y;
 
+  runStartScreen();
+}
+
+function runStartScreen(){
   // run start screen animation
   gameLoop = setInterval(function(){
 
@@ -100,7 +104,7 @@ function preload(){
 
     trace+=traceSpeed;
     frame++;
-  },1000/frameRate)
+  },1000/frameRate);
 }
 
 // displaystartscreen()
@@ -114,11 +118,10 @@ function displayStartScreen(){
   let c2 = 165+Math.sin(frame/100)*60;
   // display title
   displayText("ape naps",canvasW/2-150, canvasH/2-50, 0, "rgb("+c1+","+c2+","+50+")", 35,true);
-  let posY = clickA.y+15;
+  let posY = clickA.y+17;
   // display click box text
-  displayText("click to start",clickA.x+50, clickA.y-50, 0, "black", 20,false);
-  displayText("timed",clickA.x+40, posY, 0, "black", 20,false);
-  displayText("practice",clickB.x+3, posY, 0, "black", 20,false);
+  displayText("time trial",clickA.x+17, posY, 0, "black", 12,false);
+  displayText("practice",clickB.x+30, posY, 0, "black", 12,false);
 
   // display click box
   ctx.beginPath();
@@ -202,6 +205,7 @@ function updateGameArea() {
 
     // display time, naps taken and babies returned
     if(timedRun) displayText("sundown in "+timeLeft.toString(), 20,25,0,"white",25,false);
+    else displayText("press m to quit", 20,25,0,"white",25,false);
     displayText("naps "+naps, canvasW-160,19,0,"white",19,false);
     displayText("babies returned "+babiesReturned, canvasW-425,45,0,"white",19,false);
 
@@ -236,11 +240,11 @@ function updateGameArea() {
 
     // show click to skip text
     if(introSeq<currentText.length)
-      displayText("click to skip", canvasW-160,canvasH-30,0,"black",5,false);
+    displayText("click to skip", canvasW-160,canvasH-30,0,"black",5,false);
 
-      // update sky color and display background
+    // update sky color and display background
     if(currentScreen==="introscreen")
-      bgImage.c[0] = "rgb("+skyShades[6].r+","+skyShades[6].g+","+skyShades[6].b+")";
+    bgImage.c[0] = "rgb("+skyShades[6].r+","+skyShades[6].g+","+skyShades[6].b+")";
     drawBG();
 
     // display particles
@@ -263,10 +267,28 @@ function updateGameArea() {
 
   // run background music
   runBGM();
-
+  
   // increment image tracing and game frame values
   trace+=traceSpeed;
   frame++;
+}
+
+function resetGame(){
+  currentLevel = level1;
+  level = 0;
+  naps =0;
+  currentPhase =0;
+  gameOver = false;
+
+  // reset text
+  currentText = introTxt;
+  currentScreen  ="start"
+  introSeq =0;
+  player.sleeping = false;
+  trace=0;
+  canvas.clear();
+  clearInterval(gameLoop)
+  runStartScreen();
 }
 
 // displayreturnpoint()

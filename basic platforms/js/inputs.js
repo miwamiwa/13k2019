@@ -16,7 +16,8 @@ function keyPressed(){
     case 97: moveX(-1); break;//left A  97
     case 100: moveX(1); break;// right D 100
     case 32: if(!player.sleeping) player.startJump(player); break; // jump SPACE 32
-    case 119: wiggle(); break;
+    case 119: wiggle(); break;//w
+    case 109: if(!timedRun) resetGame(); break; //m
   }
 }
 function boxClicked(box){
@@ -43,26 +44,7 @@ function mousePressed(){
   }
 
 
-  else if(currentScreen==="gameover") {
-  //  if game over screen, reset game on click
-    Object.assign(currentLevel, level1);
-    level = 0;
-    naps =0;
-    currentPhase =0;
-    gameOver = false;
-
-    // reset text
-    currentText = introTxt;
-    introSeq =0;
-
-    currentScreen="introscreen" // enable start round on click
-    player.sleeping = false;
-    trace=0;
-
-    // start intro text
-    shootTextSequence();
-    setupLevel(currentLevel); // setup level 1
-  }
+  else if(currentScreen==="gameover")  resetGame();
 
   else if(currentScreen==="wakeplayer"||currentScreen==="introscreen") {
     // if currently on napping screen, start the round
